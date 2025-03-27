@@ -237,4 +237,20 @@ JOIN `user`
 ON `prof`.user_id = `user`.id
 WHERE `reg`.student_number = "20250001";
 
-
+################################ 교수 ####################
+-- 교수 목록 조회(교수번호, 이름, 주민번호, 휴대폰, 이메일, 학과, 직위, 재직여부, 임요일)
+SELECT 
+`prof`.id AS `professor_id`,
+`prof`.`position` AS `professor_positoin`,
+`prof`.`status`AS `professor_status`,
+`prof`.employed_at `professor_employed_at`,
+`user`.`name` AS `user_name`,
+`user`.social_number AS `user_social_number`,
+`user`.contact AS `user_contact`,
+`user`.email AS `user_email`,
+`dept`.`name` AS `department_name`
+FROM `professor` AS `prof`
+JOIN `user`
+ON `prof`.user_id = `user`.id
+JOIN `department` AS `dept`
+ON `prof`.department_id = `dept`.id;
