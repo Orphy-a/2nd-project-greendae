@@ -254,3 +254,17 @@ JOIN `user`
 ON `prof`.user_id = `user`.id
 JOIN `department` AS `dept`
 ON `prof`.department_id = `dept`.id;
+
+########### 학과 ###########
+-- GenericService의 메서드 이외의 메서드가 필요하므로 별도의 서비스(ProfessorServiceWrapper)로 구현.
+SELECT
+`dept`.id AS `department_id`,
+`coll`.`name` AS `college_name`,
+`dept`.est_year AS `department_est_year`,
+`dept`.`name` AS `department_name`,
+`dept`.eng_name AS `department_eng_name`,
+`dept`.contact AS `department_contact`,
+`dept`.office AS `department_office`
+FROM `department` AS `dept`
+JOIN `college` AS `coll`
+ON `dept`.college_id = `coll`.id;
