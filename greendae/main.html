@@ -9,8 +9,6 @@
     <script src="https://kit.fontawesome.com/516da99189.js" crossorigin="anonymous"></script>
 </head>
 <script>
-    const prev = document.querySelector('.prev');
-    const next = document.querySelector('.next');
     const slideBox = document.querySelector('.slide_box')
     const slide = document.querySelectorAll('.slide_item img')
     const slideLangth = slide.length
@@ -21,17 +19,7 @@
         currentIndex = num;
     }
 
-    prev.addEventListener('click', ()=>{
-        if(currentIndex !== 0){
-            moveSlide(currentIndex -1)
-        }
-    })
 
-    next.addEventListener('click', ()=>{
-        if(currentIndex !== slideLangth -1){
-            moveSlide(currentIndex +1)
-        }
-    })
 </script>
 
 <body>

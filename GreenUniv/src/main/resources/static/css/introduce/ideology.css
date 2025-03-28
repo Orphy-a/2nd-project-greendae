@@ -1,0 +1,35 @@
+
+.idea-list{
+    margin-top: 40px;
+}
+
+.idea-list ul {
+    padding: 35px 35px 40px 35px;
+}
+
+.idea-list .idea-logo {
+    width: 150px;
+    margin-left: 50px;
+}
+
+.idea-list .idea-text {
+    text-align: center;
+}
+
+.idea-list h1 {
+    margin: 15px 0 5px 0;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.idea-list li {
+    float: left;
+    width: calc(100% / 3);
+}
+
+.idea-list p {
+    margin-top: 15px;
+    text-align: center;
+
+}

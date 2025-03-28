@@ -343,14 +343,14 @@ section p {
     width: 400px;
     height: 33px;
     position: relative;
-    right: 140px;
+    right: 130px;
     border: 1px solid #959595;
     margin-top: 1px;
 }
 .Enter_basic_information tr:nth-child(5) td:nth-child(3) .post_num{
     width: 150px;
     position: relative;
-    right: 265px;
+    right: 255px;
 }
 
 .Enter_academic_information tr{

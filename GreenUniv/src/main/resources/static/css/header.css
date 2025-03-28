@@ -89,74 +89,20 @@ a {
   height: 50px;
   background-image: url("/images/header_logo.png");
 }
-
-
 .header_Bottom_Menu {
-
-  justify-content: space-between;
+  display: flex;
   align-items: center;
   float: right;
-  width: 100%;
-  max-width: 702px;
+  width: 660px;
   height: 100%;
-}
-
-
-
-
-.header_Bottom_Menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.header_Bottom_Menu > ul > li {
-  display: inline-block;
-  position: relative;
+  border: 3px solid black;
 }
 
 .header_Bottom_Menu a {
+  flex: 1 1 0;
   text-align: center;
-  display: block;
-  padding: 28px 25px;
-  text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   line-height: 21px;
-  transition: background-color 0.3s;
-}
-
-.header_Bottom_Menu > ul > li > ul a{
-  background-color: #3F97F6;
-  color: white;
-  padding: 20px 25px;
-}
-
-.submenu {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-
-}
-
-.header_Bottom_Menu > ul > li >ul a:hover {
-  background-color: #555;
-}
-
-
-.header_Bottom_Menu li:hover .submenu {
-  display: block;
-
-}
-
-.submenu li {
-  display: block;
-  
-}
-
-.submenu a{
-  text-align: inherit;
+  margin-right: 10px;
 }

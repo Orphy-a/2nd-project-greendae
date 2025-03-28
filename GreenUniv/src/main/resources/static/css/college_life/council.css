@@ -1,3 +1,19 @@
+html,body{
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 최소 높이를 화면 높이(뷰포트 높이)로 설정 */
+}
+
+#container {
+  flex: 1; /* 메인이 차오르면 푸터가 밀려남 */
+}
+
 /*메인*/
 #container{
     width: 1200px;
@@ -54,5 +70,44 @@
     font-weight: bolder;
     font-size: 20px;
     border-bottom: 2px solid #222222;
+    
+  }
+
+  .right_section > article > div:nth-child(2) >h2{
+    font-size: 15px;
+    font-weight: bolder;
+  }
+
+
+  .right_section > article > div:nth-child(2){
+    width: 800px;
+    height: auto;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .right_section table{
+    width: 800px;
+    height: auto;
+    border-collapse: collapse;
+  }
+
+  .right_section > article > div:nth-child(2)>table>thead{
+    width: 500px;
+    height: 80px;
+    background-color: #f4f8fc;
+  }
+  .right_section> article > div:nth-child(2) > table> thead> tr>th{
+    font-size: 13px;
+    font-weight: bolder;
+  }
+
+  .right_section > article > div:nth-child(2)>table >tbody >tr{
+    width: 300px;
+    height: 70px;
+  }
+
+  .right_section > article > div:nth-child(2)>table >tbody >tr>th{
+    font-size: 13px;
     
   }
