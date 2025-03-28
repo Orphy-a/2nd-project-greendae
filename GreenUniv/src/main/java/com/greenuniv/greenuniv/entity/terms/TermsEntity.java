@@ -1,6 +1,6 @@
-package com.greenuniv.greenuniv.entity.term;
+package com.greenuniv.greenuniv.entity.terms;
 
-import com.greenuniv.greenuniv.dto.term.TermDTO;
+import com.greenuniv.greenuniv.dto.terms.TermsDTO;
 import com.greenuniv.greenuniv.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +21,7 @@ import lombok.ToString;
 @Table(name = "term")
 @AllArgsConstructor
 @NoArgsConstructor
-public class TermEntity implements BaseEntity {
+public class TermsEntity implements BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +34,8 @@ public class TermEntity implements BaseEntity {
   private String content;
 
   @Override
-  public TermDTO toDTO() {
-    return TermDTO.builder()
+  public TermsDTO toDTO() {
+    return TermsDTO.builder()
         .id(id)
         .title(title)
         .content(content)

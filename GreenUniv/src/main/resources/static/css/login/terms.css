@@ -1,0 +1,13 @@
+.btn div{
+
+}
+
+.btn a{
+    float: right;
+    padding-block: 15px;
+    padding-inline: 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: #EFF4F8;
+    border: 1px solid #CCCCCC;
+}
