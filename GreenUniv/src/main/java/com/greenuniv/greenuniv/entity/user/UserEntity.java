@@ -34,7 +34,7 @@ public class UserEntity implements BaseEntity {
   @Column(name = "name")
   private String name;
 
-  private String engName;
+  private String eng_Name;
   private String gender;
   private String nationality;
 
@@ -54,7 +54,7 @@ public class UserEntity implements BaseEntity {
   private String address;
 
   @Column(name = "address_detail")
-  private String addressDetail;
+  private String address_detail;
 
   @Column(name = "role")
   private String role;
@@ -75,7 +75,7 @@ public class UserEntity implements BaseEntity {
         .id(id)
         .password(password)
         .name(name)
-        .engName(engName)
+        .eng_Name(eng_Name)
         .gender(gender)
         .nationality(nationality)
         .socialNumber(socialNumber)
@@ -83,7 +83,7 @@ public class UserEntity implements BaseEntity {
         .contact(contact)
         .zip(zip)
         .address(address)
-        .addressDetail(addressDetail)
+        .address_detail(address_detail)
         .role(role)
         .agreedTerms(agreedTerms)
         .registerDate(registerDate)
@@ -107,8 +107,8 @@ public class UserEntity implements BaseEntity {
             role);
         throw new IllegalArgumentException(message);
       }
-      return new UserEntity(id, password, name, engName, gender, nationality, socialNumber, email,
-          contact, zip, address, addressDetail, role, agreedTerms, registerDate, leaveDate);
+      return new UserEntity(id, password, name, eng_Name, gender, nationality, socialNumber, email,
+          contact, zip, address, address_detail, role, agreedTerms, registerDate, leaveDate);
     }
 
   }

@@ -1,4 +1,4 @@
-package com.greenuniv.greenuniv.repository;
+package com.greenuniv.greenuniv.repository.login;
 
 import com.greenuniv.greenuniv.entity.terms.TermsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
