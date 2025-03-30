@@ -3,7 +3,7 @@ package com.greenuniv.greenuniv.service.login;
 
 import com.greenuniv.greenuniv.dto.terms.TermsDTO;
 import com.greenuniv.greenuniv.entity.terms.TermsEntity;
-import com.greenuniv.greenuniv.repository.TermsRepository;
+import com.greenuniv.greenuniv.repository.login.TermsRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
