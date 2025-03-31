@@ -1,0 +1,40 @@
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: debug
+    root: info
+    sql: debug
+    file:
+      path: "/data"
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: GreenUniv
+    version: 0.0.1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 10000
+      maximum-pool-size: 20
+    username: ec2-user
+    password: p33wsu47r5b0
+    url: mysql://greenuniv-db:3306/green_univ
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
