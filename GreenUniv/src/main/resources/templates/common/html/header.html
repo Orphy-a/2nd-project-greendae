@@ -1,3 +1,5 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
 <header>
   <div>
     <div class="header_Top">
@@ -7,7 +9,18 @@
           <span class="separator">|</span>
           <a th:href="@{introduce/map}">사이트맵</a>
           <span class="separator">|</span>
-          <a th:href="@{login/login}">로그인</a>
+
+          <a th:href="@{/login/login}">로그인</a>
+<!--          <div sec:authorize="isAnonymous()">-->
+<!--            <a th:href="@{/login/login}">로그인</a>-->
+<!--          </div>-->
+<!--          <div sec:authorize="isAuthenticated()">-->
+<!--            <a href="/logout" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Logout</a>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; 로그아웃 폼 (POST 요청) &ndash;&gt;-->
+<!--          <form id="logoutForm" th:action="@{/login/logout}" method="post" style="display:none;">-->
+<!--            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />-->
+<!--          </form>-->
           <span class="separator">|</span>
           <a href="#">학생지원</a>
         </div>

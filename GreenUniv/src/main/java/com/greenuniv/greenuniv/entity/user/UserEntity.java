@@ -2,10 +2,8 @@ package com.greenuniv.greenuniv.entity.user;
 
 import com.greenuniv.greenuniv.dto.user.UserDTO;
 import com.greenuniv.greenuniv.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import lombok.AllArgsConstructor;
@@ -55,9 +53,10 @@ public class UserEntity implements BaseEntity {
 
   @Column(name = "address_detail")
   private String address_detail;
-
-  @Column(name = "role")
-  private String role;
+  
+  // string -> enum 타입 수정
+  @Enumerated(EnumType.STRING)
+  private UserEntity.Role role;
 
   @Column(name = "agreed_terms")
   private boolean agreedTerms;
@@ -68,6 +67,12 @@ public class UserEntity implements BaseEntity {
 
   @Column(name = "leave_date")
   private LocalDateTime leaveDate;
+
+
+  public enum Role{
+    student, professor, admin, general
+  }
+
 
   @Override
   public UserDTO toDTO() {
