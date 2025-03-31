@@ -1,7 +1,3 @@
-<!--
-    작성자: garden(박정원)
-    설명 : 대학/대학원 > 사범대학
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,18 +7,17 @@
     <link rel="stylesheet" href="/css/common/header.css" />
     <link rel="stylesheet" href="/css/common/footer.css" />
     <link rel="stylesheet" href="/css/common/nav.css" />
-    <link rel="stylesheet" href="/css/intro/table.css" />
-    <link rel="stylesheet" href="/css/intro/click.css" />
+    <link rel="stylesheet" href="/css/common/table.css" />
     <link rel="stylesheet" href="/css/common/pagination.css" />
     <link rel="stylesheet" href="/css/common/side-menu.css" />
   </head>
   <body>
     <div id="wrapper">
-      <th:block th:include="/common/html/header.html"/>
+        <th:block th:include="/common/html/header.html"/>
       <nav>
         <div>
           <div>
-            <a href="/">
+            <a href="/static">
               <img src="/images/ico-home.png" alt="홈페이지" />
               &ensp;&ensp;
             </a>
@@ -44,7 +39,7 @@
         </aside>
         <section>
           <div class="title-area">
-            <h1>입학상담</h1>
+            <h1>공지사항</h1>
           </div>
           <div id="search-area">
             <select class="search-input">
@@ -62,37 +57,43 @@
           <table>
             <tr>
               <th>번호</th>
-              <th>구분</th>
               <th>제목</th>
               <th>작성자</th>
               <th>작성일</th>
-              <th>상태</th>
-              
+              <th>조회</th>
             </tr>
             <tbody>
               <tr>
                 <td>3</td>
-                <td>정시</td>
-                <td><img src="/images/ico-lock.png" alt="홈페이지" />정시모집 관련해 문의드립니다.</td>
-                <td>홍길동</td>
+                <td>
+                  <img src="/images/ico-new01.gif">
+                  <a href="#">
+                  2025학년도 신입학 3차 추가모집 모집요강 및 모집···</td>
+                  </a>
+                <td>담당자</td>
                 <td>24.04.09</td>
-                <td>답변완료</td>
+                <td>160</td>
               </tr>
               <tr>
-                <td>3</td>
-                <td>정시</td>
-                <td><img src="/images/ico-lock.png" alt="홈페이지" />정시모집 관련해 문의드립니다.</td>
-                <td>홍길동</td>
+                <td>2</td>
+                <td>
+                  <img src="/images/ico-new01.gif">
+                  <a href="#">
+                    2025학년도 신입학 2차 추가모집 모집요강 및 모집···</td>
+                  </a>
+                <td>담당자</td>
                 <td>24.04.09</td>
-                <td>답변완료</td>
+                <td>160</td>
               </tr>
               <tr>
-                <td>3</td>
-                <td>정시</td>
-                <td><img src="/images/ico-lock.png" alt="홈페이지" />정시모집 관련해 문의드립니다.</td>
-                <td>홍길동</td>
+                <td>1</td>
+                <td>
+                  <a href="#">
+                    2025학년도 신입학 추가모집 모집요강 및 모집인원 공지···</td>
+                  </a>
+                <td>담당자</td>
                 <td>24.04.09</td>
-                <td>답변완료</td>
+                <td>160</td>
               </tr>
             </tbody>
           </table>
@@ -105,12 +106,6 @@
             <button>3</button>
             <button class="next">></button>
             <button>>></button>
-          </div>
-          <div class="click">
-            <a>
-              <input type="submit" class="search-btn search-input" value="문의하기"
-              style="background-color: #3f97f6;"/>
-            </a>
           </div>
         </section>
       </main>

@@ -22,4 +22,5 @@ public class CollegeLifeController {
     @GetMapping("/collegeLife/gallery")
     public String gallery(){return "/collegeLife/gallery";}
 
+
 }
