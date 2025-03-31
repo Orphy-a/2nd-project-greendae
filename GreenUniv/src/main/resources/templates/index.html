@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>그린대학교</title>
-  <link rel="stylesheet" th:href="@{/css/main.css}">
-  <link rel="stylesheet" th:href="@{/css/common/header.css}"/>
-  <link rel="stylesheet" th:href="@{/css/common/footer.css}"/>
+  <link rel="stylesheet" th:href="@{css/main.css}">
+  <link rel="stylesheet" th:href="@{css/common/header.css}"/>
+  <link rel="stylesheet" th:href="@{css/common/footer.css}"/>
   <script src="https://kit.fontawesome.com/516da99189.js" crossorigin="anonymous"></script>
   <script src="/js/main/slide.js"></script>
 </head>
 <body>
-<th:block th:include="/common/html/header.html"/>
+<th:block th:include="common/html/header.html"/>
 <main>
   <div class="main_background">
     <div>
@@ -42,7 +42,7 @@
           <p>
             학사안내
             <a href="#">
-              <img th:src="@{/images/bg-viewmore01.png}" alt="학사안내 더보기">
+              <img th:src="@{images/bg-viewmore01.png}" alt="학사안내 더보기">
             </a>
           </p>
 
@@ -63,7 +63,7 @@
           <p>
             공지사항
             <a href="#">
-              <img th:src="@{/images/bg-viewmore02.png}" alt="공지사항 더보기">
+              <img th:src="@{images/bg-viewmore02.png}" alt="공지사항 더보기">
             </a>
           </p>
 
@@ -123,7 +123,7 @@
             <p>
               뉴스 및 칼럼
               <a href="#">
-                <img th:src="@{/images/bg-viewmore01.png}" alt="공지사항 더보기">
+                <img th:src="@{images/bg-viewmore01.png}" alt="공지사항 더보기">
               </a>
             </p>
 
@@ -145,31 +145,31 @@
           <div>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link01.png}" alt="">
+                <img th:src="@{images/bg-main-link01.png}" alt="">
               </div>
               <div>입학안내</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link02.png}" alt="">
+                <img th:src="@{images/bg-main-link02.png}" alt="">
               </div>
               <div>학사일정</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link03.png}" alt="">
+                <img th:src="@{images/bg-main-link03.png}" alt="">
               </div>
               <div>학생회</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link04.png}" alt="">
+                <img th:src="@{images/bg-main-link04.png}" alt="">
               </div>
               <div>교과과정</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link05.png}" alt="">
+                <img th:src="@{images/bg-main-link05.png}" alt="">
               </div>
               <div>취업안내</div>
             </a>
@@ -184,7 +184,7 @@
 </main>
 
 
-<th:block th:include="/common/html/footer.html"/>
+<th:block th:include="common/html/footer.html"/>
 
 </body>
 </html>

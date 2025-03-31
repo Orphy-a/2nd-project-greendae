@@ -25,5 +25,12 @@ public class IntroduceController {
     @GetMapping("/introduce/organization")
     public String organization(){return "/introduce/organization";}
 
+    @GetMapping("/introduce/advice")
+    public String advice(){return "/introduce/advice";}
 
+    @GetMapping("/introduce/regular")
+    public String regular(){return "/introduce/regular";}
+
+    @GetMapping("introduce/jungsi")
+    public String jungsi(){return "/introduce/jungsi";}
 }
