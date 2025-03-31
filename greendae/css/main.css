@@ -56,7 +56,12 @@ main{
     background-image: url('/images/bg-main-vi01.jpg');
     background-size: cover;
     background-position: center;
+    position: relative;
+    z-index: 1;
 }
+
+
+
 
 
 .main_background > div{
@@ -68,6 +73,16 @@ main{
     align-items: center;
     color: #FFFFFF;
     text-align: center;
+
+}
+.arrow{
+    position: absolute;
+    bottom: 12px;
+    right: -90px;
+}
+.arrow img{
+    width: 13px;
+
 }
 
 .main_background > div > div{
@@ -141,6 +156,8 @@ main{
     font-size: 16px;
 }
 
+/*오른쪽화살표*/
+
 
 
 main > div:nth-child(2){
@@ -153,6 +170,12 @@ main > div:nth-child(2){
 
 .main_article{
     display: flex;
+    margin: 0 auto;
+    margin-top: -100px;
+    width: 1200px;
+    height: 350px;
+    position: relative; /* main_article이 z-index를 가지도록 설정 */
+    z-index: 2; /* .main_background보다 위로 배치 */
 
 
 }
