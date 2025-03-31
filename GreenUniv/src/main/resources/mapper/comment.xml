@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.greenuniv.greenuniv.dao.mapper.CommentMapper">
+  <resultMap id="articleWithCommentMap" type="com.greenuniv.greenuniv.dto.comment.CommentDTO">
+    <id property="id" column="comment_id"/>
+    <result property="content" column="comment_content"/>
+    <result property="registerDate" column="comment_register_date"/>
+    <collection property="user" resultMap="com.greenuniv.greenuniv.dao.mapper.UserMapper.userMap"/>
+  </resultMap>
+
+  <select id="selectAllWith" resultMap="articleWithCommentMap">
+    SELECT
+    `user`.id AS `user_id`,
+    `user`.`name` AS `user_name`,
+    `comm`.id AS `comment_id`,
+    `comm`.article_id AS `article_id`,
+    `comm`.content AS `comment_content`,
+    `comm`.register_date AS `comment_register_date`
+    FROM `comment` AS `comm`
+    JOIN `user`
+    ON `comm`.user_id = `user`.id
+    WHERE `comm`.${colName} = #{value};
+  </select>
+</mapper>
