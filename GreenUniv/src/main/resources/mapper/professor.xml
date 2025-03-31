@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.greenuniv.greenuniv.dao.mapper.ProfessorMapper">
+  <resultMap id="professorMap" type="com.greenuniv.greenuniv.dto.professor.ProfessorDTO">
+    <result property="id" column="professor_id"/>
+    <result property="position" column="professor_position"/>
+    <result property="status" column="professor_status"/>
+    <result property="employedAt" column="professor_employed_at"/>
+    <association property="user" resultMap="com.greenuniv.greenuniv.dao.mapper.UserMapper.userMap"/>
+  </resultMap>
+  <select id="selectAll" resultMap="professorMap">
+    SELECT
+    `prof`.id AS `professor_id`,
+    `prof`.`position` AS `professor_position`,
+    `prof`.`status`AS `professor_status`,
+    `prof`.employed_at `professor_employed_at`,
+    `user`.`name` AS `user_name`,
+    `user`.social_number AS `user_social_number`,
+    `user`.contact AS `user_contact`,
+    `user`.email AS `user_email`,
+    `dept`.`name` AS `department_name`
+    FROM `professor` AS `prof`
+    JOIN `user`
+    ON `prof`.user_id = `user`.id
+    JOIN `department` AS `dept`
+    ON `prof`.department_id = `dept`.id;
+  </select>
+</mapper>

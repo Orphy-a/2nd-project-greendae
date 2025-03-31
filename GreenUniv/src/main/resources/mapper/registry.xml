@@ -4,23 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.greenuniv.greenuniv.dao.mapper.RegistryMapper">
   <resultMap id="registryMap" type="com.greenuniv.greenuniv.dto.registry.RegistryDTO">
-    <id property="studentNumber" column="student_number"/>
     <result property="currentYear" column="current_year"/>
     <result property="registerDate" column="registerDate"/>
     <collection property="student" ofType="com.greenuniv.greenuniv.dto.student.StudentDTO">
       <id property="studentNumber" column="student_number"/>
     </collection>
     <collection property="registryLecture"
-      ofType="com.greenuniv.greenuniv.dto.registry.RegistryLectureDTO">
-      <association property="lecture" javaType="com.greenuniv.greenuniv.dto.lecture.LectureInfoDTO">
-        <id property="id" column="lecture_code"/>
-        <result property="name" column="lecture_name"/>
-        <result property="level" column="lecture_level"/>
-        <result property="credit" column="lecture_credit"/>
-        <result property="classification" column="lecture_classification"/>
-        <result property="classroom" column="lecture_classroom"/>
-      </association>
-    </collection>
+      resultMap="com.greenuniv.greenuniv.dao.mapper.RegistryLectureMapper.allRegistryLectureMap"/>
   </resultMap>
   <select id="selectAll" resultMap="registryMap">
     SELECT
@@ -38,10 +28,12 @@
     `reg`.`current_year` AS `current_year`,
     `reg`.`register_date` AS `register_date`
     FROM `registry` AS `reg`
+    JOIN `registry_lecture` AS `reg_lec`
+    ON `reg`.id = `reg_lec`.id
     JOIN `lecture` AS `lec`
-    ON `reg`.registry_lecture_id = `lec`.lecture_id
+    ON `reg_lec`.id = `lec`.id
     JOIN `lecture_info` AS `lec_info`
-    ON `lec`.lecture_id = `lec_info`.id
+    ON `lec`.id = `lec_info`.id
     JOIN `lecture_day` AS `lec_d`
     ON `lec`.lecture_day_id = `lec_d`.id
     JOIN `lecture_time` AS `lec_t`
@@ -68,10 +60,12 @@
     `reg`.`current_year` AS `current_year`,
     `reg`.`register_date` AS `register_date`
     FROM `registry` AS `reg`
+    JOIN `registry_lecture` AS `reg_lec`
+    ON `reg`.id = `reg_lec`.id
     JOIN `lecture` AS `lec`
-    ON `reg`.registry_lecture_id = `lec`.lecture_id
+    ON `reg_lec`.id = `lec`.id
     JOIN `lecture_info` AS `lec_info`
-    ON `lec`.lecture_id = `lec_info`.id
+    ON `lec`.id = `lec_info`.id
     JOIN `lecture_day` AS `lec_d`
     ON `lec`.lecture_day_id = `lec_d`.id
     JOIN `lecture_time` AS `lec_t`
@@ -80,6 +74,6 @@
     ON `prof`.id = `lec_info`.professor_id
     JOIN `user`
     ON `prof`.user_id = `user`.id
-    WHERE `reg`.`student_number` = #{id}
+    WHERE `reg`.student_number = #{id};
   </select>
 </mapper>
