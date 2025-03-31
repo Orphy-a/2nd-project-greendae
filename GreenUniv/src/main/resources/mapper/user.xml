@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.greenuniv.greenuniv.dao.mapper.UserMapper">
+  <resultMap id="userMap" type="com.greenuniv.greenuniv.dto.user.UserDTO">
+    <result property="id" column="user_id"/>
+    <result property="password" column="user_password"/>
+    <result property="name" column="user_name"/>
+    <result property="engName" column="user_eng_name"/>
+    <result property="gender" column="user_gender"/>
+    <result property="nationality" column="user_nationality"/>
+    <result property="socialNumber" column="user_social_number"/>
+    <result property="email" column="user_email"/>
+    <result property="contact" column="user_contact"/>
+    <result property="zip" column="user_zip"/>
+    <result property="address" column="user_address"/>
+    <result property="addressDetail" column="user_address_detail"/>
+    <result property="role" column="user_role"/>
+    <result property="agreedTerms" column="user_agreed_terms"/>
+    <result property="registerDate" column="user_register_date"/>
+    <result property="leaveDate" column="user_leave_date"/>
+  </resultMap>
+</mapper>
