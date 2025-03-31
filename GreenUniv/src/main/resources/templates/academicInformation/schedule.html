@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/header.css">
-    <link rel="stylesheet" href="/css/bachelor's_degree/calendar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/nav.css">
-    
+    <link rel="stylesheet" href="/css/bachelor's_degree/schedule.css" />
+    <link rel="stylesheet" href="/css/common/side-menu.css">
+    <link rel="stylesheet" href="/css/bachelor's_degree/registration.css">
     <title>학사일정</title>
 </head>
 <body>
@@ -26,27 +27,39 @@
       </nav>
 
     <main id="container">
-        <section class="left_section">
-            <aside id="side-menu">
-              <div class="title-area">
-                <h1>학사안내</h1>
-              </div>
-            <a href="/bachelor's_degree/notice.html" class="menu">공지사항</a>
-            <a href="/bachelor's_degree/calendar.html" class="menu">학사일정</a>
-            <a href="/bachelor's_degree/registration.html" class="menu">수강신청</a>
-            <a href="/bachelor's_degree/score.html" class="menu">성적</a>
-            <a href="/bachelor's_degree/graduation.html" class="menu">수료 및 졸업</a>
-            <a href="/bachelor's_degree/qna.html" class="menu">자주묻는질문</a>
-            </aside>
-        </section>
-
-        <section class="right_section">
-           <article>
-            <div>
-                <h3>학사일정</h3>
+        <aside id="side-menu">
+            <div class="title-area">
+                <h1>대학·대학원</h1>
             </div>
-           </article>
-        </section>    
+            <a href="#" class="menu">공지사항</a>
+            <a href="#" class="menu">학사일정</a>
+            <a href="#" class="menu">수강신청</a>
+            <a href="#" class="menu">성적</a>
+            <a href="#" class="menu">수료 및 졸업</a>
+            <a href="#" class="menu">자주묻는 질문</a>
+        </aside>
+        <section>
+            <div class="title-area">
+                <h1>학사일정</h1>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button onclick="prevMonth()">❮</button>
+                    <span id="calendar-title" style="font-size: x-large; font-weight: 600; margin: 0 60px;">2025.03 123123</span>
+                    <button onclick="nextMonth()">❯</button>
+                </div>
+                <table class="calendar-table">
+                    <thead>
+                    <tr>
+                        <th>Sun</th> <th>Mon</th> <th>Tue</th> <th>Wed</th> <th>Thu</th> <th>Fri</th> <th>Sat</th>
+                    </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                    </tbody>
+                </table>
+            </div>
+            <div class="import-note">※ 자세한 일정 내용은 공지사항을 참고하시기 바랍니다.</div>
+        </section>
     </main>
     <th:block th:include="/common/html/footer.html"/>
 </body>

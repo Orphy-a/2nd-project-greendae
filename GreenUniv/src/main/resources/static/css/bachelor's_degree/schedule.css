@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+#container {
+    width: 1200px;
+    min-height: 677px;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+
+
+}
+
+#container > section {
+    float: left;
+    width: 930px;
+    height: auto;
+    margin-left: 50px;
+
+
+
+}
+
+#container > section > .title-area {
+    width: 930px;
+    height: auto;
+    margin-top: 15px;
+    border-bottom: 2px solid #111;
+    padding: 10px 0px;
+}
+
+#container > section > .title-area > h1 {
+    font-size: 26px;
+    font-weight: bolder;
+}
+
+#search-area {
+    float: right;
+    margin: 35px 0px;
+}
+
+#search-area > .search-input {
+    border-radius: 0;
+    border: 1px solid #dedede;
+}
+
+#search-area > select {
+    width: 150px;
+    height: 35px;
+    color: #666;
+    cursor: pointer;
+}
+
+#search-area > .search-box {
+    width: 200px;
+    height: 35px;
+}
+
+.search-btn {
+    width: 70px;
+    height: 35px;
+    background-color: #3f97ef;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+.calendar-container {
+    width: 100%;
+    height: 800px;
+    border-radius: 5px;
+
+
+}
+
+.calendar-header {
+    align-items: center;
+    padding: 20px 0px;
+    border-bottom: 2px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    margin : 0 auto;
+    text-align: center;
+
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th, .calendar-table td {
+    width: 14.28%;
+    height: 40px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.calendar-table th {
+    background: #0A468C;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-table td {
+    cursor: pointer;
+    padding-bottom: 70px;
+}
+
+.calendar-table td:hover {
+    background: #f1f1f1;
+}
+
+.highlight {
+    background: #bcdffd;
+    font-weight: bold;
+    color: #0A468C;
+    border-radius: 5px;
+}
+
+.import-note {
+    font-size: 12px;
+    margin-bottom: 70px;
+    color: gray;
+
+}
+
