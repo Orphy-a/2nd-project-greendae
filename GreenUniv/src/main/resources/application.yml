@@ -24,7 +24,7 @@ spring:
       maximum-pool-size: 20
     username: ec2-user
     password: p33wsu47r5b0
-    url: mysql://greenuniv-db:3306/green_univ
+    url: jdbc:mysql://greenuniv-db:3306/green_univ
   devtools:
     livereload:
       enabled: true
