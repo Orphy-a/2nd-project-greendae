@@ -56,6 +56,35 @@ main{
     background-image: url('/images/bg-main-vi01.jpg');
     background-size: cover;
     background-position: center;
+    position: relative;
+    z-index: 1;
+}
+
+.main_background > div:nth-child(2){
+    width: 13px;
+}
+
+.arrow{
+    position: absolute;
+    top: 50%;
+    right: calc(50% - 600px);
+    transform: translateY(-50%);
+
+}
+.arrow img{
+    width: 13px;
+}
+
+.header_Bottom{
+    position: relative;
+    z-index: 10;
+}
+.submenu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 11;
+    display: none;
 }
 
 
@@ -130,9 +159,6 @@ main{
     background-color: #ffffff;   
 }
 
-
-
-
 .main_background button {
     width: 210px;
     height: 48px;
@@ -140,6 +166,8 @@ main{
     padding: 10px 20px;
     font-size: 16px;
 }
+
+
 
 
 
@@ -153,6 +181,12 @@ main > div:nth-child(2){
 
 .main_article{
     display: flex;
+    margin: 0 auto;
+    margin-top: -100px;
+    width: 1200px;
+    height: 350px;
+    position: relative;
+    z-index: 2;
 
 
 }
