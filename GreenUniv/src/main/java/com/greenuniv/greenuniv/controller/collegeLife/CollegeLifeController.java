@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CollegeLifeController {
 
-    @GetMapping("/collegeLife/club")
-    public String club(){return "/collegeLife/club";}
+    @GetMapping("collegeLife/club")
+    public String club(){return "collegeLife/club";}
 
-    @GetMapping("/collegeLife/diet")
-    public String diet(){return "/collegeLife/diet";}
+    @GetMapping("collegeLife/diet")
+    public String diet(){return "collegeLife/diet";}
 
-    @GetMapping("/collegeLife/council")
-    public String council(){return "/collegeLife/council";}
+    @GetMapping("collegeLife/council")
+    public String council(){return "collegeLife/council";}
 
-    @GetMapping("/collegeLife/gallery")
-    public String gallery(){return "/collegeLife/gallery";}
+    @GetMapping("collegeLife/gallery")
+    public String gallery(){return "collegeLife/gallery";}
 
 }

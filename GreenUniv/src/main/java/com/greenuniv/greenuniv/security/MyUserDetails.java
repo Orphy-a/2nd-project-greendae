@@ -4,6 +4,7 @@ import com.greenuniv.greenuniv.entity.user.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,9 +20,8 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // 권한 목록 생성
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole())); // 계정 권한 앞에 접두어 ROLE_ 붙여야 됨
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name())); // Role enum 값을 String으로 변환
         return authorities;
     }
 
@@ -32,30 +32,26 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getId();
+        return user.getId(); // 또는 user.getUsername()
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        // 계정 만료 여부(true : 만료안됨, false : 만료됨)
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // 계정 잠김 여부
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // 비밀번호 만료 여부
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // 계정 활성화 여부
         return true;
     }
 }
