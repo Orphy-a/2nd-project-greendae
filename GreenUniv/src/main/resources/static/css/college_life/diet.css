@@ -1,58 +1,251 @@
-/*메인*/
-#container{
-    width: 1200px;
-    height: 600px;
-    margin: 0 auto;
-    position: relative;
-    
+html,body{
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 최소 높이를 화면 높이(뷰포트 높이)로 설정 */
+}
+
+#container {
+  flex: 1; /* 메인이 차오르면 푸터가 밀려남 */
+}
+
+#container{
+  width: 1200px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
 /*left_sectin*/
 #container > .left_section > aside {
-    float: left;
-    width: 180px;
-    height: auto;
-    margin-right: 40px;
-  }
-  
-  .title-area {
-    width: 100%;
-    height: auto;
-    margin-top: 15px;
-    border-bottom: 2px solid #111;
-    padding: 10px;
-  }
-  
-  .title-area > h1 {
-    font-size: 26px;
-    font-weight: bolder;
-  }
-  
-  #container > .left_section> aside > a {
-    display: block;
-    width: 100%;
-    height: 50px;
-    padding: 0px 10px;
-    line-height: 50px;
-    color: #333;
-    font-weight: bold;
-    border-bottom: 1px solid #dcdcdc;
-  }
-  
-  #container > .left_section > aside > a:hover {
-    background-color: #3f97ef;
-    color: #fff;
-  }
-  .right_section > article > div:nth-child(1){
-    width: 960px;
-    height: 50px;
-    float: right;
-    margin-top: 30px;
-     
-  }
+  float: left;
+  width: 180px;
+  height: auto;
+  margin-right: 40px;
+}
 
-  .right_section > article > div:nth-child(1) > h3{
-    font-weight: bolder;
-    font-size: 22px;
-    border-bottom: 2px solid #222222;
-    
-  }
+.title-area {
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+  border-bottom: 2px solid #111;
+  padding: 10px;
+}
+
+.title-area > h1 {
+  font-size: 26px;
+  font-weight: bolder;
+}
+
+#container > .left_section> aside > a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0px 10px;
+  line-height: 50px;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+#container > .left_section > aside > a:hover {
+  background-color: #3f97ef;
+  color: #fff;
+}
+/*right_section*/
+
+.right_line > article > div:nth-child(1){
+  width: 960px;
+  height: 50px;
+  float: right;
+  margin-top: 30px;
+
+}
+
+.right_line > article > div:nth-child(1) > h3{
+  font-weight: bolder;
+  font-size: 26px;
+  border-bottom: 2px solid #222222;
+
+}
+
+.right_line > article> div:nth-child(2) {
+
+  width: 80%;
+  height: 600px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+
+
+.right_line > article> div:nth-child(2) > h4 {
+  font-size: 18px;
+  color: #145074;
+  line-height: 40px;
+}
+
+.right_line > article> div:nth-child(2) > p{
+  font-size: 13px;
+  color: #666666;
+}
+
+.right_line > article> div:nth-child(3) {
+  width: 930px;
+  height: 24px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 60px;
+  line-height: 30px;
+}
+
+.right_line > article> div:nth-child(3)>h5{
+  font-size: 18px;
+  color: #145074;
+  line-height: 30px;
+}
+.right_line > article> div:nth-child(3)>p{
+  font-size: 13px;
+  color: #333333;
+}
+
+.right_line > article> div:nth-child(4) {
+  width: 930px;
+  height: 284px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
+.right_line > article> div:nth-child(4)>h5{
+  font-size: 18px;
+  color: #145074;
+}
+
+.right_line > article> div:nth-child(4) >table{
+  width: 930px;
+  height: 284px;
+  border-top: 2px solid #071f4b;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-bottom:1px solid #dedede;
+  border-right: 1px solid #dedede;
+  border-left: 1px solid #dedede;
+}
+
+.right_line > article> div:nth-child(4) >table > thead{
+  width: 926px;
+  height: 50px;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  background-color: #f4f8fc;
+}
+
+.right_line > article> div:nth-child(4) >table > tbody{
+  width: 926px;
+  height: 226px;
+  text-align: center;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+}
+
+.right_line > article> div:nth-child(4) >table > tbody > .tr_first{
+  width: 307px;
+  height: 122px;
+}
+
+.right_line > article> div:nth-child(4) >p{
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #333333;
+
+}
+
+.right_line > article> div:nth-child(5) {
+  width: 938px;
+  height: 80px;
+  float: left;
+  margin-left: 240px;
+  margin-top: 150px;
+}
+.right_line > article> div:nth-child(5) >h5{
+  font-size: 18px;
+  color: #145074;
+  line-height: 30px;
+}
+
+.right_line > article> div:nth-child(5) >p{
+  font-size: 13px;
+  color: #333333;
+}
+
+.right_line > article > div:nth-child(6){
+  width: 180px;
+  height: 200px;
+  float:left;
+  margin-left: 240px;
+  margin-top: 25px;
+
+}
+
+.right_line > article > div:nth-child(6) >ul > li{
+  cursor: pointer; /* 마우스 커서를 버튼처럼 변경 */
+  border: 1px solid #6d6d6d;
+  display: inline-block;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.food{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 200px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+
+  padding: 10px;
+  text-align: center;
+  width: 100px;
+}
+
+.table td {
+  height: 80px;
+  border: 1px solid #bcdffd;
+}
+
+.table th {
+  background: #2c3e50;
+  color: white;
+}
+
+
+.price {
+  color: green;
+  font-weight: bold;
+  border: 1px solid green;
+  display: inline-block;
+  padding: 2px 5px;
+}
+
+button {
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 30px;
+  background-color:#ffff;
+  color : #0A468C;
+}
