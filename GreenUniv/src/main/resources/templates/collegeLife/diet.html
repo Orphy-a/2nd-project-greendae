@@ -6,46 +6,95 @@
     <link rel="stylesheet" href="/css/common/header.css">
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/nav.css">
-    <link rel="stylesheet" href="/css/college_life/diet.css">
-    
-    <title>식단안내</title>
+    <link rel="stylesheet" href="/css/college_life/diet.css" />
+    <link rel="stylesheet" href="/css/common/side-menu.css">
+
+    <title>학사일정</title>
 </head>
 <body>
 <th:block th:include="/common/html/header.html"/>
-    <nav>
+<nav>
+    <div>
         <div>
-          <div>
             <a href="#">
-              <img src="/images/ico-home.png" alt="홈페이지" />
-              &ensp;&ensp;
+                <img src="/images/ico-home.png" alt="홈페이지" />
+                &ensp;&ensp;
             </a>
-            <a href="">&ensp;&ensp;대학생활&ensp;&ensp;</a>
-            <a href="">&ensp;&ensp;식단안내</a>
-          </div>
+            <a href="">&ensp;&ensp;학사안내&ensp;&ensp;</a>
+            <a href="">&ensp;&ensp;학사일정</a>
         </div>
-      </nav>
+    </div>
+</nav>
 
-    <main id="container">
-        <section class="left_section">
-            <aside id="side-menu">
-              <div class="title-area">
-                <h1>대학생활</h1>
-              </div>
-              <a href="/college_life/club.html" class="menu">학생회 소개</a>
-              <a href="/college_life/council.html" class="menu">동아리/스터디</a>
-              <a href="/college_life/diet.html" class="menu">식단안내</a>
-              <a href="/college_life/gallery.html" class="menu">갤러리</a>
-            </aside>
-        </section>
-
-        <section class="right_section">
-           <article>
+<main id="container">
+    <aside id="side-menu">
+        <div class="title-area">
+            <h1>대학·대학원</h1>
+        </div>
+        <a href="#" class="menu">공지사항</a>
+        <a href="#" class="menu">수시모집</a>
+        <a href="#" class="menu">정시모집</a>
+        <a href="#" class="menu">편입합</a>
+        <a href="#" class="menu">입학상담</a>
+    </aside>
+    <section class="right_line">
+        <article class="main_article">
             <div>
                 <h3>식단안내</h3>
             </div>
-           </article>
-        </section>    
-    </main>
-    <th:block th:include="/common/html/footer.html"/>
+            <div class="menu_list">
+                <div class="food">
+                    <button onclick="prevWeek()">❮</button>
+                    <h2 id="weekTitle" style="font-size:30px; font-weight: bolder; color:#145074; margin: 0 40px;">2025.03.10 ~ 2025.03.14</h2>
+                    <button onclick="nextWeek()">❯</button>
+                </div>
+                <div class="table_1">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>2025.3.10(월)</th>
+                            <th>2025.3.11(화)</th>
+                            <th>2025.3.12(수)</th>
+                            <th>2025.3.13(목)</th>
+                            <th>2025.3.14(금)</th>
+                            <th>2025.3.15(토)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>조식</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                        </tr>
+                        <tr>
+                            <td>중식</td>
+                            <td><span class="price">정식 5,500원</span><br>백미밥<br>바지락미역국<br>닭안심매콤조림<br>야끼우동<br>두부강정<br>상추겉절이<br>포기김치</td>
+                            <td><span class="price">정식 5,500원</span><br>백미밥<br>바지락미역국<br>닭안심매콤조림<br>야끼우동<br>두부강정<br>상추겉절이<br>포기김치</td>
+                            <td><span class="price">정식 5,500원</span><br>백미밥<br>바지락미역국<br>닭안심매콤조림<br>야끼우동<br>두부강정<br>상추겉절이<br>포기김치</td>
+                            <td><span class="price">정식 5,500원</span><br>백미밥<br>바지락미역국<br>닭안심매콤조림<br>야끼우동<br>두부강정<br>상추겉절이<br>포기김치</td>
+                            <td><span class="price">정식 5,500원</span><br>백미밥<br>바지락미역국<br>닭안심매콤조림<br>야끼우동<br>두부강정<br>상추겉절이<br>포기김치</td>
+                            <td>미운영</td>
+                        </tr>
+                        <tr>
+                            <td>석식</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                            <td>미운영</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </article>
+    </section>
+</main>
+<th:block th:include="/common/html/footer.html"/>
 </body>
 </html>
