@@ -1,4 +1,6 @@
 logging:
+  file:
+    path: /data
   level:
     org:
       hibernate:
@@ -7,8 +9,6 @@ logging:
             sql: debug
     root: info
     sql: debug
-    file:
-      path: "/data"
 server:
   port: 8080
   servlet:
