@@ -20,12 +20,17 @@
           ofType="com.greenuniv.greenuniv.dto.department.DepartmentDTO">
           <result property="name" column="department_name"/>
         </collection>
+        <!--
         <collection property="professor"
           ofType="com.greenuniv.greenuniv.dto.professor.ProfessorDTO">
           <association property="user" javaType="com.greenuniv.greenuniv.dto.user.UserDTO">
-            <result property="name" column="professor_name"/>
+            <result property="name" column="use_name"/>
           </association>
         </collection>
+        -->
+        <collection property="professor"
+          ofType="com.greenuniv.greenuniv.dto.professor.ProfessorDTO"
+          resultMap="com.greenuniv.greenuniv.dao.mapper.ProfessorMapper.professorMap"/>
       </collection>
     </association>
   </resultMap>
@@ -39,7 +44,7 @@
     `lec_info`.id AS `lecture_code`,
     `lec_info`.`name` AS `lecture_name`,
     `lec_info`.credit AS `lecture_credit`,
-    `user`.`name` AS `professor_name`,
+    `user`.`name` AS `user_name`,
     `reg_lec`.registered_number AS `registered_number`,
     `reg_lec`.max_registered AS `max_registered`
     FROM `registry_lecture` AS `reg_lec`
@@ -64,7 +69,7 @@
     `lec_info`.id AS `lecture_code`,
     `lec_info`.`name` AS `lecture_name`,
     `lec_info`.credit AS `lecture_credit`,
-    `user`.`name` AS `professor_name`,
+    `user`.`name` AS `user_name`,
     `reg_lec`.registered_number AS `registered_number`,
     `reg_lec`.max_registered AS `max_registered`
     FROM `registry_lecture` AS `reg_lec`
