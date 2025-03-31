@@ -66,11 +66,12 @@ jobs:
           script: |
             sudo docker ps
             sudo docker network ls | grep green-univ || sudo docker network create green-univ
+            sudo docker volume ls | grep green-univ || sudo docker volume create green-univ
             sudo docker stop greenuniv-server || true && sudo docker rm greenuniv-server || true
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/greenuniv-server
-            sudo docker run -d --name greenuniv-server --network green-univ -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/greenuniv-server
+            sudo docker run -d --name greenuniv-server --network green-univ -v green-univ:/data -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/greenuniv-server
             sudo docker image prune -f
-
+          
       - name: revoke runner ip address
         run: |
           aws ec2 revoke-security-group-ingress \
