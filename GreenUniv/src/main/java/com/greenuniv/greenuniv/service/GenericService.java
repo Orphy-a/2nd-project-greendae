@@ -11,6 +11,10 @@ public interface GenericService<T extends BaseDTO, K> {
 
   List<T> findAll();
 
+  List<T> findAllWith(String colName, String value);
+
+  List<T> findAllWith(String colName, int value);
+
   T findById(K id);
 
   void updateById(T dto);

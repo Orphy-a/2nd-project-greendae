@@ -16,9 +16,17 @@ public interface GenericMapper<T extends BaseDTO, K> {
 
   void insert(T t);
 
+
   T selectById(K id);
 
   List<T> selectAll();
+
+  List<T> selectAllWith(String colName, String value);
+
+  List<T> selectAllWith(String colName, int value);
+
+  List<T> selectAllById(K id);
+
 
   void updateById(K id, T t);
 

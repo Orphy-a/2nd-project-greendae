@@ -23,6 +23,16 @@ public class DefaultGenericService<T extends BaseDTO, K> implements GenericServi
   }
 
   @Override
+  public List<T> findAllWith(String colName, String value) {
+    return mapper.selectAllWith(colName, value);
+  }
+
+  @Override
+  public List<T> findAllWith(String colName, int value) {
+    return mapper.selectAllWith(colName, value);
+  }
+
+  @Override
   public T findById(K id) {
     return mapper.selectById(id);
   }
