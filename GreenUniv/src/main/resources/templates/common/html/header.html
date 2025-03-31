@@ -71,12 +71,12 @@
             <li>
               <a href="#">커뮤니티</a>
               <ul class="submenu">
-                <li><a th:href="@{community/notice}">공지사항</a></li>
-                <li><a th:href="@{community/news}">뉴스 및 칼럼</a></li>
-                <li><a th:href="@{community/job}">취업정보</a></li>
-                <li><a th:href="@{community/bulletin}">자유게시판</a></li>
-                <li><a th:href="@{community/qna}">질문과 답변</a></li>
-                <li><a th:href="@{community/resources}">자료실</a></li>
+                <li><a th:href="@{/article(category=notice)}">공지사항</a></li>
+                <li><a th:href="@{/article(category=news)}">뉴스 및 칼럼</a></li>
+                <li><a th:href="@{/article(category=employment)}">취업정보</a></li>
+                <li><a th:href="@{/article(category=bulletin)}">자유게시판</a></li>
+                <li><a th:href="@{/article(category=qna)}">질문과 답변</a></li>
+                <li><a th:href="@{/article(category=resources)}">자료실</a></li>
               </ul>
             </li>
           </ul>
