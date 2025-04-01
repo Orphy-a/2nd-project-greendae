@@ -1,5 +1,3 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
-
 <header>
   <div>
     <div class="header_Top">
@@ -15,6 +13,7 @@
           <div sec:authorize="isAnonymous()">
             <a th:href="@{/login/login}">로그인</a>
           </div>
+
           <span class="separator">|</span>
           <div sec:authorize="hasRole('STUDENT')"></div>
             <a th:href="@{/academicInformation/registration}">학생지원</a>
@@ -43,9 +42,9 @@
             <li>
               <a href="#">입학안내</a>
               <ul class="submenu">
-                <li><a th:href="@{/EnterInformation/advice}">공지사항</a></li>
-                <li><a href="#">수시모집</a></li>
-                <li><a href="#">정시모집</a></li>
+                <li><a th:href="@{/introduce/advice}">공지사항</a></li>
+                <li><a th:href="@{/introduce/regular}">수시모집</a></li>
+                <li><a th:href="@{/introduce/jungsi}">정시모집</a></li>
                 <li><a href="#">편입학</a></li>
                 <li><a href="#">입락상담</a></li>
               </ul>
