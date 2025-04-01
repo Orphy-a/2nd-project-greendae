@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CommunityController {
 
     @GetMapping("/community/notice")
-    public String communityNotice(){return "community/notice";}
+    public String communityNotice(){return "/community/notice";}
 
     @GetMapping("/community/news")
-    public String news(){return "community/news";}
+    public String news(){return "/community/news";}
 
     @GetMapping("/community/job")
-    public String job(){return "community/job";}
+    public String job(){return "/community/job";}
 
     @GetMapping("/community/bulletin")
-    public String bulletin(){return "community/bulletin";}
+    public String bulletin(){return "/community/bulletin";}
 
     @GetMapping("/community/qna")
-    public String communityQna(){return "community/qna";}
+    public String communityQna(){return "/community/qna";}
 
     @GetMapping("/community/resources")
-    public String resources(){return "community/resources";}
+    public String resources(){return "/community/resources";}
 }

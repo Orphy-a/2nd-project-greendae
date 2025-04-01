@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>그린대학교</title>
-  <link rel="stylesheet" th:href="@{/css/main.css}">
-  <link rel="stylesheet" th:href="@{/css/common/header.css}"/>
-  <link rel="stylesheet" th:href="@{/css/common/footer.css}"/>
+  <link rel="stylesheet" th:href="@{css/main.css}">
+  <link rel="stylesheet" th:href="@{css/common/header.css}"/>
+  <link rel="stylesheet" th:href="@{css/common/footer.css}"/>
   <script src="https://kit.fontawesome.com/516da99189.js" crossorigin="anonymous"></script>
-  <script src="/js/main/slide.js"></script>
 </head>
 <body>
-<th:block th:include="/common/html/header.html"/>
+<th:block th:include="common/html/header.html"/>
 <main>
   <div class="main_background">
     <div>
@@ -20,21 +19,13 @@
       <div>
         <a href="#">학과소개 바로가기 ></a>
       </div>
-      <div id="circle">
+      <div>
         <div></div>
         <div></div>
         <div></div>
       </div>
-      <!--슬라이드 화살표-->
-      <a class="arrow">
-        <img src="/images/bg-path-arrow.png" alt="Next Slide">
-      </a>
     </div>
-
-
   </div>
-
-
   <div class="main_article">
     <div class="Academic_Information">
       <div>
@@ -42,7 +33,7 @@
           <p>
             학사안내
             <a href="#">
-              <img th:src="@{/images/bg-viewmore01.png}" alt="학사안내 더보기">
+              <img th:src="@{images/bg-viewmore01.png}" alt="학사안내 더보기">
             </a>
           </p>
 
@@ -50,7 +41,7 @@
         <div>
           <a href="#">교과목 폐지 및 신설 안내<span style="float: right;">2023-03-01</span></a>
           <a href="#">2019-2학기 진로 취업 프로그램 설계를 위한 학생대상<span
-                  style="float: right;">2023-03-01</span></a>
+              style="float: right;">2023-03-01</span></a>
           <a href="#">제8회 KNDA 학술논문상 공모<span style="float: right;">2023-03-01</span></a>
           <a href="#">[진로취업특강] 유망직무 전무가 초청 특강<span style="float: right;">2023-03-01</span></a>
           <a href="#">대학 진로 취업지원 현황 조사 안내<span style="float: right;">2023-03-01</span></a>
@@ -63,7 +54,7 @@
           <p>
             공지사항
             <a href="#">
-              <img th:src="@{/images/bg-viewmore02.png}" alt="공지사항 더보기">
+              <img th:src="@{images/bg-viewmore02.png}" alt="공지사항 더보기">
             </a>
           </p>
 
@@ -71,7 +62,7 @@
         <div>
           <a href="#">교과목 폐지 및 신설 안내<span style="float: right;">2023-03-01</span></a>
           <a href="#">2019-2학기 진로 취업 프로그램 설계를 위한 학생대상<span
-                  style="float: right;">2023-03-01</span></a>
+              style="float: right;">2023-03-01</span></a>
           <a href="#">제8회 KNDA 학술논문상 공모<span style="float: right;">2023-03-01</span></a>
           <a href="#">[진로취업특강] 유망직무 전무가 초청 특강<span style="float: right;">2023-03-01</span></a>
           <a href="#">대학 진로 취업지원 현황 조사 안내<span style="float: right;">2023-03-01</span></a>
@@ -122,8 +113,8 @@
           <div>
             <p>
               뉴스 및 칼럼
-              <a th:href="@{/community/news}">
-                <img th:src="@{/images/bg-viewmore01.png}" alt="공지사항 더보기">
+              <a href="#">
+                <img th:src="@{images/bg-viewmore01.png}" alt="공지사항 더보기">
               </a>
             </p>
 
@@ -145,31 +136,31 @@
           <div>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link01.png}" alt="">
+                <img th:src="@{images/bg-main-link01.png}" alt="">
               </div>
               <div>입학안내</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link02.png}" alt="">
+                <img th:src="@{images/bg-main-link02.png}" alt="">
               </div>
               <div>학사일정</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link03.png}" alt="">
+                <img th:src="@{images/bg-main-link03.png}" alt="">
               </div>
               <div>학생회</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link04.png}" alt="">
+                <img th:src="@{images/bg-main-link04.png}" alt="">
               </div>
               <div>교과과정</div>
             </a>
             <a href="#">
               <div>
-                <img th:src="@{/images/bg-main-link05.png}" alt="">
+                <img th:src="@{images/bg-main-link05.png}" alt="">
               </div>
               <div>취업안내</div>
             </a>
@@ -184,7 +175,7 @@
 </main>
 
 
-<th:block th:include="/common/html/footer.html"/>
+<th:block th:include="common/html/footer.html"/>
 
 </body>
 </html>

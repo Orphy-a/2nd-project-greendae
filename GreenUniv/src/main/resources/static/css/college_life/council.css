@@ -14,175 +14,100 @@ body {
   flex: 1; /* 메인이 차오르면 푸터가 밀려남 */
 }
 
-
 /*메인*/
 #container{
-  width: 1200px;
-  height: 600px;
-  margin: 0 auto;
-  position: relative;
-
+    width: 1200px;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    
 }
 /*left_sectin*/
 #container > .left_section > aside {
-  float: left;
-  width: 180px;
-  height: auto;
-  margin-right: 40px;
-}
+    float: left;
+    width: 180px;
+    height: auto;
+    margin-right: 40px;
+  }
+  
+  .title-area {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-bottom: 2px solid #111;
+    padding: 10px;
+  }
+  
+  .title-area > h1 {
+    font-size: 26px;
+    font-weight: bolder;
+  }
+  
+  #container > .left_section> aside > a {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0px 10px;
+    line-height: 50px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 1px solid #dcdcdc;
+  }
+  
+  #container > .left_section > aside > a:hover {
+    background-color: #3f97ef;
+    color: #fff;
+  }
+  .right_section > article > div:nth-child(1){
+    width: 960px;
+    height: 50px;
+    float: right;
+    margin-top: 30px;
+     
+  }
 
-.title-area {
-  width: 100%;
-  height: auto;
-  margin-top: 15px;
-  border-bottom: 2px solid #111;
-  padding: 10px;
-}
+  .right_section > article > div:nth-child(1) > h3{
+    font-weight: bolder;
+    font-size: 20px;
+    border-bottom: 2px solid #222222;
+    
+  }
 
-.title-area > h1 {
-  font-size: 26px;
-  font-weight: bolder;
-}
-
-#container > .left_section> aside > a {
-  display: block;
-  width: 100%;
-  height: 50px;
-  padding: 0px 10px;
-  line-height: 50px;
-  color: #333;
-  font-weight: bold;
-  border-bottom: 1px solid #dcdcdc;
-}
-
-#container > .left_section > aside > a:hover {
-  background-color: #3f97ef;
-  color: #fff;
-}
-.right_section > article > div:nth-child(1){
-  width: 960px;
-  height: 50px;
-  float: right;
-  margin-top: 30px;
-
-}
-
-.right_section > article > div:nth-child(1) > h2{
-  font-weight: bolder;
-  font-size: 22px;
-  border-bottom: 2px solid #222222;
-
-}
-
-.right_section > article > .club_1{
-  width: 300px;
-  height: auto;
-  float: left;
-  margin-left: 20px;
-}
-
-.right_section > article > .club_1 h2{
-  font-size: 18px;
-  font-weight: bolder;
-}
-
-.right_section > article > .club_2{
-  width: 800px;
-  float: left;
-  margin-left: 25px;
-  margin-top: 15px;
-  font-size: 13px;
-}
-
-.right_section > article > .club_3{
-  width: 300px;
-  height: auto;
-  float: left;
-  margin-left: 20px;
-  margin-top: 30px;
-}
-
-.right_section > article > .club_3 > h2{
-  font-size: 18px;
-  font-weight: bolder;
-}
-
-.right_section > article > .club_4{
-  width: 800px;
-  height: auto;
-  float: left;
-  margin-left: 25px;
-  margin-top: 15px;
-  font-size: 13px;
-}
-
-.right_section > article > .club_5{
-  width: 300px;
-  height: auto;
-  float: left;
-  margin-left: 240px;
-  margin-top: 20px;
-}
-.right_section > article > .club_5> h2{
-  font-size: 18px;
-  font-weight: bolder;
-}
-
-.right_section > article > .club_6{
-  width: 800px;
-  height: auto;
-  float: left;
-  margin-left: 240px;
-  margin-top: 15px;
-
-}
-.right_section > article > .club_6 > ul > li{
-  font-size: 13px;
-}
+  .right_section > article > div:nth-child(2) >h2{
+    font-size: 15px;
+    font-weight: bolder;
+  }
 
 
+  .right_section > article > div:nth-child(2){
+    width: 800px;
+    height: auto;
+    float: left;
+    margin-left: 20px;
+  }
 
-.right_section > article > .club_7{
-  width: 300px;
-  float: left;
-  margin-left: 240px;
-  margin-top: 15px;
-}
+  .right_section table{
+    width: 800px;
+    height: auto;
+    border-collapse: collapse;
+  }
 
-.right_section > article > .club_7> h2{
-  font-size: 18px;
-  font-weight: bolder;
-}
-.right_section > article > .club_8{
-  width: auto;
-  height: 150px;
-  clear: both;
-  margin-left: 250px;
+  .right_section > article > div:nth-child(2)>table>thead{
+    width: 500px;
+    height: 80px;
+    background-color: #f4f8fc;
+  }
+  .right_section> article > div:nth-child(2) > table> thead> tr>th{
+    font-size: 13px;
+    font-weight: bolder;
+  }
 
+  .right_section > article > div:nth-child(2)>table >tbody >tr{
+    width: 300px;
+    height: 70px;
+  }
 
-}
-.right_section > article > .club_8 img{
-  float: left;
-  margin-top: 20px;
-  width: 100px;
-  border: 1px solid #3f97ef;
-}
-.right_section > article > .club_8 a {
-  border: 3px transparent;
-  padding: 10px 15px;
-  background-color: #f2f2f2;
-  float: left;
-  margin-top: 20px;
-  margin-left: 25px;
-  border-radius: 5px;
-  gap: 5px;
-
-}
-.right_section > article > .club_8 a img{
-  width: 15px;
-  float: left;
-  position: relative;
-  bottom: 16px;
-  right: 5px;
-}
-
+  .right_section > article > div:nth-child(2)>table >tbody >tr>th{
+    font-size: 13px;
+    
+  }
