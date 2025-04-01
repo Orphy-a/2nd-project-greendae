@@ -75,21 +75,21 @@
           <th>상태</th>
         </tr>
         <tbody>
-        <tr>
-          <td>3</td>
+        <tr th:each="article : ${articles}">
+          <td>[[${article.getId()}]]</td>
           <td>
-            <img src="/images/ico-lock.png" alt=""/>
+            <img th:src="/images/ico-lock.png" alt=""/ th:if="${article.getStatus().equals(}">
             <a href="#">2025학년도 1학기 그린장학회 장학생 신청 문의</a>
           </td>
           <td>학사지원실</td>
           <td>24.03.10</td>
           <td>
-                  <span
-                      class="reply-status reply-complete"
-                      style="display: none"
-                  >답변완료</span
-                  >
-            <span class="reply-status reply-standingby">답변대기</span>
+            <span
+                class="reply-status reply-complete"
+                th:if="${article.getStatus().equals('close')}">
+            답변완료</span>
+            <span class="reply-status reply-standingby"
+                  th:if="${article.getStatus().equals('open')}">답변대기</span>
           </td>
         </tr>
         <tr>
