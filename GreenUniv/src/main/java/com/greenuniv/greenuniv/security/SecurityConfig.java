@@ -26,7 +26,7 @@ public class SecurityConfig {
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers("/professor/**").hasRole("PROFESSOR")
                         .requestMatchers("/general/**").hasRole("GENERAL")
-                        .requestMatchers("/admin/**").hasRole("admin")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .logoutUrl("/login/logout") // 로그아웃 URL 설정
                         .invalidateHttpSession(true) // 로그아웃 시 세션 무효화
                         .logoutSuccessUrl("/") // 로그아웃 성공 후 리다이렉트 URL
+                        .deleteCookies("JSESSIONID") // 쿠키 삭제
                 )
                 .sessionManagement(session -> session
                         .sessionFixation().changeSessionId() // 세션 고정 공격 방지 설정

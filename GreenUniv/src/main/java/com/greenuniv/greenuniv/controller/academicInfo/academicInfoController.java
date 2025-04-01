@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class academicInfoController {
 
     @GetMapping("/academicInformation/notice")
-    public String academicNotice(){return "academicInformation/notice";}
+    public String academicNotice(){return "/academicInformation/notice";}
 
     @GetMapping("/academicInformation/schedule")
-    public String schedule(){return "academicInformation/schedule";}
+    public String schedule(){return "/academicInformation/schedule";}
 
     @GetMapping("/academicInformation/registration")
-    public String registration(){return "academicInformation/registration";}
+    public String registration(){return "/academicInformation/registration";}
 
     @GetMapping("/academicInformation/score")
-    public String score(){return "academicInformation/score";}
+    public String score(){return "/academicInformation/score";}
 
     @GetMapping("/academicInformation/graduation")
-    public String graduation(){return "academicInformation/graduation";}
+    public String graduation(){return "/academicInformation/graduation";}
 
     @GetMapping("/academicInformation/qna")
-    public String academicQna(){return "academicInformation/qna";}
+    public String academicQna(){return "/academicInformation/qna";}
 
 }

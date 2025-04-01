@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,7 +11,8 @@
     <link rel="stylesheet" href="/css/common/table.css" />
     <link rel="stylesheet" href="/css/common/pagination.css" />
     <link rel="stylesheet" href="/css/common/side-menu.css" />
-    
+    <link rel="stylesheet" href="/css/academicInformation/academicInformation.css" />
+
   </head>
   <body>
     <div id="wrapper">
@@ -102,6 +104,10 @@
               </tr>
             </tbody>
           </table>
+
+          <div class="write" sec:authorize="hasRole('ADMIN')">
+            <input type="submit" value="글작성">
+          </div>
           <div class="pagination">
             <button>
               <a href="#"> << </a>

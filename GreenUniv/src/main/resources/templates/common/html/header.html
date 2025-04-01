@@ -9,16 +9,19 @@
           <span class="separator">|</span>
           <a th:href="@{/introduce/map}">사이트맵</a>
           <span class="separator">|</span>
-
           <div sec:authorize="isAuthenticated()">
             <a th:href="@{/login/logout}">로그아웃</a>
           </div>
           <div sec:authorize="isAnonymous()">
             <a th:href="@{/login/login}">로그인</a>
           </div>
-
           <span class="separator">|</span>
-          <a href="#">학생지원</a>
+          <div sec:authorize="hasRole('STUDENT')"></div>
+            <a th:href="@{/academicInformation/registration}">학생지원</a>
+          </div>
+          <div sec:authorize="hasRole('ADMIN') or hasRole('PROFESSOR')">
+            <a href="">학사관리</a>
+          </div>
         </div>
       </div>
     </div>

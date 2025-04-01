@@ -1,0 +1,16 @@
+.write {
+    margin-top: -10px;
+    float: right;
+    border-radius: 0;
+    border: 1px solid #dedede;
+}
+
+.write > input{
+    width: 70px;
+    height: 35px;
+    background-color: #3f97ef;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+}
