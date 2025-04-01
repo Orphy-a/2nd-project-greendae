@@ -42,4 +42,9 @@ public class UserService {
         return userRepository.existsByEmail(email); // DB에 존재하는지 확인
     }
 
+    // 휴대폰 중복 여부 확인 메서드
+    public boolean isUserContactDuplicate(String contact) {
+        return userRepository.existsByContact(contact);
+    }
+
 }
