@@ -3,5 +3,6 @@
     height: 500px;
     margin-top: 50px;
     margin-left: auto;
-
+    position: relative;
+    z-index: -1;
 }

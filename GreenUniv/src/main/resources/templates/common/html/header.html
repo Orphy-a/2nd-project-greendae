@@ -23,6 +23,8 @@
           <div sec:authorize="hasRole('ADMIN') or hasRole('PROFESSOR')">
             <a href="">학사관리</a>
           </div>
+            <a th:href="@{/humanResourcesManagement/professorregister}">교수등록</a>
+            <a th:href="@{humanResourcesManagement/professorList}">교수목록</a>
         </div>
       </div>
     </div>
