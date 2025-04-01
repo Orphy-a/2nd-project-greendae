@@ -87,7 +87,7 @@ a {
   display: flex;
   width: 196px;
   height: 50px;
-  background-image: url("/images/header_logo.png");
+  background-image: url("/static/images/header_logo.png");
 }
 
 
@@ -97,7 +97,7 @@ a {
   align-items: center;
   float: right;
   width: 100%;
-  max-width: 702px;
+  max-width: 725px;
   height: 100%;
 }
 

@@ -16,18 +16,18 @@ server:
 spring:
   application:
     name: GreenUniv
-    version: 0.0.1
+    version: 0.0.2
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-timeout: 10000
       maximum-pool-size: 20
-    url: jdbc:mysql://localhost:3306/green_univ
-    username: root
-    password: 1234
-    #url: jdbc:mysql://greenuniv-db:3306/green_univ
-    #username: ec2-user
-    #password: p33wsu47r5b0
+    #url: jdbc:mysql://localhost:3306/green_univ
+    #username: root
+    #password: 1234
+    url: jdbc:mysql://greenuniv-db:3306/green_univ
+    username: ec2-user
+    password: p33wsu47r5b0
   devtools:
     livereload:
       enabled: true
@@ -41,5 +41,3 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
-  thymeleaf:
-    prefix: classpath:/templates
