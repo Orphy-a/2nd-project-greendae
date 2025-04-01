@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Noto Sans KR";
-  src: url("/static/font/NotoSansKR-Light.otf") format("otf"),
-    url("/static/font/NotoSansKR-Light.woff") format("woff"),
-    url("/static/font/NotoSansKR-Light.woff2") format("woff2"),
-    url("/static/font/NotoSansKR-Medium.otf") format("otf"),
-    url("/static/font/NotoSansKR-Medium.woff") format("woff"),
-    url("/static/font/NotoSansKR-Medium.woff2") format("woff2"),
-    url("/static/font/NotoSansKR-Regular.otf") format("otf"),
-    url("/static/font/NotoSansKR-Regular.woff") format("woff"),
-    url("/static/font/NotoSansKR-Regular.woff2") format("woff2");
+  src: url("/font/NotoSansKR-Light.otf") format("otf"),
+    url("/font/NotoSansKR-Light.woff") format("woff"),
+    url("/font/NotoSansKR-Light.woff2") format("woff2"),
+    url("/font/NotoSansKR-Medium.otf") format("otf"),
+    url("/font/NotoSansKR-Medium.woff") format("woff"),
+    url("/font/NotoSansKR-Medium.woff2") format("woff2"),
+    url("/font/NotoSansKR-Regular.otf") format("otf"),
+    url("/font/NotoSansKR-Regular.woff") format("woff"),
+    url("/font/NotoSansKR-Regular.woff2") format("woff2");
 }
 
 * {
@@ -52,11 +52,6 @@ a {
 
 .header_Top_Menu a {
   color: #ffffff;
-  flex: 1 1 0;
-  text-align: center;
-}
-
-.header_Top_Menu div{
   flex: 1 1 0;
   text-align: center;
 }

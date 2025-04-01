@@ -12,8 +12,6 @@ logging:
 server:
   port: 8080
   servlet:
-    session:
-      timeout: 30m # 세션 유지시간 30분
     context-path: /
 spring:
   application:
@@ -24,12 +22,12 @@ spring:
     hikari:
       connection-timeout: 10000
       maximum-pool-size: 20
-    url: jdbc:mysql://13.209.7.78:3306/green_univ
+    #url: jdbc:mysql://localhost:3306/green_univ
+    #username: root
+    #password: 1234
+    url: jdbc:mysql://greenuniv-db:3306/green_univ
     username: ec2-user
     password: p33wsu47r5b0
-    #url: jdbc:mysql://greenuniv-db:3306/green_univ
-    #username: ec2-user
-    #password: p33wsu47r5b0
   devtools:
     livereload:
       enabled: true
@@ -43,5 +41,3 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
-  thymeleaf:
-    prefix: classpath:/templates
