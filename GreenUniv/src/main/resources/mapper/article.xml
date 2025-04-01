@@ -27,7 +27,8 @@
     `user`.`name` AS `user_name`
     FROM `article` AS `artcl`
     JOIN `user`
-    ON `user`.id = `artcl`.user_id;
+    ON `user`.id = `artcl`.user_id
+    ORDER BY `artcl`.register_date DESC;
   </select>
 
   <select id="selectById" resultMap="articleMap">
@@ -46,7 +47,7 @@
     WHERE `artcl`.id = #{id};
   </select>
 
-  <select id="selectAllWith" resultMap="articleMap">
+  <select id="selectAllBy" resultMap="articleMap">
     SELECT
     `artcl`.id AS `article_id`,
     `artcl`.title AS `article_title`,
@@ -60,6 +61,63 @@
     FROM `article` AS `artcl`
     JOIN `user`
     ON `user`.id = `artcl`.user_id
+    ORDER BY `artcl`.register_date DESC
     WHERE `artcl`.${colName} = #{value};
+  </select>
+
+  <select id="selectLimit" resultMap="articleMap">
+    SELECT
+    `artcl`.id AS `article_id`,
+    `artcl`.title AS `article_title`,
+    `artcl`.category AS `article_category`,
+    `artcl`.`status` AS `article_status`,
+    `artcl`.content AS `article_content`,
+    `artcl`.`view` AS `article_view`,
+    `artcl`.register_date AS `article_register_date`,
+    `user`.id AS `user_id`,
+    `user`.`name` AS `user_name`
+    FROM `article` AS `artcl`
+    JOIN `user`
+    ON `user`.id = `artcl`.user_id
+    ORDER BY `artcl`.register_date DESC
+    LIMIT #{limit} OFFSET #{offset};
+  </select>
+
+  <select id="selectByLimit" resultMap="articleMap">
+    SELECT
+    `artcl`.id AS `article_id`,
+    `artcl`.title AS `article_title`,
+    `artcl`.category AS `article_category`,
+    `artcl`.`status` AS `article_status`,
+    `artcl`.content AS `article_content`,
+    `artcl`.`view` AS `article_view`,
+    `artcl`.register_date AS `article_register_date`,
+    `user`.id AS `user_id`,
+    `user`.`name` AS `user_name`
+    FROM `article` AS `artcl`
+    JOIN `user`
+    ON `user`.id = `artcl`.user_id
+    WHERE `artcl`.${colName}=#{value}
+    <if test="colName.equalsIgnoreCase('category') and value.equalsIgnoreCase('news')">
+      OR `artcl`.${colName}="column"
+    </if>
+    <if test="colName.equalsIgnoreCase('category') and value.equalsIgnoreCase('column')">
+      OR `artcl`.${colName}="news"
+    </if>
+    ORDER BY `artcl`.register_date DESC
+    LIMIT #{limit} OFFSET #{offset};
+  </select>
+
+  <select id="count" resultType="long">
+    SELECT
+    COUNT(`article`.id) AS `article_count`
+    FROM `article`;
+  </select>
+
+  <select id="countBy" resultType="long">
+    SELECT
+    COUNT(`article`.id) AS `article_count_by`
+    FROM `article`
+    WHERE `article`.${colName} = #{value};
   </select>
 </mapper>
