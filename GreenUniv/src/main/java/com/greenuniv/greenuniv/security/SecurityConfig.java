@@ -45,18 +45,23 @@ public class SecurityConfig {
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
-                        .loginPage("/login/login")
-                        .loginProcessingUrl("/login/login") // 컨트롤러에서 처리
-                        .defaultSuccessUrl("/")
-                        .failureUrl("/login/login?code=100")
-                        .usernameParameter("id")
-                        .passwordParameter("password")
+                        .loginPage("/login/login") // 로그인 페이지(GET 요청)
+                        .loginProcessingUrl("/login/login") // 로그인 처리(POST 요청)
+                        .defaultSuccessUrl("/") // 성공 시 리다이렉트 URL
+                        .failureUrl("/login/login?code=100") // 실패 시 리다이렉트 URL
+                        .usernameParameter("id") // 사용자 ID 파라미터 이름 설정
+                        .passwordParameter("password") // 비밀번호 파라미터 이름 설정
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/login/logout")
-                        .invalidateHttpSession(true)
-                        .logoutSuccessUrl("/login/login?code=101")
+                        .logoutUrl("/login/logout") // 로그아웃 URL 설정
+                        .invalidateHttpSession(true) // 로그아웃 시 세션 무효화
+                        .logoutSuccessUrl("/login/login?code=101") // 로그아웃 성공 후 리다이렉트 URL
+                )
+                .sessionManagement(session -> session
+                        .sessionFixation().changeSessionId() // 세션 고정 공격 방지 설정
+                        .maximumSessions(1) // 최대 세션 개수 설정 (동시 로그인 제한)
+                        .maxSessionsPreventsLogin(true) // 초과 시 새로운 로그인 차단 설정
                 )
                 .csrf(AbstractHttpConfigurer::disable);
 

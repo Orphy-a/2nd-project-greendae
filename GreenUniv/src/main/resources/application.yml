@@ -12,6 +12,8 @@ logging:
 server:
   port: 8080
   servlet:
+    session:
+      timeout: 30m # 세션 유지시간 30분
     context-path: /
 spring:
   application:
