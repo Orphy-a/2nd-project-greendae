@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IntroduceController {
 
     @GetMapping("/introduce/map")
-    public String map(){return "introduce/map";}
+    public String map(){return "/introduce/map";}
 
     @GetMapping("/introduce/greeting")
     public String greeting(){return "/introduce/greeting";}
@@ -25,12 +25,5 @@ public class IntroduceController {
     @GetMapping("/introduce/organization")
     public String organization(){return "/introduce/organization";}
 
-    @GetMapping("/introduce/advice")
-    public String advice(){return "/introduce/advice";}
 
-    @GetMapping("/introduce/regular")
-    public String regular(){return "/introduce/regular";}
-
-    @GetMapping("introduce/jungsi")
-    public String jungsi(){return "/introduce/jungsi";}
 }
