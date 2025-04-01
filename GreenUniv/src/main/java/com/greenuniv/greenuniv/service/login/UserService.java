@@ -3,6 +3,7 @@ package com.greenuniv.greenuniv.service.login;
 import com.greenuniv.greenuniv.dto.user.UserDTO;
 import com.greenuniv.greenuniv.entity.user.UserEntity;
 import com.greenuniv.greenuniv.repository.login.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,6 +30,21 @@ public class UserService {
 
         userRepository.save(user);
 
+    }
+
+    // 아이디 중복 여부 확인 메서드
+    public boolean isUserIdDuplicate(String id) {
+        return userRepository.existsById(id); // DB에 존재하는지 확인
+    }
+
+    // 이메일 중복 여부 확인 메서드
+    public boolean isUserEmailDuplicate(String email) {
+        return userRepository.existsByEmail(email); // DB에 존재하는지 확인
+    }
+
+    // 휴대폰 중복 여부 확인 메서드
+    public boolean isUserContactDuplicate(String contact) {
+        return userRepository.existsByContact(contact);
     }
 
 }
