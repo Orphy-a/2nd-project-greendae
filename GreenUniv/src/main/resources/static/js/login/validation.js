@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // 유효성 검사를 통과한 경우에만 중복 체크 실행
-        fetch(`/login/register/${value}`)
+        fetch(`/login/register/id/${value}`)
             .then(response => response.json())
             .then((data) => {
                 if (data.count > 0) {
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    /*
     // 2.비밀번호 유효성 검사
     const passResult = document.getElementsByClassName('passResult')[0];
 
@@ -98,74 +97,95 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-        // 이메일 유효성 검사(중복체크 포함)
-            const email = document.getElementById("email");
-            const emailResult = document.getElementsByClassName("emailResult")[0];
+    // 이메일 유효성 검사(중복체크 포함)
+    const email = document.getElementById("email");
+    const emailResult = document.getElementsByClassName("emailResult")[0];
 
-            formRegister.email.addEventListener('focusout', function () {
-                const value = formRegister.email.value;
+    formRegister.email.addEventListener('focusout', function () {
+        const value = formRegister.email.value;
 
-                // 이메일 유효성 검사
-                if (!value.match(reEmail)) {
-                    emailResult.innerText = '이메일 형식에 맞지 않습니다.';
+        // 이메일 유효성 검사
+        if (!value.match(reEmail)) {
+            emailResult.innerText = '이메일 형식에 맞지 않습니다.';
+            emailResult.style.color = 'red';
+            isEmailOk = false;
+            return; // 처리 종료
+        }
+
+        // 유효성 검사를 통과한 경우에만 중복 체크 실행
+        fetch(`/login/register/email/${value}`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.count > 0) {
+                    emailResult.innerText = '이미 사용중인 이메일 입니다.';
                     emailResult.style.color = 'red';
                     isEmailOk = false;
-                    return; // 처리 종료
+                } else {
+                    emailResult.innerText = '사용 가능한 이메일 입니다.';
+                    emailResult.style.color = 'green';
+                    isEmailOk = true;
                 }
-
-                // 유효성 검사를 통과한 경우에만 중복 체크 실행
-                fetch(`/login/register/email/${value}`)
-                    .then(response => response.json())
-                    .then((data) => {
-                        if (data.count > 0) {
-                            emailResult.innerText = '이미 사용중인 이메일 입니다.';
-                            emailResult.style.color = 'red';
-                            isEmailOk = false;
-                        } else {
-                            emailResult.innerText = '사용 가능한 이메일 입니다.';
-                            emailResult.style.color = 'green';
-                            isEmailOk = true;
-                        }
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                        emailResult.innerText = '서버와의 통신에 문제가 발생했습니다.';
-                        emailResult.style.color = 'red';
-                        isEmailOk = false;
-                    });
-            }); // formRegister.email.addEventListener 끝
+            })
+            .catch((err) => {
+                console.error(err);
+                emailResult.innerText = '서버와의 통신에 문제가 발생했습니다.';
+                emailResult.style.color = 'red';
+                isEmailOk = false;
+            });
+    }); // formRegister.email.addEventListener 끝
 
 
 
-        // 6.휴대폰 유효성 검사(중복체크 포함)
-        const hpResult = document.getElementsByClassName('hpResult')[0];
+    // 6.휴대폰 유효성 검사(중복체크 포함)
+    const contactResult = document.getElementsByClassName('contactResult')[0];
 
-        formRegister.hp.addEventListener('focusout', async function(){
+    formRegister.contact.addEventListener('focusout', async function(){
 
-            const value = this.value;
+        const value = this.value;
 
-            if(!value.match(reHp)){
-                hpResult.innerText = '휴대폰번호가 유효하지 않습니다.(- 포함)';
-                hpResult.style.color = 'red';
-                isHpOk = false;
-                return;
-            }
-
+        if(!value.match(reHp)){
+            contactResult.innerText = '휴대폰번호가 유효하지 않습니다.(- 포함)';
+            contactResult.style.color = 'red';
+            isHpOk = false;
+            return;
+        }
+        /*
             // 휴대폰 중복체크
-            const response = await fetch(`/user/hp/${value}`);
+            const response = await fetch(`/login/register/contact/${value}`);
             const data = await response.json();
 
             if(data.count > 0){
-                hpResult.innerText = '이미 사용중인 휴대폰번호 입니다.';
-                hpResult.style.color = 'red';
+                contactResult.innerText = '이미 사용중인 휴대폰번호 입니다.';
+                contactResult.style.color = 'red';
                 isHpOk = false;
             }else{
-                hpResult.innerText = '사용 가능한 휴대폰번호 입니다.';
-                hpResult.style.color = 'green';
+                contactResult.innerText = '사용 가능한 휴대폰번호 입니다.';
+                contactResult.style.color = 'green';
                 isHpOk = true;
             }
-        });
-    */
+*/
+        // 유효성 검사를 통과한 경우에만 중복 체크 실행
+        fetch(`/login/register/contact/${value}`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.count > 0) {
+                    contactResult.innerText = '이미 사용중인 전화번호 입니다.';
+                    contactResult.style.color = 'red';
+                    isHpOk = false;
+                } else {
+                    contactResult.innerText = '사용 가능한 전화번호 입니다.';
+                    contactResult.style.color = 'green';
+                    isHpOk = true;
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                contactResult.innerText = '서버와의 통신에 문제가 발생했습니다.';
+                contactResult.style.color = 'red';
+                isHpOk = false;
+            });
+    });
+
 
     // 최종 폼 전송 이벤트
     formRegister.onsubmit = function(e){
@@ -198,4 +218,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return true; // 폼 전송 시작
     }; // 최종 폼 전송 이벤트 끝
+
+
+
+    // 버튼 활성화 이벤트
+    const submitButton = formRegister.querySelector(".register-btn");
+
+    // 주소 관련 input 제외한 필수 입력 필드 선택
+    const requiredInputs = Array.from(formRegister.querySelectorAll("input")).filter(input =>
+        !["zip", "address", "address_detail"].includes(input.name) &&
+        input.type !== "hidden" &&
+        input.name !== "password2"
+    );
+
+    // 입력값 검증 함수
+    function validateInputs() {
+        const allFilled = requiredInputs.every(input => input.value.trim() !== "");
+
+        if (allFilled) {
+            submitButton.disabled = false;
+            submitButton.style.backgroundColor = "#3f97f6";
+            submitButton.style.cursor = "pointer";
+        } else {
+            submitButton.disabled = true;
+            submitButton.style.backgroundColor = "gray";
+            submitButton.style.cursor = "none";
+        }
+    }
+
+    // 모든 필수 input에 이벤트 리스너 추가
+    requiredInputs.forEach(input => {
+        input.addEventListener("input", validateInputs);
+    });
+
+    // 폼 제출 이벤트 핸들러 추가
+    formRegister.addEventListener("submit", (e) => {
+        if (submitButton.disabled) {
+            e.preventDefault(); // 비활성화 상태일 때 제출 방지
+            alert("필수 항목을 모두 입력해주세요!");
+        }
+        // 활성화 상태면 기본 동작(폼 제출) 실행
+    });
+
+    // 초기 상태 설정
+    validateInputs();
+
+
 });
+
+

@@ -77,9 +77,6 @@ public class SecurityConfig {
 //                .requestMatchers("/user/**").permitAll()
 //                .anyRequest().permitAll());
 
-        // 기타 보안 설정
-        http.csrf(AbstractHttpConfigurer::disable);
-
         return http.build();
     }
 

@@ -2,11 +2,9 @@ package com.greenuniv.greenuniv.controller.login;
 
 import com.greenuniv.greenuniv.dto.terms.TermsDTO;
 import com.greenuniv.greenuniv.dto.user.UserDTO;
-import com.greenuniv.greenuniv.entity.user.UserEntity;
-import com.greenuniv.greenuniv.repository.login.UserRepository;
 import com.greenuniv.greenuniv.service.login.TermsService;
 import com.greenuniv.greenuniv.service.login.UserService;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,12 +24,13 @@ public class LoginController {
     private final TermsService termsService;
     private final UserService userService;
 
+
     @GetMapping("/login/login")
     public String login(@RequestParam(value = "code", required = false) String code, Model model) {
         if (code != null && code.equals("100")) {
             model.addAttribute("loginError", true);
         }
-        return "login/login";
+        return "/login/login";
     }
 
     @PostMapping("/login/login")
@@ -60,7 +59,7 @@ public class LoginController {
         return "/login/terms";
     }
 
-    @GetMapping("/login/register/{value}")
+    @GetMapping("/login/register/id/{value}")
     public ResponseEntity<Map<String, Object>> checkUserId(@PathVariable("value") String value) {
 
         log.info("Checking user id: " + value);
@@ -79,7 +78,7 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-/*
+
     @GetMapping("/login/register/email/{value}")
     public ResponseEntity<Map<String, Object>> checkEmail(@PathVariable("value") String value) {
 
@@ -88,7 +87,7 @@ public class LoginController {
 
         try {
             // 이메일 중복 여부 확인
-            boolean isDuplicate = userService.isUserIdDuplicate(value);
+            boolean isDuplicate = userService.isUserEmailDuplicate(value);
 
             // 결과 반환
             response.put("count", isDuplicate ? 1 : 0); // 중복이면 count=1, 아니면 count=0
@@ -99,11 +98,31 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-*/
+
+    @GetMapping("/login/register/contact/{value}")
+    public ResponseEntity<Map<String, Object>> checkContact(@PathVariable("value") String value) {
+        log.info("Checking contact hp: " + value);
+        Map<String, Object> response = new HashMap<>();
+
+        try{
+            // 휴대폰 번호 중복 여부 확인
+            boolean isDuplicate = userService.isUserContactDuplicate(value);
+
+            // 결과 반환
+            response.put("count", isDuplicate ? 1 : 0); // 중복이면 count=1, 아니면 count=0
+            return ResponseEntity.ok(response);
+
+
+        }catch (Exception e){
+            response.put("error", "서버 오류가 발생했습니다.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+
+    }
 
 
     @GetMapping("/login/register")
-    public String register(){return "login/register";}
+    public String register(){return "/login/register";}
 
 
     @PostMapping("/login/register")
