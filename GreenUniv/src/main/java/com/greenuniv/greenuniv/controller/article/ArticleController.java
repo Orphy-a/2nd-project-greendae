@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class ArticleController {
 
-
   private final GenericService<ArticleDTO, Integer> articleService;
   private final GenericService<CommentDTO, Integer> commentService;
 
@@ -62,6 +61,7 @@ public class ArticleController {
     int limit = pagination.itemLimit();
     List<ArticleDTO> articles = articleService.findByLimit(offset, limit, "category", category);
 
+    model.addAttribute("category", category);
     model.addAttribute("articles", articles);
     model.addAttribute("pagination", pagination);
 
