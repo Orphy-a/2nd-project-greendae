@@ -1,5 +1,7 @@
 package com.greenuniv.greenuniv.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ public class IndexPageController {
     //TODO: 1.학사안내 데이터 내보내기
     //TODO: 2.공지사항 데이터 내보내기
     //TODO: 3.갤러리 데이터 내보내기
+
+
     return "/index";
   }
 

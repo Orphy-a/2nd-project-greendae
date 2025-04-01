@@ -41,6 +41,8 @@ public class LoginController {
         log.info("Id: " + userDTO.getId());
         log.info("Password: " + userDTO.getPassword());
 
+
+
         // 필요한 로직 처리 (예: 인증, 권한 확인 등)
         model.addAttribute("userDTO", userDTO);
 
