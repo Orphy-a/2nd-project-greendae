@@ -21,27 +21,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-        /*
-        // 로그인 설정
-        http.formLogin(login -> login
-                .loginPage("/login/login")
-                .defaultSuccessUrl("/")
-                .failureUrl("/login/login?code=100")
-                .usernameParameter("id")
-                .passwordParameter("password"));
-
-        // 로그아웃 설정
-        http.logout(logout -> logout
-                .logoutUrl("/login/logout")
-                .invalidateHttpSession(true)
-                .logoutSuccessUrl("/login/login?code=101"));
-        */
-
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers("/professor/**").hasRole("PROFESSOR")
                         .requestMatchers("/general/**").hasRole("GENERAL")
+                        .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
@@ -56,7 +41,7 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/login/logout") // 로그아웃 URL 설정
                         .invalidateHttpSession(true) // 로그아웃 시 세션 무효화
-                        .logoutSuccessUrl("/login/login?code=101") // 로그아웃 성공 후 리다이렉트 URL
+                        .logoutSuccessUrl("/") // 로그아웃 성공 후 리다이렉트 URL
                 )
                 .sessionManagement(session -> session
                         .sessionFixation().changeSessionId() // 세션 고정 공격 방지 설정
