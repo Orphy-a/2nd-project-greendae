@@ -20,7 +20,6 @@ public class UserDTO implements BaseDTO {
   public static final String GENDER_FEMALE = "f";
   public static final String[] GENDERS = {GENDER_MALE, GENDER_FEMALE};
 
-  public static final String ROLE_GENERAL = "general";
   public static final String ROLE_PROF = "professor";
   public static final String ROLE_STUDENT = "student";
   public static final String ROLE_ADMIN = "admin";
@@ -38,12 +37,11 @@ public class UserDTO implements BaseDTO {
   private String zip;
   private String address;
   private String address_detail;
-  private UserEntity.Role role;
+  private String role;
   private boolean agreedTerms;
   @CreationTimestamp
   private LocalDateTime registerDate;
   private LocalDateTime leaveDate;
-
 
   @Override
   public UserEntity toEntity() {
