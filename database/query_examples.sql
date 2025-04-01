@@ -321,3 +321,48 @@ FROM `comment` AS `comm`
 JOIN `user`
 ON `comm`.user_id = `user`.id
 WHERE `comm`.`article_id` = 7;
+
+-- 게시물 전체 조회 + offset/limit
+SELECT
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`artcl`.register_date AS `article_register_date`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `article` AS `artcl`
+JOIN `user` 
+ON `user`.id = `artcl`.user_id
+LIMIT 5 OFFSET 0;
+
+-- 게시물 전체 조회 + offset/limit + 조건
+SELECT
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`artcl`.register_date AS `article_register_date`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `article` AS `artcl`
+JOIN `user` 
+ON `user`.id = `artcl`.user_id
+WHERE `artcl`.category="qna"
+ORDER BY `artcl`.register_date DESC
+LIMIT 2 OFFSET 0;
+
+-- 게시물 전체 개수 조회
+SELECT
+COUNT(`article`.id) AS `article_count`
+FROM `article`;
+
+-- 게시물 카테고리별 전체 개수 조회
+SELECT
+COUNT(`article`.id) AS `article_count_by`
+FROM `article`
+WHERE `article`.category = "news" OR `article`.category = "column";
