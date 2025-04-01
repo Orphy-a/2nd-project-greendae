@@ -73,7 +73,6 @@
           <th>조회</th>
         </tr>
         <tbody>
-        <!--TODO: Iterate articles-->
         <tr th:each="article : ${articles}">
           <td>[[${article.getId()}]]</td>
           <td>
@@ -95,25 +94,7 @@
         </tr>
         </tbody>
       </table>
-      <div class="pagination">
-        <button th:if="${pagination.getCurrentPage() > 10}">
-          <a th:href="@{/article(category='news',page=${pagination.getCurrentPage() - 10})}">
-            << </a>
-        </button>
-        <button class="prev" th:if="${pagination.getCurrentPage() > 1}">
-          <a th:href="@{/article(category='news', page=${pagination.getCurrentPage() - 1})}"> < </a>
-        </button>
-        <button
-            th:each="num: ${#numbers.sequence(pagination.getCurrentPage(), pagination.getEndPage())}">
-          <a th:href="@{/article(category='news', page=${num})}"> [[${num}]]</a>
-        </button>
-        <button class="next" th:if="${pagination.getEndPage() > 1}">
-          <a th:href="@{/article(category='news', page=${pagination.getCurrentPage() + 1})}"> > </a>
-        </button>
-        <button th:if="${pagination.getEndPage() > 10}">
-          <a th:href="@{/article(category='news', page=${pagination.getCurrentPage() + 10})}">>></a>
-        </button>
-      </div>
+      <th:block th:include="/common/html/pagination.html"/>
     </section>
   </div>
   <th:block th:include="/common/html/footer.html"/>
