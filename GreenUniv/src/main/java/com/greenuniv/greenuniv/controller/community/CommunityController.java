@@ -10,21 +10,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class CommunityController {
 
-    @GetMapping("/community/notice")
-    public String communityNotice(){return "/community/notice";}
+  @GetMapping("/community/notice")
+  public String communityNotice() {
+    return "/community/notice";
+  }
 
-    @GetMapping("/community/news")
-    public String news(){return "/community/news";}
+  @GetMapping("/community/news")
+  public String news() {
+    return "/community/news";
+  }
 
-    @GetMapping("/community/job")
-    public String job(){return "/community/job";}
+  @GetMapping("/community/job")
+  public String job() {
+    return "employment";
+  }
 
-    @GetMapping("/community/bulletin")
-    public String bulletin(){return "/community/bulletin";}
+  @GetMapping("/community/bulletin")
+  public String bulletin() {
+    return "/community/bulletin";
+  }
 
-    @GetMapping("/community/qna")
-    public String communityQna(){return "/community/qna";}
+  @GetMapping("/community/qna")
+  public String communityQna() {
+    return "/community/qna";
+  }
 
-    @GetMapping("/community/resources")
-    public String resources(){return "/community/resources";}
+  @GetMapping("/community/resources")
+  public String resources() {
+    return "/community/resources";
+  }
 }

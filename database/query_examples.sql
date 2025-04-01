@@ -268,3 +268,101 @@ SELECT
 FROM `department` AS `dept`
 JOIN `college` AS `coll`
 ON `dept`.college_id = `coll`.id;
+
+########### 커뮤니티 글(article) #############
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- 특정 게시물 조회
+SELECT
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_cateogry`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`artcl`.register_date AS `article_register_date`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`,
+`comm`.id AS `comment_id`,
+`comm`.article_id AS `article_id`,
+`comm`.content AS `comment_content`,
+`comm`.register_date AS `comment_register_date`
+FROM `article` AS `artcl`
+JOIN `user` 
+ON `user`.id = `artcl`.user_id
+JOIN `comment` AS `comm`
+ON `comm`.article_id = `artcl`.id
+WHERE `artcl`.id = 7;
+
+-- 모든 게시물 목록 조회
+SELECT
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`artcl`.register_date AS `article_register_date`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `article` AS `artcl`
+JOIN `user` 
+ON `user`.id = `artcl`.user_id;
+
+-- 특정 게시물의 댓글 전체 조회
+SELECT
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`,
+`comm`.id AS `comment_id`,
+`comm`.article_id AS `article_id`,
+`comm`.content AS `comment_content`,
+`comm`.register_date AS `comment_register_date`
+FROM `comment` AS `comm`
+JOIN `user`
+ON `comm`.user_id = `user`.id
+WHERE `comm`.`article_id` = 7;
+
+-- 게시물 전체 조회 + offset/limit
+SELECT
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`artcl`.register_date AS `article_register_date`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `article` AS `artcl`
+JOIN `user` 
+ON `user`.id = `artcl`.user_id
+LIMIT 5 OFFSET 0;
+
+-- 게시물 전체 조회 + offset/limit + 조건
+SELECT
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`artcl`.register_date AS `article_register_date`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `article` AS `artcl`
+JOIN `user` 
+ON `user`.id = `artcl`.user_id
+WHERE `artcl`.category="qna"
+ORDER BY `artcl`.register_date DESC
+LIMIT 2 OFFSET 0;
+
+-- 게시물 전체 개수 조회
+SELECT
+COUNT(`article`.id) AS `article_count`
+FROM `article`;
+
+-- 게시물 카테고리별 전체 개수 조회
+SELECT
+COUNT(`article`.id) AS `article_count_by`
+FROM `article`
+WHERE `article`.category = "news" OR `article`.category = "column";

@@ -1,6 +1,8 @@
 package com.greenuniv.greenuniv.config;
 
 import com.greenuniv.greenuniv.dao.mapper.GenericMapper;
+import com.greenuniv.greenuniv.dto.article.ArticleDTO;
+import com.greenuniv.greenuniv.dto.comment.CommentDTO;
 import com.greenuniv.greenuniv.dto.lecture.LectureDTO;
 import com.greenuniv.greenuniv.dto.professor.ProfessorDTO;
 import com.greenuniv.greenuniv.dto.registry.RegistryDTO;
@@ -10,11 +12,8 @@ import com.greenuniv.greenuniv.service.DefaultGenericService;
 import com.greenuniv.greenuniv.service.GenericService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AppConfig {
@@ -38,13 +37,13 @@ public class AppConfig {
   }
 
   @Bean
-  public ModelMapper modelMapper(){
+  public ModelMapper modelMapper() {
 
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.getConfiguration()
-            .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-            .setMatchingStrategy(MatchingStrategies.STRICT)
-            .setFieldMatchingEnabled(true);
+        .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
+        .setMatchingStrategy(MatchingStrategies.STRICT)
+        .setFieldMatchingEnabled(true);
 
     return modelMapper;
   }
@@ -58,6 +57,18 @@ public class AppConfig {
   @Bean
   public GenericService<ProfessorDTO, String> professorService(
       GenericMapper<ProfessorDTO, String> mapper) {
+    return new DefaultGenericService<>(mapper);
+  }
+
+  @Bean
+  public GenericService<ArticleDTO, Integer> articleService(
+      GenericMapper<ArticleDTO, Integer> mapper) {
+    return new DefaultGenericService<>(mapper);
+  }
+
+  @Bean
+  public GenericService<CommentDTO, Integer> commentService(
+      GenericMapper<CommentDTO, Integer> mapper) {
     return new DefaultGenericService<>(mapper);
   }
 }
