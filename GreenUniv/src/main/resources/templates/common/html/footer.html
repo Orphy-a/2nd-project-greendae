@@ -26,7 +26,9 @@
             대표전화:051-123-1000 /<br />
             입학안내:051-123-1302 팩스:051-123-3333<br /><br />
           </p>
-          <p>copyrightⓒ Green University All rights reserved.</p>
+          <p>copyrightⓒ Green University All rights reserved.</p><br>
+          <span th:text="${@environment.getProperty('spring.application.name')}"></span>
+          ver. <span th:text="${@environment.getProperty('spring.application.version')}"></span>
         </div>
         <select name="main-site" id="main-site">
           <option value="#">주요 사이트</option>
