@@ -13,6 +13,9 @@ public class EnterInformationController {
     @GetMapping("/enterInformation/advice")
     public String advice(){return "/enterInformation/advice";}
 
+    @GetMapping("/enterInformation/transfer")
+    public String transfer(){return "/enterInformation/transfer";}
+
     @GetMapping("/enterInformation/regular")
     public String regular(){return "/enterInformation/regular";}
 
@@ -22,7 +25,5 @@ public class EnterInformationController {
     @GetMapping("/enterInformation/counsel")
     public String counsel(){return "/enterInformation/counsel";}
 
-    @GetMapping("/enterInformation/uvintro")
-    public String uvintro(){return "/enterInformation/uvintro";}
 
 }
