@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/css/common/table.css" />
     <link rel="stylesheet" href="/css/login/login.css" />
     <link rel="stylesheet" href="/css/common/pagination.css" />
-    <link rel="stylesheet" href="/css/common/side-menu.css" /> 
+    <link rel="stylesheet" href="/css/common/side-menu.css" />
+
   </head>
   <body>
     <div id="wrapper">
@@ -33,20 +34,29 @@
       </nav>
       <main id="container">
         <div class="log">
-            <div class="log_head">
-                <p>LOGIN<br></p>
-                <p>로그인을 하시면 더 다양한 서비스를 받으실 수 있습니다.</p>
-                <ul></ul><input type="radio" name="check"/>학부생</ul>&ensp;
-                <ul></ul><input type="radio" name="check"/>교직원</ul>
-                <ul></ul><input type="radio" name="check"/>일반인</ul>
-                <a href="#">아이디/비밀번호 찾기</a>
-            </div>
-            <div class="log_main">    
-                <input type="text" name="Id" placeholder="아이디"/><br>
-                <input type="password" name="pass" placeholder="비밀번호"/><br>
-                <input type="submit" class="search-btn search-input" value="로그인"
-               style="background-color: #3f97f6;"/>
-            </div>
+            <form method="post" action="/login/login">
+                <div class="log_head">
+                    <p>LOGIN<br></p>
+                    <p>로그인을 하시면 더 다양한 서비스를 받으실 수 있습니다.</p>
+                    <ul>
+                        <input type="radio" name="role" value="STUDENT"/> 학부생&ensp;
+                    </ul>
+                    <ul>
+                        <input type="radio" name="role" value="PROFESSOR,ADMIN"/> 교직원&ensp;
+                    </ul>
+                    <ul>
+                        <input type="radio" name="role" value="GENERAL"/> 일반인&ensp;
+                    </ul>
+                    <a href="#">아이디/비밀번호 찾기</a>
+                </div>
+                <div class="log_main">
+                    <input type="text" name="id" placeholder="아이디"/><br>
+                    <input type="password" name="password" placeholder="비밀번호"/><br>
+                    <span class="errorMessage"></span>
+                    <input type="submit" class="search-btn search-input" value="로그인"
+                           style="background-color: #3f97f6;"/>
+                </div>
+            </form>
             <a th:href="@{/login/terms}" class="register">회원가입</a>
             <div class="log_bottom">
                 <p><img src="/images/bullet-h4.png">&ensp;아이디, 비밀번호 안내</p>
