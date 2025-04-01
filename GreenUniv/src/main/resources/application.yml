@@ -1,18 +1,18 @@
 logging:
-    file:
-        path: /data
-    level:
-        org:
-            hibernate:
-                type:
-                    descriptor:
-                        sql: debug
-        root: info
-        sql: debug
+  file:
+    path: /data
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: debug
+    root: info
+    sql: debug
 server:
-    port: 8080
-    servlet:
-        context-path: /
+  port: 8080
+  servlet:
+    context-path: /
 spring:
     application:
         name: GreenUniv
