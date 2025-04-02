@@ -16,17 +16,15 @@
               <a th:href="@{/login/login}">로그인</a>
             </div>
           </div>
-          <div sec:authorize="hasAuthority('STUDENT')">
+          <div sec:authorize="hasAuthority('ROLE_student')">
             <span class="separator">|</span>
             <a th:href="@{/academicInformation/registration}">학생지원</a>
           </div>
-          <div sec:authorize="hasAuthority('ADMIN') or hasAuthority('PROFESSOR')">
+          <div sec:authorize="hasAuthority('ROLE_admin') or hasAuthority('ROLE_professor')">
             <span class="separator">|</span>
-            <a href="#">학사관리</a>
+            <a th:href="@{/management/managementMain}">학사관리</a>
           </div>
         </div>
-        <a th:href="@{/humanResourcesManagement/professorregister}">교수등록</a>
-        <a th:href="@{/humanResourcesManagement/professorList}">교수목록</a>
       </div>
     </div>
     <div class="header_Bottom">

@@ -1,0 +1,28 @@
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<header>
+    <div class="header_Top">
+        <div>
+            <div class="header_Top_Menu">
+                <a th:href="@{/}">HOME</a>
+                <span class="separator">|</span>
+                <a th:href="@{/introduce/map}">사이트맵</a>
+                <span class="separator">|</span>
+                <div class="login">
+                    <div sec:authorize="isAuthenticated()">
+                        <a th:href="@{/login/logout}">로그아웃</a>
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <a th:href="@{/login/login}">로그인</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header_bottom">
+        <div>
+            <a href="#">
+                <img src="/images/admin_logo.png" alt="그린대학교 학사관리시스템">
+            </a>
+        </div>
+    </div>
+</header>
