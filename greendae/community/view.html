@@ -129,8 +129,12 @@
           <div id="content-area">
             <textarea name="" id="content"></textarea>
           </div>
+          <div id="file-upload-area">
+            <input type="file" />
+            <input type="file" />
+          </div>
           <div id="button-area">
-            <button class="btn publish-btn">글쓰기</button>
+            <button class="btn publish-btn">등록</button>
             <button class="btn modify-btn">수정</button>
             <button class="btn delete-btn">삭제</button>
           </div>
@@ -174,5 +178,9 @@
         </div>
       </footer>
     </div>
+    <script type="module" src="/js/url/URLEnum.js"></script>
+    <script src="/js/community/request.js"></script>
+    <script src="/js/community/publish.js"></script>
+    <!--TODO: Insert file-upload script if this page is being used for /article?category=resources-->
   </body>
 </html>

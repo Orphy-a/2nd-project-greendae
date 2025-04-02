@@ -10,6 +10,7 @@
   width: 930px;
   height: auto;
   margin-left: 50px;
+  margin-bottom: 50px;
 }
 
 #container table {
@@ -62,4 +63,25 @@
   width: 70px;
   height: 35px;
   border: none;
+  color: white;
+}
+
+#button-area .publish-btn,
+#button-area .modify-btn {
+  background-color: #3f97f6;
+}
+
+#button-area .delete-btn {
+  background-color: #942626;
+}
+
+#file-upload-area {
+  border: 1px solid #d8d8d8;
+  border-top: none;
+  padding: 10px;
+}
+
+#file-upload-area > input {
+  display: block;
+  margin-top: 10px;
 }
