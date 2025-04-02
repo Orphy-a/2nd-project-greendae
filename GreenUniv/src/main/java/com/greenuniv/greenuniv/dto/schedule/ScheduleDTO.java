@@ -1,7 +1,7 @@
 package com.greenuniv.greenuniv.dto.schedule;
 
 import com.greenuniv.greenuniv.dto.BaseDTO;
-import com.greenuniv.greenuniv.entity.scehdule.ScheduleEntity;
+import com.greenuniv.greenuniv.entity.schedule.ScheduleEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.time.LocalDate;
