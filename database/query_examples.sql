@@ -383,17 +383,21 @@ SELECT
 `artcl`.`view` AS `article_view`,
 `qna`.is_private,
 `qna`.`password` AS `qna_password`,
-`user`.id AS `user_id`,
-`user`.`name` AS `user_name`
-FROM `qna`
-JOIN `article` AS `artcl`
-ON `qna`.answer_id = `artcl`.id
-JOIN `article` AS `q_artcl`
+`q_user`.id AS `question_user_id`,
+`q_user`.`name` AS `question_user_name`,
+`user`.id AS `answer_user_id`,
+`user`.`name` AS `answer_user_name`
+FROM `article` AS `q_artcl`
+JOIN `user` AS `q_user`
+ON `q_artcl`.user_id = `q_user`.id
+inner JOIN `qna`
 ON `qna`.question_id = `q_artcl`.id
-JOIN `user`
-ON `user`.id = `artcl`.user_id
-ORDER BY `artcl`.register_date DESC
-LIMIT 5 OFFSET 0;
+LEFT JOIN `article` AS `artcl`
+ON `qna`.answer_id = `artcl`.id
+left JOIN `user`
+ON `artcl`.user_id = `user`.id
+ORDER BY `q_artcl`.register_date DESC
+LIMIT 2 OFFSET 0;
 
 -- 질문과답변 게시판 + 조건문
 SELECT
@@ -413,13 +417,11 @@ SELECT
 `qna`.`password` AS `qna_password`,
 `user`.id AS `user_id`,
 `user`.`name` AS `user_name`
-FROM `qna`
-JOIN `article` AS `artcl`
-ON `qna`.answer_id = `artcl`.id
-JOIN `article` AS `q_artcl`
+FROM `article` AS `q_artcl`
+inner JOIN `qna`
 ON `qna`.question_id = `q_artcl`.id
-JOIN `user`
-ON `user`.id = `artcl`.user_id
-WHERE answer_id = 7
-ORDER BY `artcl`.register_date DESC
-LIMIT 5 OFFSET 0;
+LEFT JOIN `article` AS `artcl`
+ON `qna`.answer_id = `artcl`.id
+WHERE `` = ""
+ORDER BY `q_artcl`.register_date DESC
+LIMIT 2 OFFSET 0;
