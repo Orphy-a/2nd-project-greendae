@@ -1,4 +1,4 @@
-package com.greenuniv.greenuniv.entity.scehdule;
+package com.greenuniv.greenuniv.entity.schedule;
 
 import com.greenuniv.greenuniv.dto.schedule.ScheduleDTO;
 import com.greenuniv.greenuniv.entity.BaseEntity;

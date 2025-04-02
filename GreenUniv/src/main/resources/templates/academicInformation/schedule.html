@@ -10,6 +10,36 @@
     <link rel="stylesheet" href="/css/common/side-menu.css">
     <link rel="stylesheet" href="/css/bachelor's_degree/registration.css">
     <title>학사일정</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <th:block th:include="/common/html/header.html"/>
@@ -57,9 +87,20 @@
                     <tbody id="calendar-body">
                     </tbody>
                 </table>
+                <div class="import-note">※ 자세한 일정 내용은 공지사항을 참고하시기 바랍니다.</div>
             </div>
-            <div class="import-note">※ 자세한 일정 내용은 공지사항을 참고하시기 바랍니다.</div>
         </section>
+        <div id="schedule-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>일정 관리</h2>
+                <input type="hidden" id="modal-date">
+                <input type="text" id="modal-title" placeholder="일정 제목">
+                <button onclick="saveSchedule()">저장</button>
+                <button id="delete-button" onclick="deleteSchedule()" style="display: none; background: red; color: white;">삭제</button>
+            </div>
+        </div>
+
     </main>
     <th:block th:include="/common/html/footer.html"/>
     <script src="/js/community/calendar.js"></script>
