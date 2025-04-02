@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QnaDTO implements BaseDTO {
 
-  private ArticleDTO reply; // reply article
   private ArticleDTO question;
+  private ArticleDTO answer;
   private boolean isPrivate;
   private String password;
 

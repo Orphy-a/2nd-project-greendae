@@ -27,7 +27,7 @@
           &ensp;&ensp;
         </a>
         <a th:href="@{/article(category=notice)}">&ensp;&ensp;커뮤니티&ensp;&ensp;</a>
-        <a th:href="@{/article(category=qna)}">&ensp;&ensp;질문과 답변</a>
+        <a th:href="@{/qna}">&ensp;&ensp;질문과 답변</a>
       </div>
     </div>
   </nav>
@@ -40,7 +40,7 @@
       <a th:href="@{/article(category=news)}" class="menu">뉴스 및 칼럼</a>
       <a th:href="@{/article(category=employment)}" class="menu">취업정보</a>
       <a th:href="@{/article(category=bulletin)}" class="menu">자유게시판</a>
-      <a th:href="@{/article(category=qna)}" class="menu">질문과답변</a>
+      <a th:href="@{/qna}" class="menu">질문과답변</a>
       <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
     </aside>
     <section>
@@ -74,82 +74,53 @@
           <th>작성일</th>
           <th>상태</th>
         </tr>
-        <tbody>
-        <tr th:each="article : ${articles}">
-          <td>[[${article.getId()}]]</td>
+        <tbody th:each="article : ${articles}">
+        <tr>
+          <!--질문 게시물(답변 여부와 관계없이 항상 표시)-->
+          <td>[[${article.getQuestion().getId()}]]</td>
           <td>
-            <img th:src="/images/ico-lock.png" alt=""/ th:if="${article.getStatus().equals(}">
-            <a href="#">2025학년도 1학기 그린장학회 장학생 신청 문의</a>
+            <img th:src="@{/images/ico-lock.png}" th:if="${article.isPrivate()}" alt=""/>
+            <a th:href="@{/qna/question/view(qid=${article.getQuestion().getId()})}">
+              [[${article.getQuestion().getTitle()}]]
+            </a>
           </td>
-          <td>학사지원실</td>
-          <td>24.03.10</td>
+          <td>
+            [[${article.getQuestion().getUser().getName()}]]
+          </td>
+          <td>
+            [[${article.getQuestion().getRegisterDate()}]]
+          </td>
           <td>
             <span
                 class="reply-status reply-complete"
-                th:if="${article.getStatus().equals('close')}">
-            답변완료</span>
+                th:if="${article.getQuestion().getStatus().equals('close')}">
+            답변완료
+            </span>
             <span class="reply-status reply-standingby"
-                  th:if="${article.getStatus().equals('open')}">답변대기</span>
+                  th:if="${article.getQuestion().getStatus().equals('open')}">
+              답변대기
+            </span>
           </td>
         </tr>
-        <tr>
-          <td>3</td>
+        <!--답변 게시물(not null일 때만 표시)-->
+        <tr th:if="${article.getAnswer() != null}">
+          <td>[[${article.getAnswer().getId()}]]</td>
           <td>
-            <a href="#">취업 진로 상담</a>
+            <img th:src="@{/images/ico-reply.png}" alt="reply-icon"/>
+            <a th:href="@{/qna/answer/view(qid=${article.getAnswer().getId()})}">
+              [[${article.getAnswer().getTitle()}]]
+            </a>
           </td>
-          <td>학사지원실</td>
-          <td>24.03.10</td>
           <td>
-            <span class="reply-status reply-complete">답변완료</span>
-            <span
-                class="reply-status reply-standingby"
-                style="display: none"
-            >답변대기</span
-            >
+            [[${article.getAnswer().getUser().getName()}]]
           </td>
-        </tr>
-        <tr>
-          <td>3</td>
           <td>
-            <img src="/images/ico-reply.png" alt=""/>
-            <a href="#">RE: [답변] 취업 진로 상담</a>
-          </td>
-          <td>학사지원실</td>
-          <td>24.03.10</td>
-          <td>
-            <span class="reply-status reply-complete">답변완료</span>
-            <span
-                class="reply-status reply-standingby"
-                style="display: none"
-            >답변대기</span
-            >
+            [[${article.getAnswer().getRegisterDate()}]]
           </td>
         </tr>
         </tbody>
       </table>
-      <div class="pagination">
-        <button>
-          <a href="#"> << </a>
-        </button>
-        <button class="prev">
-          <a href="#"> < </a>
-        </button>
-        <button>
-          <a href="#"> 1 </a>
-        </button>
-        <button>
-          <a href="#"> 2 </a>
-        </button>
-        <button>
-          <a href="#"> 3 </a>
-        </button>
-        <button class="next">
-          <a href="#"> > </a>
-        </button>
-        <button>
-          <a href="#">>></a>
-        </button>
-      </div>
+      <th:block th:include="/common/html/pagination.html"/>
     </section>
   </main>
   <th:block th:include="/common/html/footer.html"/>
