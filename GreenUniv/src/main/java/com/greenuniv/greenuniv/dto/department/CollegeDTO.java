@@ -20,6 +20,12 @@ public class CollegeDTO implements BaseDTO {
   private String description;
   private ImageDTO image;
 
+  // 학부 이름만 출력 생성자
+  public CollegeDTO(String name) {
+    this.name = name;
+  }
+
+
   @Override
   public CollegeEntity toEntity() {
     return CollegeEntity.builder()

@@ -19,10 +19,10 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/student/**").hasRole("STUDENT")
-                        .requestMatchers("/professor/**").hasRole("PROFESSOR")
-                        .requestMatchers("/general/**").hasRole("GENERAL")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/department/**").hasAnyRole("admin", "professor")
+                        .requestMatchers("/humanResourcesManagement/**").hasAnyRole("admin", "professor")
+                        .requestMatchers("/management/**").hasAnyRole("admin", "professor")
+                        .requestMatchers("/article/view/**").authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
@@ -54,15 +54,6 @@ public class SecurityConfig {
              - Spring Security는 기본적으로 인가 페이지 대해 login 페이지로 redirect 수행
         */
 
-//        http.authorizeHttpRequests(authorize -> authorize
-//                .requestMatchers("/").permitAll()
-//                .requestMatchers("/admin/**").hasRole("admin")
-//                .requestMatchers("/student/**").hasAnyRole("admin", "student")
-//                .requestMatchers("/professor/**").hasAnyRole("admin", "professor")
-//                .requestMatchers("/general/**").hasAnyRole("admin", "general")
-//                .requestMatchers("/article/**").authenticated()
-//                .requestMatchers("/user/**").permitAll()
-//                .anyRequest().permitAll());
 
         return http.build();
     }

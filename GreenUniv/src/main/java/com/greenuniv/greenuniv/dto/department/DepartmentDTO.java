@@ -24,8 +24,13 @@ public class DepartmentDTO implements BaseDTO {
   private String englishName;
   private String contact;
   private String office;
+  
+  // 학과 이름만 출력 생성자
+  public DepartmentDTO(String name) {
+    this.name = name;
+  }
 
-  @Override
+    @Override
   public DepartmentEntity toEntity() {
     return DepartmentEntity.builder()
         .id(id)

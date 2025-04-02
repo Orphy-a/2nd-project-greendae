@@ -44,8 +44,12 @@ public class UserDTO implements BaseDTO {
   private LocalDateTime registerDate;
   private LocalDateTime leaveDate;
 
+    public UserDTO(String name) {
+      this.name = name;
+    }
 
-  @Override
+
+    @Override
   public UserEntity toEntity() {
     return UserEntity.builder()
             .id(id)
