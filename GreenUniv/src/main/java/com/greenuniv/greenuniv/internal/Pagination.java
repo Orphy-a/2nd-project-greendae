@@ -36,7 +36,7 @@ public class Pagination {
 
   private long itemsCount;
 
-  public Pagination(int currentPage, int itemsCount) {
+  public Pagination(int currentPage, long itemsCount) {
     this.currentPage = currentPage;
     this.itemsCount = itemsCount;
   }
@@ -48,7 +48,7 @@ public class Pagination {
    *
    * @return Number of end page number
    */
-  public int getEndPage() {
+  public int endPage() {
     int endPageNumber = 1;
     if (itemsCount > MAX_ITEM_PER_PAGE) {
       endPageNumber = (int) Math.ceil(itemsCount / (double) MAX_ITEM_PER_PAGE);
@@ -66,7 +66,7 @@ public class Pagination {
    *
    * @return Total number of items that should be retrieved from the database.
    */
-  public int itemLimit() {
+  public int limit() {
     long maxItems = (long) PAGE_LIMIT * MAX_ITEM_PER_PAGE;
     if (itemsCount > maxItems) {// 전체 아이템의 수가 표시 가능한 최대 아이템 개수를 초과할 경우.
 
@@ -81,7 +81,7 @@ public class Pagination {
    * This method calculates the starting index of items. The return value of this method will be
    * used at SQL `OFFSET` statement
    */
-  public int itemOffset() {
+  public int offset() {
     return (currentPage - 1) * MAX_ITEM_PER_PAGE;
   }
 }
