@@ -22,10 +22,10 @@ class PaginationTest {
 
     pagination.setCurrentPage(1);
     pagination.setItemsCount(11);
-    long totalItems = pagination.itemLimit();
+    long totalItems = pagination.limit();
 
-    assertEquals(0, pagination.itemOffset());
-    assertEquals(2, pagination.getEndPage());
+    assertEquals(0, pagination.offset());
+    assertEquals(2, pagination.endPage());
     assertEquals(11, totalItems);
   }
 
@@ -35,9 +35,9 @@ class PaginationTest {
     pagination.setCurrentPage(10);
     pagination.setItemsCount(100);
 
-    assertEquals(90, pagination.itemOffset());
-    assertEquals(10, pagination.getEndPage());
-    assertEquals(100, pagination.itemLimit());
+    assertEquals(90, pagination.offset());
+    assertEquals(10, pagination.endPage());
+    assertEquals(100, pagination.limit());
   }
 
   @Test
@@ -46,9 +46,9 @@ class PaginationTest {
     pagination.setCurrentPage(3);
     pagination.setItemsCount(3127);
 
-    assertEquals(20, pagination.itemOffset());
-    assertEquals(100, pagination.itemLimit());
-    assertEquals(10, pagination.getEndPage());
+    assertEquals(20, pagination.offset());
+    assertEquals(100, pagination.limit());
+    assertEquals(10, pagination.endPage());
   }
 
   @Test
@@ -58,12 +58,12 @@ class PaginationTest {
     pagination.setCurrentPage(1);
     pagination.setItemsCount(count);
 
-    int limit = pagination.itemLimit();
-    int offset = pagination.itemOffset();
+    int limit = pagination.limit();
+    int offset = pagination.offset();
 
-    assertEquals(0, pagination.itemOffset());
-    assertEquals(3, pagination.itemLimit());
-    assertEquals(1, pagination.getEndPage());
+    assertEquals(0, pagination.offset());
+    assertEquals(3, pagination.limit());
+    assertEquals(1, pagination.endPage());
 
     List<ArticleDTO> articles = service.findByLimit(offset, limit, "category", "qna");
     assertEquals(3, articles.size());
@@ -82,8 +82,8 @@ class PaginationTest {
     pagination.setCurrentPage(1);
     pagination.setItemsCount(totalCount);
 
-    int limit = pagination.itemLimit();
-    int offset = pagination.itemOffset();
+    int limit = pagination.limit();
+    int offset = pagination.offset();
 
     assertEquals(totalCount, limit);
     assertEquals(0, offset);
