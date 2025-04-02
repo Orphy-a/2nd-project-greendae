@@ -43,7 +43,8 @@ public class ProfessorDTO implements BaseDTO {
   private String position;
   private boolean isChief;
 
-  @Override
+
+    @Override
   public ProfessorEntity toEntity() {
     return ProfessorEntity.builder()
         .id(id)

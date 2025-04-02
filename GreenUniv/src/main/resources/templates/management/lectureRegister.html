@@ -20,116 +20,154 @@
                   <h1>강의 등록</h1>
                   <h2>학사운영&ensp;&ensp;<span>>&ensp;&ensp;강의등록</span></h2>
                 </div>
+                <form th:action="@{/management/lectureRegister}" method="post">
                 <div>
                   <p><img src="/images/bullet-h4.png" alt="#"> 기본정보 입력</p>
-                  <table class="Enter_basic_information">                        
+                    <table class="Enter_basic_information">
+                      <tr>
+                        <td>과목코드</td>
+                        <td>
+                          <input type="text" name="id">
+                        </td>
+                        <td>개설학과</td>
+                        <td>
+                          <select name="college">
+                            <th:block th:each="college : ${collegeDTOS}">
+                              <option th:value="${college.name}" th:text="${college.name}"></option>
+                            </th:block>
+                          </select>
+                          <select name="department">
+                            <th:block th:each="department : ${departmentDTOS}">
+                              <option th:value="${department.name}" th:text="${department.name}"></option>
+                            </th:block>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>개설학년</td>
+                        <td>
+                          <select name="level">
+                            <option value="">1학년</option>
+                            <option value="">2학년</option>
+                            <option value="">3학년</option>
+                            <option value="">4학년</option>
+                          </select>
+                        </td>
+                        <td>학점</td>
+                        <td>
+                          <select name="credit">
+                            <option value="2">2학점</option>
+                            <option value="3">3학점</option>
+                            <option value="4">4학점</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>이수구분</td>
+                        <td>
+                          <select name="classification" id="classification">
+                            <option value="major">전공</option>
+                            <option value="selective">교양선택</option>
+                          </select>
+                        </td>
+                        <td>담당교수</td>
+                        <td>
+                          <select name="professor">
+                            <th:block th:each="professor : ${userDTOS}">
+                              <option th:value="${professor.name}" th:text="${professor.name}"></option>
+                            </th:block>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>강의명</td>
+                        <td colspan="3">
+                          <input type="text" placeholder="강의명 입력" value="name">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>강의 설명</td>
+                        <td colspan="3">
+                          <input type="text" placeholder="강의 개요 및 목표, 학습 내용 등" value="description">
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+                <div>
+                  <p><img src="/images/bullet-h4.png" alt="#"> 대학 운영 현황</p>
+                  <table class="University_operation_status">
                     <tr>
-                      <td>과목코드</td>
-                      <td>학과 코드 + 연도 + 학기 + 순번 조합 자동생성</td>
-                      <td>개설학과</td>
-                      <td>
-                        <select>
-                          <option value="">인문사회대학</option>
-                        </select>
-                        <select name="" id="">
-                          <option value="">국어국문학과</option>
-                        </select>
+                      <td>수업 기간</td>
+                      <td colspan="3">
+                        <input type="date" value="start_date">
+                        <span> ~ </span>
+                        <input type="date" value="end_date">
                       </td>
                     </tr>
                     <tr>
-                      <td>개설학년</td>
-                      <td>
-                        <select name="" id="">
-                          <option value="">1학년</option>
+                      <td>수업 시간</td>
+                      <td colspan="3">
+                        <select name="" id="start_at">
+                          <option value="1">09:00:00</option>
+                          <option value="2">10:00:00</option>
+                          <option value="3">11:00:00</option>
+                          <option value="4">12:00:00</option>
+                          <option value="5">13:00:00</option>
+                          <option value="6">14:00:00</option>
+                          <option value="7">15:00:00</option>
+                          <option value="8">16:00:00</option>
+                          <option value="9">17:00:00</option>
                         </select>
-                      </td>
-                      <td>학점</td>
-                      <td>
-                        <select name="" id="">
-                          <option value="">3학점</option>
+                        <span> ~ </span>
+                        <select name="" id="end_at">
+                          <option value="1">10:00:00</option>
+                          <option value="2">11:00:00</option>
+                          <option value="3">12:00:00</option>
+                          <option value="4">13:00:00</option>
+                          <option value="5">14:00:00</option>
+                          <option value="6">15:00:00</option>
+                          <option value="7">16:00:00</option>
+                          <option value="8">17:00:00</option>
+                          <option value="9">18:00:00</option>
                         </select>
+                        <input type="checkbox" value="1" class="week">
+                        <span>월</span>
+                        <input type="checkbox" value="2" class="week">
+                        <span>화</span>
+                        <input type="checkbox" value="3" class="week">
+                        <span>수</span>
+                        <input type="checkbox" value="4" class="week">
+                        <span>목</span>
+                        <input type="checkbox" value="5" class="week">
+                        <span>금</span>
                       </td>
                     </tr>
                     <tr>
-                      <td>이수구분</td>
-                      <td>
-                        <select name="" id="">
-                          <option value="전공 선택">전공선택</option>
-                        </select>
+                      <td>평가방식</td>
+                      <td colspan="3">
+                        <input type="text" placeholder="출석 10%, 과제 30%, 시험 60%" value="evaluation_methods">
                       </td>
-                      <td>담당교수</td>
+                    </tr>
+                    <tr>
+                      <td>교재</td>
+                      <td colspan="3">
+                        <input type="text" placeholder="출판사-도서명-저자 입력" value="textbook">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>강의실</td>
+                      <td>
+                        <input type="text" placeholder="인문관 301호" value="classroom">
+                      </td>
+                      <td>최대 수강인원</td>
                       <td>
                         <input type="text">
                       </td>
                     </tr>
-                    <tr>
-                      <td>강의명</td>
-                      <td colspan="3">
-                        <input type="text" placeholder="강좌명 입력">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>강의 설명</td>
-                      <td colspan="3">
-                        <input type="text" placeholder="강의 개요 및 목표, 학습 내용 등">
-                      </td>
-                    </tr>
                   </table>
-              </div>
-              <div>
-                <p><img src="/images/bullet-h4.png" alt="#"> 대학 운영 현황</p>
-                <table class="University_operation_status">                        
-                  <tr>
-                    <td>수업 기간</td>
-                    <td colspan="3">
-                      <input type="date">
-                      <span> ~ </span>
-                      <input type="date">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>수업 시간</td>
-                    <td colspan="3">
-                      <input type="time">
-                      <span> ~ </span>
-                      <input type="time">
-                      <input type="checkbox" id="week">
-                      <span>월</span>
-                      <input type="checkbox" id="week">
-                      <span>화</span>
-                      <input type="checkbox" id="week">
-                      <span>수</span>
-                      <input type="checkbox" id="week">
-                      <span>목</span>
-                      <input type="checkbox" id="week">
-                      <span>금</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>평가방식</td>
-                    <td colspan="3">
-                      <input type="text" placeholder="출석 10%, 과제 30%, 시험 60%">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>교재</td>
-                    <td colspan="3">
-                      <input type="text" placeholder="출판사-도서명-저자 입력">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>강의실</td>
-                    <td>
-                      <input type="text" placeholder="인문관 301호">
-                    </td>
-                    <td>최대 수강인원</td>
-                    <td>
-                      <input type="text">
-                    </td>
-                  </tr>
-                </table>
-                <button class="btn_register">등록</button>
-              </div>
+                  <button class="btn_register">등록</button>
+                </div>
+              </form>
             </section>
         </div>
     </main>
