@@ -425,3 +425,10 @@ ON `qna`.answer_id = `artcl`.id
 WHERE `` = ""
 ORDER BY `q_artcl`.register_date DESC
 LIMIT 2 OFFSET 0;
+
+#################### 파일 ###########################
+SELECT
+`file`.*
+FROM `file`;
+
+SELECT * FROM `file` WHERE `file`.article_id = 1;
