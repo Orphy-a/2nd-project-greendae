@@ -39,10 +39,13 @@ public class ArticleController {
   public String list(@RequestParam String category,
       @RequestParam(required = false, defaultValue = "1") int page,
       Model model) {
-    pagination.setCurrentPage(page);
-
     log.info("Incoming request for /article?{}&{} has been detected", category, page);
+    if (category.equals("qna")) {
+      return "redirect:/qna";
+    }
 
+    // 페이지 및 필요한 article 개수 계산
+    pagination.setCurrentPage(page);
     if (page < 1) { // page query param 유효성 검증
       model.addAttribute("error", "Bad Request");
       return "/error/error";
@@ -56,9 +59,10 @@ public class ArticleController {
     }
 
     pagination.setItemsCount(articleCount);
-
     int offset = pagination.itemOffset();
     int limit = pagination.itemLimit();
+
+    // 계산된 필요한 개수의 article SELECT
     List<ArticleDTO> articles = articleService.findByLimit(offset, limit, "category", category);
 
     model.addAttribute("category", category);
@@ -71,8 +75,9 @@ public class ArticleController {
     return templatePath;
   }
 
-  @PostMapping("")
-  public String publish() {
+  @PostMapping("/publish")
+  public String publish(@RequestParam String category,
+      @RequestParam(required = false) String status) {
     return "";
   }
 
@@ -86,5 +91,4 @@ public class ArticleController {
   public String view(@RequestParam String id) {
     return "";
   }
-
 }
