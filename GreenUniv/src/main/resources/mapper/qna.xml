@@ -72,7 +72,7 @@
 
   <select id="count" resultType="long">
     SELECT
-    COUNT(`article`.id) AS `qna_count`
+    COUNT(`question_id`) AS `qna_count`
     FROM `qna`;
   </select>
 </mapper>
