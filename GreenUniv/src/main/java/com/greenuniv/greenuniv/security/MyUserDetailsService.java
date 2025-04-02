@@ -2,14 +2,16 @@ package com.greenuniv.greenuniv.security;
 
 import com.greenuniv.greenuniv.entity.user.UserEntity;
 import com.greenuniv.greenuniv.repository.login.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -19,23 +21,28 @@ public class MyUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        log.info("Id : {}", id);
 
-        log.info("username : {}", username);
+        // 1. RequestContextHolder를 사용하여 요청 정보를 가져옴
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
 
-        // 사용자 조회 - 사용자가 입력한 아이디, 비밀번호는 이전단계인 AuthenticationProvider 쪽에서 먼저 수행됨
-        Optional<UserEntity> optUser = userRepository.findById(username);
+        // 2. 폼에서 전달된 Role 값을 가져옴
+        String selectedRole = request.getParameter("role");
 
-        if(optUser.isPresent()){
-            // Security 사용자 인증객체 생성
-            MyUserDetails myUserDetails = MyUserDetails.builder()
-                    .user(optUser.get())
-                    .build();
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
 
-            // 리턴되는 myUserDetails는 Security ContextHolder에 저장
-            return myUserDetails;
+        // 3, Role 검증
+        if(selectedRole == null || !user.getRole().name().equalsIgnoreCase(selectedRole)) {
+            throw new BadCredentialsException("Role mismatch");
         }
 
-        return null;
+        MyUserDetails myUserDetails = MyUserDetails.builder()
+                .user(user)
+                .build();
+
+        return myUserDetails;
     }
 }

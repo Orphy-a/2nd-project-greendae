@@ -4,9 +4,11 @@ import com.greenuniv.greenuniv.dto.terms.TermsDTO;
 import com.greenuniv.greenuniv.dto.user.UserDTO;
 import com.greenuniv.greenuniv.service.login.TermsService;
 import com.greenuniv.greenuniv.service.login.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,12 +36,12 @@ public class LoginController {
     }
 
     @PostMapping("/login/login")
-    public String login(@ModelAttribute UserDTO userDTO, Model model){
+    public String login(@ModelAttribute UserDTO userDTO, HttpServletRequest request, Model model) {
 
-        // 로그로 확인
-        log.info("Role: " + userDTO.getRole());
-        log.info("Id: " + userDTO.getId());
-        log.info("Password: " + userDTO.getPassword());
+        String role = request.getParameter("role");
+
+        String[] roles = role.split(",");
+
 
         // 필요한 로직 처리 (예: 인증, 권한 확인 등)
         model.addAttribute("userDTO", userDTO);
