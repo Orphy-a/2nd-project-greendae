@@ -17,29 +17,34 @@ public class Pagination {
 
   /**
    * Max number of pages to be displayed. For example, if current number of page is 1, then the max
-   * number should be 10.
+   * number should be 10. </br> 페이지 내에서 보여질 페이지의 최대 개수. PAGE_LIMIT 값이 10일 경우, 현재 페이지 + 10 만큼의 페이지.
    */
   public static final int PAGE_LIMIT = 10;
 
   /**
-   * Max number of items to be displayed per page.
+   * Max number of items to be displayed per page. <br> 한 페이지 내에서 보여지는 아이템들의 최대 개수. article을 예로 들면,
+   * 현재 페이지가 1일때, 1번 페이지에 보여지는 article의 수는 총 10개.
    */
   public static final int MAX_ITEM_PER_PAGE = 10;
 
   /**
    * Current page number
+   * <br>
+   * 현재 페이지 값
    */
   private int currentPage = 0;
 
   private long itemsCount;
 
-  public Pagination(int offset, int itemsCount) {
-    this.currentPage = (offset - 1) * MAX_ITEM_PER_PAGE;
+  public Pagination(int currentPage, int itemsCount) {
+    this.currentPage = currentPage;
     this.itemsCount = itemsCount;
   }
 
   /**
    * Get a number of end page.
+   * <br>
+   * 화면에 표시될 가장 마지막 페이지 값을 계산해준다.
    *
    * @return Number of end page number
    */

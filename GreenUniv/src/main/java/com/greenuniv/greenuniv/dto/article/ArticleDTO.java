@@ -22,8 +22,9 @@ public class ArticleDTO implements BaseDTO {
   public static final String CATEGORY_EMPLOYMENT = "employment";
   public static final String CATEGORY_BULLETIN = "bulletin";
   public static final String CATEGORY_QNA = "qna";
+  public static final String CATEGORY_GALLERY = "gallery";
   public static final String[] CATEGORIES = {CATEGORY_NOTICE, CATEGORY_NEWS, CATEGORY_COLUMN,
-      CATEGORY_EMPLOYMENT, CATEGORY_BULLETIN, CATEGORY_QNA};
+      CATEGORY_EMPLOYMENT, CATEGORY_BULLETIN, CATEGORY_QNA, CATEGORY_GALLERY};
 
   public static final String STATUS_OPEN = "open";
   public static final String STATUS_CLOSED = "close";

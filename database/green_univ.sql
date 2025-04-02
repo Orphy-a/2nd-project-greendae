@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `green_univ`.`user` (
   `password` VARCHAR(255) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `eng_name` VARCHAR(50) NULL,
-  `gender` ENUM("m", "f") NOT NULL,
+  `gender` ENUM("m", "f") NULL,
   `nationality` VARCHAR(20) NULL,
-  `social_number` VARCHAR(45) NOT NULL,
+  `social_number` VARCHAR(45) NULL,
   `email` VARCHAR(45) NOT NULL,
   `contact` VARCHAR(45) NOT NULL,
   `zip` CHAR(5) NOT NULL,
@@ -126,10 +126,10 @@ ENGINE = InnoDB;
 -- Table `green_univ`.`article`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `green_univ`.`article` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(20) NOT NULL,
   `title` VARCHAR(50) NOT NULL,
-  `category` ENUM("notice", "news", "column", "employment", "bulletin", "qna") NOT NULL,
+  `category` ENUM("notice", "news", "column", "employment", "bulletin", "qna", "gallery") NOT NULL,
   `status` ENUM("open", "close") NULL,
   `content` TEXT NOT NULL,
   `view` INT NOT NULL DEFAULT 0,
@@ -504,6 +504,24 @@ CREATE TABLE IF NOT EXISTS `green_univ`.`term` (
   `title` VARCHAR(255) NULL,
   `content` TEXT NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `green_univ`.`qna`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `green_univ`.`qna` (
+  `question_id` INT NOT NULL AUTO_INCREMENT,
+  `answer_id` INT NULL,
+  `is_private` TINYINT NULL DEFAULT 0,
+  `password` CHAR(8) NULL,
+  PRIMARY KEY (`question_id`),
+  INDEX `fk_reply_article_article1_idx` (`question_id` ASC) VISIBLE,
+  CONSTRAINT `fk_reply_article_article1`
+    FOREIGN KEY (`question_id`)
+    REFERENCES `green_univ`.`article` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

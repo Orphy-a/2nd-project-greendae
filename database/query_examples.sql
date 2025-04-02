@@ -366,3 +366,60 @@ SELECT
 COUNT(`article`.id) AS `article_count_by`
 FROM `article`
 WHERE `article`.category = "news" OR `article`.category = "column";
+
+-- 질문과답변 게시판 조회
+SELECT
+`q_artcl`.id AS `question_article_id`,
+`q_artcl`.title AS `question_article_title`,
+`q_artcl`.category AS `question_article_category`,
+`q_artcl`.`status` AS `question_article_status`,
+`q_artcl`.content AS `question_article_content`,
+`q_artcl`.`view` AS `question_article_view`,
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`qna`.is_private,
+`qna`.`password` AS `qna_password`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `qna`
+JOIN `article` AS `artcl`
+ON `qna`.answer_id = `artcl`.id
+JOIN `article` AS `q_artcl`
+ON `qna`.question_id = `q_artcl`.id
+JOIN `user`
+ON `user`.id = `artcl`.user_id
+ORDER BY `artcl`.register_date DESC
+LIMIT 5 OFFSET 0;
+
+-- 질문과답변 게시판 + 조건문
+SELECT
+`q_artcl`.id AS `question_article_id`,
+`q_artcl`.title AS `question_article_title`,
+`q_artcl`.category AS `question_article_category`,
+`q_artcl`.`status` AS `question_article_status`,
+`q_artcl`.content AS `question_article_content`,
+`q_artcl`.`view` AS `question_article_view`,
+`artcl`.id AS `article_id`,
+`artcl`.title AS `article_title`,
+`artcl`.category AS `article_category`,
+`artcl`.`status` AS `article_status`,
+`artcl`.content AS `article_content`,
+`artcl`.`view` AS `article_view`,
+`qna`.is_private,
+`qna`.`password` AS `qna_password`,
+`user`.id AS `user_id`,
+`user`.`name` AS `user_name`
+FROM `qna`
+JOIN `article` AS `artcl`
+ON `qna`.answer_id = `artcl`.id
+JOIN `article` AS `q_artcl`
+ON `qna`.question_id = `q_artcl`.id
+JOIN `user`
+ON `user`.id = `artcl`.user_id
+WHERE answer_id = 7
+ORDER BY `artcl`.register_date DESC
+LIMIT 5 OFFSET 0;

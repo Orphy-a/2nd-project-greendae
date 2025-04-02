@@ -202,12 +202,16 @@ INSERT INTO `article` (`id`, `user_id`, `title`, `category`, `status`, `content`
 (3, "abc123", "[칼럼] 그린대학교 웹사이트 신규 개설 안내", "column", NULL, "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW()),
 (4, "abc123", "[취업정보] 그린대학교 웹사이트 신규 개설 안내", "employment", "open", "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW()),
 (5, "abc123", "미답변 질문 테스트입니다.", "qna", "open", "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW()),
-(6, "abc123", "답변된 질문 테스트입니다.", "qna", "close", "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW()),
+(6, "abc123", "답변된 질문 테스트입니다.", "qna", NULL, "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW()),
 (7, "abc123", "답변 테스트입니다.", "qna", NULL, "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW());
 INSERT INTO `article` (`id`, `user_id`, `title`, `category`, `status`, `content`, `register_date`) VALUES 
 (8, "abc123", "[취업정보] 그린대학교 웹사이트 신규 개설 안내", "employment", "close", "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW());
 INSERT INTO `article` (`id`, `user_id`, `title`, `category`, `status`, `content`, `register_date`) VALUES 
 (9, "abc123", "그린대학교 웹사이트 신규 개설 안내", "bulletin", NULL, "그린대학교 웹사이트가 개설되었음을 알려드립니다. 자세한 사항은 '자주묻는질문' 페이지를 확인해주세요.", NOW());
+
+-- reply_article(article.category가 reply와 같은 article들의 모임)
+INSERT INTO `qna` VALUES(5, NULL, 0, NULL),
+(6, 7, 1, "1234");
 
 -- comment
 INSERT INTO `comment` VALUES 
