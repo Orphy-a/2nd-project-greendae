@@ -59,8 +59,8 @@ public class ArticleController {
     }
 
     pagination.setItemsCount(articleCount);
-    int offset = pagination.itemOffset();
-    int limit = pagination.itemLimit();
+    int offset = pagination.offset();
+    int limit = pagination.limit();
 
     // 계산된 필요한 개수의 article SELECT
     List<ArticleDTO> articles = articleService.findByLimit(offset, limit, "category", category);
