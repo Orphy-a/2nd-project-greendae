@@ -17,7 +17,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/student/**").hasRole("STUDENT")
@@ -49,30 +48,21 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable);
 
 
-        // 로그아웃 설정
-        http.logout(logout -> logout
-                .logoutUrl("/login/logout")
-                .invalidateHttpSession(true)
-                .logoutSuccessUrl("/login/login?code=101"));
-
         /*
             인가 설정
              - MyUserDetails 권한 목록 생성하는 메서드(getAuthorities)에서 접두어로 ROLE_ 입력해야 hasRole, hasAnyRole 권한 처리됨
              - Spring Security는 기본적으로 인가 페이지 대해 login 페이지로 redirect 수행
         */
-        /*
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/admin/**").hasRole("admin")
-                .requestMatchers("/student/**").hasAnyRole("admin", "student")
-                .requestMatchers("/professor/**").hasAnyRole("admin", "professor")
-                .requestMatchers("/general/**").hasAnyRole("admin", "general")
-                .requestMatchers("/article/**").authenticated()
-                .requestMatchers("/user/**").permitAll()
-                .anyRequest().permitAll());
-        */
-        // 기타 보안 설정
-        http.csrf(AbstractHttpConfigurer::disable);
+
+//        http.authorizeHttpRequests(authorize -> authorize
+//                .requestMatchers("/").permitAll()
+//                .requestMatchers("/admin/**").hasRole("admin")
+//                .requestMatchers("/student/**").hasAnyRole("admin", "student")
+//                .requestMatchers("/professor/**").hasAnyRole("admin", "professor")
+//                .requestMatchers("/general/**").hasAnyRole("admin", "general")
+//                .requestMatchers("/article/**").authenticated()
+//                .requestMatchers("/user/**").permitAll()
+//                .anyRequest().permitAll());
 
         return http.build();
     }

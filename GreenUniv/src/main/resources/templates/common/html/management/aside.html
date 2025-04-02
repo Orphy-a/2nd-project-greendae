@@ -1,0 +1,37 @@
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<aside>
+    <div>
+        <div>
+            <p><img src="/images/ico-admin-setting.png" class="aside_picture"> 환경설정</p>
+            <a href="#">· 기본환경정보</a><br>
+            <a href="#">· 약관관리</a><br>
+        </div>
+        <div>
+            <p><img src="/images/ico-admin-academic.png" class="aside_picture"> 학사운영</p>
+            <a th:href="@{/management/educationOperation}">· 교육 운영 현황</a><br>
+            <a th:href="@{/management/lectureList}">· 강의 목록</a><br>
+            <a th:href="@{/management/lectureRegister}">· 강의 등록</a><br>
+            <a th:href="@{/management/lectureStatus}">· 수강 현황</a><br>
+        </div>
+        <div>
+            <p><img src="/images/ico-admin-persons.png" class="aside_picture"> 인사관리</p>
+            <a th:href="@{/humanResourcesManagement/StudentList}">· 학생 목록 및 등록</a><br>
+            <a th:href="@{/humanResourcesManagement/professorList}">· 교수 목록 및 등록</a><br>
+        </div>
+        <div>
+            <p><img src="/images/ico-admin-college.png" class="aside_picture"> 대학 및 학과</p>
+            <a th:href="@{/department/departmentList}">· 대학 및 학과 목록</a><br>
+            <a th:href="@{/department/departmentRegister}">· 대학 및 학과 등록</a><br>
+        </div>
+        <div>
+            <p><img src="/images/ico-admin-board.png" class="aside_picture"> 게시판관리</p>
+            <a th:href="@{/enterInformation/advice}">· 입학안내 공지사항</a><br>
+            <a th:href="@{/academicInformation/notice}">· 학사안내 공지사항</a><br>
+            <a th:href="@{/article(category=notice)}">· 커뮤니티 공지사항</a><br>
+            <a th:href="@{/enterInformation/counsel}">· 입학상담</a><br>
+            <a th:href="@{/article(category=qna)}">· 질문 및 답변</a><br>
+            <a th:href="@{/collegeLife/diet}">· 식단 안내</a><br>
+            <a th:href="@{/article(category=resources)}">· 자료실</a><br>
+        </div>
+    </div>
+</aside>

@@ -8,15 +8,14 @@
 
 .middle-area{
     width: 100%;
-    height: auto;
-    background-color :#3f97f6;
+    height: 850px;
 
 
 }
 .bar{
     float: left;
     width: 30%;
-    height: 500px;
+    height: 700px;
     overflow: auto;
     background-color: #333333;
 
@@ -30,7 +29,7 @@
 .story{
     float: left;
     width: 69%;
-    height: 500px;
+    height: 700px;
     overflow: auto;
     margin: 0 auto;
 }
