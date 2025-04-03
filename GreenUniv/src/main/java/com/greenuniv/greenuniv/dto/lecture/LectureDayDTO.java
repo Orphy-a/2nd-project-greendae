@@ -46,10 +46,13 @@ public class LectureDayDTO implements BaseDTO {
   public static class LectureDayDTOBuilder {
 
     public LectureDayDTO build() throws IllegalArgumentException {
-      boolean isLegal = Arrays.asList(LectureDayDTO.WEEK_DAYS).contains(day);
-      if (!isLegal) {
-        throw new IllegalArgumentException("유효하지 않은 요일: " + day);
+      if (day != null) {
+        boolean isLegal = Arrays.asList(LectureDayDTO.WEEK_DAYS).contains(day);
+        if (!isLegal) {
+          throw new IllegalArgumentException("유효하지 않은 요일: " + day);
+        }
       }
+
       return new LectureDayDTO(id, day);
     }
   }

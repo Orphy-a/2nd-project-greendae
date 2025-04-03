@@ -76,14 +76,17 @@ public class StudentDTO implements BaseDTO {
   public static class StudentDTOBuilder {
 
     public StudentDTO build() throws IllegalArgumentException {
-      boolean isStatusLegal = Arrays.asList(STATUSES).contains(status);
-      boolean isEntranceTypeLegal = Arrays.asList(ENTRANCE_TYPES).contains(entranceType);
-      if (!isStatusLegal) {
-        throw new IllegalArgumentException("유효하지 않은 상태: " + status);
-      } else if (!isEntranceTypeLegal) {
+      if (status != null || entranceType != null) {
+        boolean isStatusLegal = Arrays.asList(STATUSES).contains(status);
+        boolean isEntranceTypeLegal = Arrays.asList(ENTRANCE_TYPES).contains(entranceType);
+        if (!isStatusLegal) {
+          throw new IllegalArgumentException("유효하지 않은 상태: " + status);
+        } else if (!isEntranceTypeLegal) {
 
-        throw new IllegalArgumentException("유효하지 않은 입학유형: " + entranceType);
+          throw new IllegalArgumentException("유효하지 않은 입학유형: " + entranceType);
+        }
       }
+
       return new StudentDTO(studentNumber, user, department, image, grade, semester, currentCredit,
           graduationCredit,
           status, entranceType, entranceYear, entranceGrade, entranceSemester, graduationYear,

@@ -112,29 +112,74 @@
           <a href="#" class="menu">자료실</a>
         </aside>
         <section>
-          <table>
-            <tbody>
-              <tr>
-                <th>제목</th>
-                <td class="title">그린대학교 웹사이트 신규개설 안내</td>
-              </tr>
-              <tr>
-                <th>작성자</th>
-                <td class="author">김철수</td>
-                <th>작성일</th>
-                <td class="register-date">2025-01-01</td>
-              </tr>
-            </tbody>
+          <form action="#" method="get">
+            <table>
+              <tbody>
+                <tr>
+                  <th>제목</th>
+                  <td class="title">그린대학교 웹사이트 신규개설 안내</td>
+                </tr>
+                <tr>
+                  <th>작성자</th>
+                  <td class="author">김철수</td>
+                  <th>작성일</th>
+                  <td class="register-date">2025-01-01</td>
+                </tr>
+              </tbody>
+            </table>
+            <div id="content-area">
+              <textarea name="" id="content"></textarea>
+            </div>
+            <div id="file-upload-area">
+              <input type="file" />
+              <input type="file" />
+            </div>
+            <div id="button-area">
+              <a class="btn publish-btn">등록</a>
+              <a class="btn modify-btn">수정</a>
+              <a class="btn delete-btn">삭제</a>
+            </div>
+          </form>
+          <table id="comment-area">
+            <tr class="comment-header" style="border-bottom: none">
+              <td>
+                <span class="comment-author">김철수</span>
+                <span class="comment-date">2024-01-29 10:51:23</span>
+              </td>
+            </tr>
+            <tr>
+              <td id="editor-area">
+                <textarea
+                  class="comment-editor"
+                  id=""
+                  placeholder="댓글 내용을 입력하세요."
+                ></textarea>
+                <a class="btn delete-btn comment-btn" href="/article/comment">
+                  삭제
+                </a>
+                <a class="btn publish-btn comment-btn" href="/article/comment">
+                  등록
+                </a>
+              </td>
+            </tr>
+            <tr class="comment-header" style="border-bottom: none">
+              <td>
+                <span class="comment-author">김철수</span>
+                <span class="comment-date">2024-01-29 10:51:23</span>
+              </td>
+            </tr>
+            <tr>
+              <td id="editor-area">
+                <textarea
+                  readonly
+                  class="comment-editor comment-view"
+                  placeholder="댓글 내용을 입력하세요."
+                ></textarea>
+              </td>
+            </tr>
           </table>
-          <div id="content-area">
-            <textarea name="" id="content"></textarea>
-          </div>
-          <div id="button-area">
-            <button class="btn publish-btn">글쓰기</button>
-            <button class="btn modify-btn">수정</button>
-            <button class="btn delete-btn">삭제</button>
-          </div>
         </section>
+        <section id="comment-area"></section>
       </main>
       <footer>
         <div class="footer_Top">
@@ -174,5 +219,8 @@
         </div>
       </footer>
     </div>
+    <script type="module" src="/js/url/URLEnum.js"></script>
+    <script src="/js/community/request.js"></script>
+    <!--TODO: Insert file-upload script if this page is being used for /article?category=resources-->
   </body>
 </html>

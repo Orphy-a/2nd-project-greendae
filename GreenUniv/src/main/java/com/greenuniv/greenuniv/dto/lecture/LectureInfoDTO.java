@@ -59,12 +59,14 @@ public class LectureInfoDTO implements BaseDTO {
   public static class LectureInfoDTOBuilder {
 
     public LectureInfoDTO build() throws IllegalArgumentException {
-      boolean isClassLegal = Arrays.asList(CLASSES).contains(classification);
+      if (classification != null) {
+        boolean isClassLegal = Arrays.asList(CLASSES).contains(classification);
 
-      if (!isClassLegal) {
-        String message = String.format("유효하지 않은 강의 분류([%s]): %s", Arrays.toString(CLASSES),
-            classification);
-        throw new IllegalArgumentException(message);
+        if (!isClassLegal) {
+          String message = String.format("유효하지 않은 강의 분류([%s]): %s", Arrays.toString(CLASSES),
+                  classification);
+          throw new IllegalArgumentException(message);
+        }
       }
       return new LectureInfoDTO(id, department, professor, level, classification, name, credit,
           semester, description, textbook, classroom, startDate, endDate, evaluationMethods);

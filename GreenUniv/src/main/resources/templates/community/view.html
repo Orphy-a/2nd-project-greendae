@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title th:text="${article.getTitle()}"></title>
+  <link rel="stylesheet" href="/css/common/header.css"/>
+  <link rel="stylesheet" href="/css/common/nav.css"/>
+  <link rel="stylesheet" href="/css/common/side-menu.css"/>
+  <link rel="stylesheet" href="/css/common/footer.css"/>
+  <link rel="stylesheet" href="/css/community/view.css"/>
+</head>
+<body>
+<div id="wrapper">
+  <th:block th:include="/common/html/header.html"/>
+  <main id="container">
+    <aside id="side-menu">
+      <div class="title-area">
+        <h1>커뮤니티</h1>
+      </div>
+      <a th:href="@{/article(category=notice)}" class="menu">공지사항</a>
+      <a th:href="@{/article(category=news)}" class="menu">뉴스 및 칼럼</a>
+      <a th:href="@{/article(category=employment)}" class="menu">취업정보</a>
+      <a th:href="@{/article(category=bulletin)}" class="menu">자유게시판</a>
+      <a th:href="@{/article/qna}" class="menu">질문과답변</a>
+      <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
+    </aside>
+    <section>
+      <span class="category" th:text="${article.getCategory()}" style="display:none"></span>
+      <table>
+        <tbody>
+        <tr>
+          <th>
+            제목
+          </th>
+          <td>
+            <input th:readonly="${uri.contains('/view')}" class="title" type="text"
+                   th:value="${article.getTitle()}"/>
+          </td>
+          <th>조회수</th>
+          <td class="view">
+            [[${article.getView()}]]
+          </td>
+        </tr>
+        <tr>
+          <th>작성자</th>
+          <td class="author"
+              th:text="${article.getUser().getName()}">
+          </td>
+          <th>작성일</th>
+          <td class="register-date" th:text="${article.getRegisterDate()}"></td>
+        </tr>
+        </tbody>
+      </table>
+      <div id="content-area">
+        <textarea class="content"
+                  th:readonly="${currentUser == null || !currentUser.getUsername().equals(article.getUser().getId())}">[[${article.getContent()}]]</textarea>
+      </div>
+      <div id="button-area"
+           th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
+        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn modify-btn">수정</a>
+        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn delete-btn">삭제</a>
+      </div>
+      <table id="comment-area">
+        <tr class="comment" style="border-bottom: none">
+          <td th:if="${currentUser != null}">
+            <span class="comment-author">[[${currentUser.getUsername()}]]</span>
+          </td>
+        </tr>
+        <tr>
+          <td id="editor">
+                <textarea
+                    class="comment-editor"
+                    id=""
+                    placeholder="댓글 내용을 입력하세요."
+                ></textarea>
+            <a class="btn publish-btn comment-btn" href="/article/comment">
+              등록
+            </a>
+          </td>
+        </tr>
+        <tr class="comment" style="border-bottom: none" th:each="comment : ${comments}">
+          <td id="editor-area">
+            <span class="comment-author" th:text="${comment.getUser().getName()}"></span>
+            <span class="comment-date"
+                  th:text="${comment.getRegisterDate()}">2024-01-29 10:51:23</span>
+            <textarea
+                readonly
+                class="comment-editor comment-view"
+            >[[${comment.getContent()}]]</textarea>
+            <a class="btn delete-btn comment-btn" href="/article/comment" style="display: inline"
+               th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
+              삭제
+            </a>
+          </td>
+        </tr>
+      </table>
+    </section>
+  </main>
+  <th:block th:include="/common/html/footer.html"/>
+</div>
+<script src="/js/community/request.js"></script>
+</body>
+</html>

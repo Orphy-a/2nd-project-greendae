@@ -251,8 +251,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `green_univ`.`lecture_time` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `start_at` TIME NULL,
-  `end_at` TIME NULL,
+  `time` TIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -263,11 +262,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `green_univ`.`lecture` (
   `id` CHAR(6) NOT NULL,
   `lecture_day_id` INT NOT NULL,
-  `lecture_time_id` INT NOT NULL,
+  `start_time_id` INT NOT NULL,
+  `end_time_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_lecture_time_lecture1_idx` (`id` ASC) VISIBLE,
   INDEX `fk_lecture_time_lecture_day1_idx` (`lecture_day_id` ASC) VISIBLE,
-  INDEX `fk_lecture_time_lecture_time1_idx` (`lecture_time_id` ASC) VISIBLE,
+  INDEX `fk_lecture_time_lecture_time1_idx` (`start_time_id` ASC) VISIBLE,
   CONSTRAINT `fk_lecture_time_lecture1`
     FOREIGN KEY (`id`)
     REFERENCES `green_univ`.`lecture_info` (`id`)
@@ -279,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `green_univ`.`lecture` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `fk_lecture_time_lecture_time1`
-    FOREIGN KEY (`lecture_time_id`)
+    FOREIGN KEY (`start_time_id`)
     REFERENCES `green_univ`.`lecture_time` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
