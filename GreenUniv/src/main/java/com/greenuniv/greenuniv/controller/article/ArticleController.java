@@ -1,12 +1,15 @@
 package com.greenuniv.greenuniv.controller.article;
 
+import com.greenuniv.greenuniv.dao.mapper.GenericMapper;
 import com.greenuniv.greenuniv.dto.article.ArticleDTO;
 import com.greenuniv.greenuniv.dto.comment.CommentDTO;
 import com.greenuniv.greenuniv.internal.Pagination;
-import com.greenuniv.greenuniv.service.GenericService;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class ArticleController {
 
-  private final GenericService<ArticleDTO, Integer> articleService;
-  private final GenericService<CommentDTO, Integer> commentService;
+  private final GenericMapper<ArticleDTO, Integer> articleMapper;
+  private final GenericMapper<CommentDTO, Integer> commentMapper;
 
   private final Pagination pagination;
 
@@ -52,7 +55,7 @@ public class ArticleController {
       return "/error/error";
     }
 
-    long articleCount = articleService.countBy("category", category);
+    long articleCount = articleMapper.countBy("category", category);
 
     if (page > 1 && articleCount <= 10) { // page query param 유효성 검증
       model.addAttribute("error", "Bad Request. Insufficient items");
@@ -64,7 +67,7 @@ public class ArticleController {
     int limit = pagination.limit();
 
     // 계산된 필요한 개수의 article SELECT
-    List<ArticleDTO> articles = articleService.findByLimit(offset, limit, "category", category);
+    List<ArticleDTO> articles = articleMapper.selectByLimit(offset, limit, "category", category);
 
     model.addAttribute("category", category);
     model.addAttribute("articles", articles);
@@ -83,25 +86,53 @@ public class ArticleController {
    * @return Path to template
    */
   @GetMapping("/view")
-  public String view(@RequestParam String id, Model model) {
+  public String view(@RequestParam int id, Model model, HttpServletRequest request) {
 
+    String uri = request.getRequestURI();
+
+    // 특정 게시물과 그 게시물의 댓글 조회
+    ArticleDTO article = articleMapper.selectById(id);
+    List<CommentDTO> comments = commentMapper.selectAllBy("article_id", id);
+
+    // 게시물 조회수 조회
+    int view = article.getView();
+    articleMapper.updateByIdWhere(article.getId(), "view", ++view);
+    article.setView(view);
+
+    // 현재 접속한 사용자 객체 가져오기
+    Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    try {
+      if (obj instanceof UserDetails currentUser) {
+        model.addAttribute("currentUser", currentUser);
+      }
+    } catch (NullPointerException e) {
+      model.addAttribute("error", e.getMessage());
+      return "/error/error";
+    }
+
+    model.addAttribute("article", article);
+    model.addAttribute("comments", comments);
+    model.addAttribute("uri", uri);
     return "/community/view";
   }
 
   @PostMapping("/publish")
   public String publish(@RequestParam String category,
       @RequestParam(required = false) String status, @RequestBody String json) {
-    return "";
+
+    return "/community/publish";
   }
 
   @PostMapping("/modify")
   public String modify(@RequestParam String id, @RequestBody String json) {
 
-    return "";
+    return "/community/edit";
   }
 
   @PostMapping("/delete")
-  public String delete(@RequestParam String id) {
-    return "";
+  public String delete(@RequestParam int id, @RequestParam String category) {
+    articleMapper.deleteById(id);
+
+    return "redirect:/article?category=" + category;
   }
 }
