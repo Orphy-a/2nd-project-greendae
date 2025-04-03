@@ -18,6 +18,8 @@ export default class URLEnum {
 
   _SCORE_DETAIL_URL = "/STUDENT/SCORE/DETAIL"; // 성적 페이지에서 상세보기 버튼 클릭에 사용되는 URL
 
+  _ARTICLE_DELETE_URL = "/article/delete"
+
   /**
    * getter 메서드. URL을 사용하고자 할 때에는 반드시 getter 메서드를 호출할 것.
    *
@@ -43,5 +45,9 @@ export default class URLEnum {
 
   get scoreDetailURL() {
     return this._SCORE_DETAIL_URL;
+  }
+
+  get articleDeleteURL() {
+    return this._ARTICLE_DELETE_URL;
   }
 }
