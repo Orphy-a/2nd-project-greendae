@@ -10,7 +10,7 @@
     <collection property="user" resultMap="com.greenuniv.greenuniv.dao.mapper.UserMapper.userMap"/>
   </resultMap>
 
-  <select id="selectAllWith" resultMap="articleWithCommentMap">
+  <select id="selectAllBy" resultMap="articleWithCommentMap">
     SELECT
     `user`.id AS `user_id`,
     `user`.`name` AS `user_name`,
