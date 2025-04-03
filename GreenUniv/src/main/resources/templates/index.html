@@ -41,7 +41,7 @@
         <div>
           <p>
             학사안내
-            <a href="#">
+            <a th:href="@{/academicInformation/notice}">
               <img th:src="@{/images/bg-viewmore01.png}" alt="학사안내 더보기">
             </a>
           </p>
@@ -62,7 +62,7 @@
         <div>
           <p>
             공지사항
-            <a href="#">
+            <a th:href="@{/enterInformation/advice}">
               <img th:src="@{/images/bg-viewmore02.png}" alt="공지사항 더보기">
             </a>
           </p>
@@ -110,7 +110,7 @@
         </p>
       </div>
 
-      <a href="#">자세히보기</a>
+      <a th:href="@{/collegeLife/club}">자세히보기</a>
 
     </div>
   </div>
@@ -122,7 +122,7 @@
           <div>
             <p>
               뉴스 및 칼럼
-              <a href="#">
+              <a th:href="@{/article(category=news)}">
                 <img th:src="@{/images/bg-viewmore01.png}" alt="공지사항 더보기">
               </a>
             </p>
@@ -143,31 +143,31 @@
             <p>SMART LINK</p>
           </div>
           <div>
-            <a href="#">
+            <a th:href="@{/enterInformation/advice}">
               <div>
                 <img th:src="@{/images/bg-main-link01.png}" alt="">
               </div>
               <div>입학안내</div>
             </a>
-            <a href="#">
+            <a th:href="@{/academicInformation/schedule}">
               <div>
                 <img th:src="@{/images/bg-main-link02.png}" alt="">
               </div>
               <div>학사일정</div>
             </a>
-            <a href="#">
+            <a th:href="@{/collegeLife/council}">
               <div>
                 <img th:src="@{/images/bg-main-link03.png}" alt="">
               </div>
               <div>학생회</div>
             </a>
-            <a href="#">
+            <a th:href="@{/support/curriculum}">
               <div>
                 <img th:src="@{/images/bg-main-link04.png}" alt="">
               </div>
               <div>교과과정</div>
             </a>
-            <a href="#">
+            <a th:href="@{/article(category=employment)}">
               <div>
                 <img th:src="@{/images/bg-main-link05.png}" alt="">
               </div>
