@@ -1,0 +1,166 @@
+<!--
+    작성자: id3ntity99(이현민)
+    설명 : 학생지원 > 수강신청 페이지
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>수강신청</title>
+    <link rel="stylesheet" href="/css/common/header.css" />
+    <link rel="stylesheet" href="/css/common/nav.css" />
+    <link rel="stylesheet" href="/css/common/side-menu.css" />
+    <link rel="stylesheet" href="/css/common/table.css" />
+    <link rel="stylesheet" href="/css/common/pagination.css" />
+    <link rel="stylesheet" href="/css/common/footer.css" />
+    <link rel="stylesheet" href="/css/support/lecture-register.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <th:block th:include="/common/html/header.html"/>
+      <nav>
+        <div>
+          <div>
+            <a href="/">
+              <img src="/images/ico-home.png" alt="홈페이지" />
+              &ensp;&ensp;
+            </a>
+            <a href="">&ensp;&ensp;학생지원&ensp;&ensp;</a>
+            <a href="">&ensp;&ensp;수강신청</a>
+          </div>
+        </div>
+      </nav>
+      <main id="container">
+        <th:block th:include="/support/aside.html"/>
+        <section>
+          <div class="title-area">
+            <h1>수강신청</h1>
+          </div>
+          <form id="search-form" action="#">
+            <div id="search-area">
+              <select class="search-input">
+                <option value="전체">전체</option>
+                <option value="공지">공지</option>
+              </select>
+              <input
+                type="search"
+                name="keyword"
+                class="search-box search-input"
+                placeholder="검색어를 입력하세요"
+              />
+              <input
+                type="submit"
+                class="search-btn search-input"
+                value="검색"
+              />
+            </div>
+          </form>
+          <table>
+            <tr>
+              <th>개설학과</th>
+              <th>구분</th>
+              <th>학년</th>
+              <th>코드</th>
+              <th>과목명</th>
+              <th>학점</th>
+              <th>담당교수</th>
+              <th>수강인원</th>
+              <th>비고</th>
+              <th>신청</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td>컴퓨터공학</td>
+                <td>전공</td>
+                <td>1</td>
+                <td>830001</td>
+                <td>컴퓨터과학개론</td>
+                <td>3</td>
+                <td>김컴공</td>
+                <td>12/30</td>
+                <td></td>
+                <td>
+                  <button class="register-btn">신청</button>
+                </td>
+              </tr>
+              <tr>
+                <td>컴퓨터공학</td>
+                <td>전공</td>
+                <td>1</td>
+                <td>830001</td>
+                <td>컴퓨터과학개론</td>
+                <td>3</td>
+                <td>김컴공</td>
+                <td>12/30</td>
+                <td></td>
+                <td>
+                  <button class="register-btn">신청</button>
+                </td>
+              </tr>
+              <tr>
+                <td>컴퓨터공학</td>
+                <td>전공</td>
+                <td>1</td>
+                <td>830001</td>
+                <td>컴퓨터과학개론</td>
+                <td>3</td>
+                <td>김컴공</td>
+                <td>12/30</td>
+                <td></td>
+                <td>
+                  <button class="register-btn">신청</button>
+                </td>
+              </tr>
+              <tr>
+                <td>컴퓨터공학</td>
+                <td>전공</td>
+                <td>1</td>
+                <td>830001</td>
+                <td>컴퓨터과학개론</td>
+                <td>3</td>
+                <td>김컴공</td>
+                <td>12/30</td>
+                <td></td>
+                <td>
+                  <button class="register-btn">신청</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <button>
+              <a href="#"> << </a>
+            </button>
+            <button class="prev">
+              <a href="#"> < </a>
+            </button>
+            <button>
+              <a href="#"> 1 </a>
+            </button>
+            <button>
+              <a href="#"> 2 </a>
+            </button>
+            <button>
+              <a href="#"> 3 </a>
+            </button>
+            <button class="next">
+              <a href="#"> > </a>
+            </button>
+            <button>
+              <a href="#">>></a>
+            </button>
+          </div>
+        </section>
+      </main>
+      <th:block th:include="/common/html/footer.html"/>
+    </div>
+    <script type="module" src="/js/url/URLEnum.js"></script>
+    <script src="/js/community/request.js"></script>
+    <script src="/js/community/animation.js"></script>
+    <script src="/js/support/disable.js"></script>
+    <script src="/js/support/register.js"></script>
+    <!--<script src="/js/community/concat.js"></script>-->
+    <script type="module" src="/js/community/search.js"></script>
+  </body>
+</html>

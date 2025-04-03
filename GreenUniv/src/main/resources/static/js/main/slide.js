@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "그린대학교 컴퓨터과학과",
                 "급변하는 컴퓨터 기술의 발전에 선도적으로 참여하고 컴퓨터의 활용을 통해 미래를 만들어 나갈 수 있는 인력을 배양"
             ],
-            link: "#",
+            link: "/university/naturalScience",
             background: "/images/bg-main-vi01.jpg"
         },
         {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "그린대학교 기계공학과",
                 "기계 미래를 이끌어갈 인재 양성"
             ],
-            link: "#",
+            link: "/university/engineering",
             background: "/images/bg-main-vi02.jpg"
         },
         {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "그린대학교 사범대학부",
                 "급변하는 교육의 발전에 도모하며 이끌어갈 인재 양성"
             ],
-            link: "#",
+            link: "/university/education",
             background: "/images/bg-main-vi03.jpg"
         }
     ];
