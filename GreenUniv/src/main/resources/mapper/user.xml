@@ -21,4 +21,28 @@
     <result property="registerDate" column="user_register_date"/>
     <result property="leaveDate" column="user_leave_date"/>
   </resultMap>
+
+  <select id="selectBy" resultMap="userMap">
+    SELECT * FROM `user` WHERE ${colName} = #{value};
+  </select>
+
+  <select id="selectById" resultMap="userMap">
+    SELECT
+    `id` as `user_id`,
+    `password` as `user_password`,
+    `name` as `user_name`,
+    `eng_name` as `user_eng_name`,
+    `gender` as `user_gender`,
+    `nationality` as `user_nationality`,
+    `social_number` as `user_social_number`,
+    `email` as `user_email`,
+    `contact` as `user_contact`,
+    `zip` as `user_zip`,
+    `address` as `user_address`,
+    `address_detail` as `user_address_detail`,
+    `agreed_terms` as `user_agreed_terms`,
+    `register_date` as `user_register_date`,
+    `leave_date` as `user_leave_date`
+    FROM `user` WHERE `id`=#{id};
+  </select>
 </mapper>

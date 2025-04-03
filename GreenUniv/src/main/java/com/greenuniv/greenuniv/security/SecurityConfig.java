@@ -22,7 +22,11 @@ public class SecurityConfig {
             .requestMatchers("/department/**").hasAnyRole("admin", "professor")
             .requestMatchers("/humanResourcesManagement/**").hasAnyRole("admin", "professor")
             .requestMatchers("/management/**").hasAnyRole("admin", "professor")
-            .requestMatchers("/article/view/**").authenticated()
+            .requestMatchers("/article/modify/**").hasAnyRole("admin", "student", "professor")
+            .requestMatchers("/article/publish/**").hasAnyRole("admin", "student", "professor")
+            .requestMatchers("/article/delete/**").hasAnyRole("admin", "student", "professor")
+            .requestMatchers("/article/view/**")
+            .authenticated()
             .anyRequest().permitAll()
         )
         .formLogin(login -> login
