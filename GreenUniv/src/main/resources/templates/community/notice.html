@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/common/table.css"/>
   <link rel="stylesheet" href="/css/common/pagination.css"/>
   <link rel="stylesheet" href="/css/common/side-menu.css"/>
+  <link rel="stylesheet" href="/css/community/notice.css"/>
 </head>
 <body>
 <div id="wrapper">
@@ -32,12 +33,12 @@
       <div class="title-area">
         <h1>커뮤니티</h1>
       </div>
-      <a href="/community/notice.html" class="menu">공지사항</a>
-      <a href="/community/news.html" class="menu">뉴스 및 칼럼</a>
-      <a href="/community/job.html" class="menu">취업정보</a>
-      <a href="/community/bulletin.html" class="menu">자유게시판</a>
-      <a href="/community/qna.html" class="menu">질문과답변</a>
-      <a href="/community/resources.html" class="menu">자료실</a>
+      <a th:href="@{/community/notice}" class="menu">공지사항</a>
+      <a th:href="@{/community/news}" class="menu">뉴스 및 칼럼</a>
+      <a th:href="@{/community/employment}" class="menu">취업정보</a>
+      <a th:href="@{/community/bulletin}" class="menu">자유게시판</a>
+      <a th:href="@{/community/qna}" class="menu">질문과답변</a>
+      <a th:href="@{/community/resources}" class="menu">자료실</a>
     </aside>
     <section>
       <div class="title-area">
@@ -73,58 +74,24 @@
         </tr>
         </tbody>
         <tbody>
-        <tr>
-          <td>3</td>
+        <tr th:each="article : ${articles}">
+          <td>[[${article.getId()}]]</td>
           <td>
-            <a href="#"> 2025학년도 1학기 그린장학회 장학생 신청 안내 </a>
+            <a th:href="@{/article/view(id=${article.getId()})}">
+              [[${article.getTitle()}]]
+            </a>
           </td>
-          <td>학사지원실</td>
-          <td>24.03.10</td>
-          <td>160</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>
-            <a href="#"> 2025학년도 1학기 그린장학회 장학생 신청 안내 </a>
-          </td>
-          <td>학사지원실</td>
-          <td>24.03.10</td>
-          <td>160</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>
-            <a href="#"> 2025학년도 1학기 그린장학회 장학생 신청 안내 </a>
-          </td>
-          <td>학사지원실</td>
-          <td>24.03.10</td>
-          <td>160</td>
+          <td>[[${article.getUser().getName()}]]</td>
+          <td>[[${article.getRegisterDate()}]]</td>
+          <td>[[${article.getView()}]]</td>
         </tr>
         </tbody>
       </table>
-      <div class="pagination">
-        <button>
-          <a href="#"> << </a>
-        </button>
-        <button class="prev">
-          <a href="#"> < </a>
-        </button>
-        <button>
-          <a href="#"> 1 </a>
-        </button>
-        <button>
-          <a href="#"> 2 </a>
-        </button>
-        <button>
-          <a href="#"> 3 </a>
-        </button>
-        <button class="next">
-          <a href="#"> > </a>
-        </button>
-        <button>
-          <a href="#">>></a>
-        </button>
+      <div>
+        <a th:href="@{/article/publish(category=${category})}"
+           class="publish-btn">글쓰기</a>
       </div>
+      <th:block th:include="/common/html/pagination.html"/>
     </section>
   </main>
   <th:block th:include="/common/html/footer.html"/>

@@ -435,3 +435,11 @@ SELECT * FROM `file` WHERE `file`.article_id = 1;
 
 -- article.view increment
 UPDATE `article` SET `view`= `view` + 1 WHERE `id` = 11;
+
+-- qnaMapper.countBy
+SELECT
+COUNT(`article`.id) AS `article_count_by`
+FROM `article`
+JOIN `qna`
+ON `qna`.question_id = `article`.id OR `qna`.answer_id = `article`.id
+WHERE `article`.${colName} = #{value};

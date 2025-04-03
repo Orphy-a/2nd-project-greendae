@@ -2,6 +2,7 @@ package com.greenuniv.greenuniv.controller.article;
 
 import com.greenuniv.greenuniv.dao.mapper.GenericMapper;
 import com.greenuniv.greenuniv.dto.article.ArticleDTO;
+import com.greenuniv.greenuniv.dto.article.QnaDTO;
 import com.greenuniv.greenuniv.dto.comment.CommentDTO;
 import com.greenuniv.greenuniv.dto.user.UserDTO;
 import com.greenuniv.greenuniv.internal.Pagination;
@@ -30,6 +31,7 @@ public class ArticleController {
 
   private final GenericMapper<ArticleDTO, Integer> articleMapper;
   private final GenericMapper<CommentDTO, Integer> commentMapper;
+  private final GenericMapper<QnaDTO, Integer> qnaMapper;
   private final GenericMapper<UserDTO, String> userMapper;
 
   private final Pagination pagination;
@@ -39,18 +41,21 @@ public class ArticleController {
       @RequestParam(required = false, defaultValue = "1") int page,
       Model model) {
     log.info("Incoming request for /article?{}&{} has been detected", category, page);
-    if (category.equals("qna")) {
-      return "redirect:/qna";
-    }
 
-    // 페이지 및 필요한 article 개수 계산
     pagination.setCurrentPage(page);
     if (page < 1) { // page query param 유효성 검증
       model.addAttribute("error", "Bad Request");
       return "/error/error";
     }
 
-    long articleCount = articleMapper.countBy("category", category);
+    // 페이지 및 필요한 article 개수 계산
+
+    long articleCount = 0;
+    if (category.equals(ArticleDTO.CATEGORY_QNA)) {
+      articleCount = qnaMapper.count();
+    } else {
+      articleCount = articleMapper.countBy("category", category);
+    }
 
     if (page > 1 && articleCount <= 10) { // page query param 유효성 검증
       model.addAttribute("error", "Bad Request. Insufficient items");
@@ -62,10 +67,15 @@ public class ArticleController {
     int limit = pagination.limit();
 
     // 계산된 필요한 개수의 article SELECT
-    List<ArticleDTO> articles = articleMapper.selectByLimit(offset, limit, "category", category);
+    if (category.equals(ArticleDTO.CATEGORY_QNA)) {
+      List<QnaDTO> qnaArticles = qnaMapper.selectByLimit(offset, limit, "category", category);
+      model.addAttribute("articles", qnaArticles);
+    } else {
+      List<ArticleDTO> articles = articleMapper.selectByLimit(offset, limit, "category", category);
+      model.addAttribute("articles", articles);
+    }
 
     model.addAttribute("category", category);
-    model.addAttribute("articles", articles);
     model.addAttribute("pagination", pagination);
 
     String templatePath = String.format("/community/%s", category);
@@ -112,7 +122,10 @@ public class ArticleController {
   }
 
   @GetMapping("/publish")
-  public String getPublishPage(@RequestParam String category, Model model) {
+  public String getPublishPage(@RequestParam String category,
+      @RequestParam(required = false) String type,
+      @RequestParam(required = false) String qid,
+      Model model) {
     // 현재 접속한 사용자 객체 가져오기
     Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     try {
@@ -126,6 +139,10 @@ public class ArticleController {
       return "/error/error";
     }
 
+    if (category.equals(ArticleDTO.CATEGORY_QNA)) {
+      model.addAttribute("type", type);
+      model.addAttribute("qid", qid);
+    }
     return "/community/publish";
   }
 
@@ -133,7 +150,9 @@ public class ArticleController {
   public String publish(
       @RequestParam String category,
       @RequestParam String title,
-      @RequestParam String content
+      @RequestParam String content,
+      @RequestParam(required = false) String type,
+      @RequestParam(required = false) String qid
   ) {
     UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
@@ -150,8 +169,30 @@ public class ArticleController {
 
     articleMapper.insert(article);
 
-    if (article.getCategory().equals("column")) {
-      category = "news";
+    if (article.getCategory().equals("qna")) {
+      if (type.equals("question")) {
+        QnaDTO qna = QnaDTO.builder()
+            .question(article)
+            .build();
+        qnaMapper.insert(qna);
+      } else if (type.equals("answer")) {
+        ArticleDTO question = ArticleDTO.builder()
+            .id(Integer.parseInt(qid))
+            .build();
+
+        article.setStatus(ArticleDTO.STATUS_CLOSED);
+
+        QnaDTO qna = QnaDTO.builder()
+            .question(question)
+            .answer(article)
+            .build();
+        qnaMapper.updateById(article.getId(), qna);
+      }
+
+      if (article.getCategory().equals("column")) {
+        category = "news";
+      }
+
     }
 
     return "redirect:/article?category=" + category;
@@ -180,7 +221,6 @@ public class ArticleController {
       @RequestParam String title,
       @RequestParam String view,
       @RequestParam String author,
-      @RequestParam String registerDate,
       @RequestParam String content
   ) {
     int intId = Integer.parseInt(id);

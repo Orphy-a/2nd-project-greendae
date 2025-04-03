@@ -111,16 +111,6 @@
     <if test="colName == 'category' and value == 'column'">
       OR `artcl`.${colName}="news"
     </if>
-    <!--
-    <choose>
-      <when test="colName.equalsIgnoreCase('category') and value.equalsIgnoreCase('news')">
-        OR `artcl`.${colName}="column"
-      </when>
-      <when test="colName.equalsIgnoreCase('category') and value.equalsIgnoreCase('column')">
-        OR `artcl`.${colName}="news"
-      </when>
-    </choose>
-    -->
     ORDER BY `artcl`.register_date DESC
     LIMIT #{limit} OFFSET #{offset};
   </select>

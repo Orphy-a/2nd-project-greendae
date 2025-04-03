@@ -1,16 +1,3 @@
-#container table td img {
-  height: 16px;
-  margin-right: 5px;
-}
-
-#container table td .reply-complete {
-  color: green;
-}
-
-#container table td .reply-standingby {
-  color: red;
-}
-
 .publish-btn {
   float: right;
   display: block;

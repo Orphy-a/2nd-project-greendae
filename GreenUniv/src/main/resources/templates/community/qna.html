@@ -2,7 +2,7 @@
     작성자: id3ntity99(이현민)
     설명 : 커뮤니티 > 질문과 답변 페이지
 -->
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +83,7 @@
           <td>[[${article.getQuestion().getId()}]]</td>
           <td>
             <img th:src="@{/images/ico-lock.png}" th:if="${article.isPrivate()}" alt=""/>
-            <a th:href="@{/qna/question/view(qid=${article.getQuestion().getId()})}">
+            <a th:href="@{/article/view(id=${article.getQuestion().getId()})}">
               [[${article.getQuestion().getTitle()}]]
             </a>
           </td>
@@ -110,7 +110,7 @@
           <td>[[${article.getAnswer().getId()}]]</td>
           <td>
             <img th:src="@{/images/ico-reply.png}" alt="reply-icon"/>
-            <a th:href="@{/qna/answer/view(qid=${article.getAnswer().getId()})}">
+            <a th:href="@{/article/view(id=${article.getAnswer().getId()})}">
               [[${article.getAnswer().getTitle()}]]
             </a>
           </td>
@@ -123,6 +123,10 @@
         </tr>
         </tbody>
       </table>
+      <div>
+        <a th:href="@{/article/publish(category=${category})}"
+           class="publish-btn">글쓰기</a>
+      </div>
       <th:block th:include="/common/html/pagination.html"/>
     </section>
   </main>

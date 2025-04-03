@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/common/side-menu.css"/>
   <link rel="stylesheet" href="/css/common/footer.css"/>
   <link rel="stylesheet" href="/css/community/view.css"/>
+  <link rel="stylesheet" href="/css/community/publish.css"/>
 </head>
 <body>
 <div id="wrapper">
@@ -37,22 +38,31 @@
               <input name="title" class="title fake-block" type="text"/>
             </td>
           </tr>
-          <tr th:if="${category.equals('news') || category.equals('column')}">
-            <select name="category">
-              <option value="news">뉴스</option>
-              <option value="column">컬럼</option>
-            </select>
-          </tr>
-          <tr th:if="${!category.equals('news') && !category.equals('column')}">
-            <select name="category" style="display: none">
-              <option th:value="${category}"></option>
-            </select>
-          </tr>
           <tr>
             <th>작성자</th>
             <td class="author">
               <input name="user" readonly class="fake-block" type="text"
                      th:value="${currentUser.getName()}"/>
+            </td>
+            <th th:if="${category.equals('news') || category.equals('column')}">분류</th>
+            <td th:if="${category.equals('news') || category.equals('column')}">
+              <select name="category" class="article-category">
+                <option value="news">뉴스</option>
+                <option value="column">컬럼</option>
+              </select>
+            </td>
+            <td th:if="${!category.equals('news') && !category.equals('column')}">
+              <select name="category" style="display: none" class="article-category">
+                <option th:value="${category}"></option>
+              </select>
+            </td>
+            <td th:if="${category.equals('qna')}">
+              <select name="type" style="display: none" class="article-category">
+                <option th:value="${type}"></option>
+              </select>
+              <select name="qid" style="display: none" class="article-category">
+                <option th:value="${qid}"></option>
+              </select>
             </td>
           </tr>
           </tbody>

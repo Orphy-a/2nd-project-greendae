@@ -63,11 +63,17 @@
       </div>
       <div id="button-area"
            th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
-        <a type="button" th:text="수정" th:href="@{/article/modify(id=${article.getId()})}"
+        <a th:text="수정" th:href="@{/article/modify(id=${article.getId()})}"
            class="btn modify-btn"></a>
-        <a type="button" th:text="삭제"
+        <a th:text="삭제"
            th:href="@{/article/delete(category=${article.getCategory()},id=${article.getId()})}"
            class="btn delete-btn"></a>
+        <a th:text="답변하기"
+           th:if="${#authorization.expression('hasAuthority(''ROLE_admin'')')}"
+           th:href="@{/article/publish(category='qna', type='answer', qid=${article.getId()})}"
+           class="btn modify-btn"
+        >
+        </a>
       </div>
 
       <!--댓글 영역-->

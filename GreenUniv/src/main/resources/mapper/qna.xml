@@ -78,7 +78,7 @@
     ON `qna`.answer_id = `artcl`.id
     left JOIN `user`
     ON `artcl`.user_id = `user`.id
-    WHERE ${colName}=#{value}
+    WHERE `artcl`.${colName}=#{value} OR `q_artcl`.${colName}=#{value}
     ORDER BY `q_artcl`.register_date DESC
     LIMIT #{limit} OFFSET #{offset};
   </select>
@@ -88,4 +88,19 @@
     COUNT(`question_id`) AS `qna_count`
     FROM `qna`;
   </select>
+
+  <insert id="insert" parameterType="com.greenuniv.greenuniv.dto.article.QnaDTO">
+    INSERT INTO `qna` SET `question_id` = #{question.id}, `answer_id`=#{answer.id};
+  </insert>
+
+  <update id="updateById" parameterType="com.greenuniv.greenuniv.dto.article.QnaDTO">
+    UPDATE `qna` SET `answer_id`=#{t.answer.id} WHERE `question_id`=#{id}
+  </update>
+
+  <!--select id="countBy" resultType="long">
+    SELECT
+    COUNT(`article`.id) AS `article_count_by`
+    FROM `article`
+    WHERE `article`.${colName} = #{value};
+  </select-->
 </mapper>
