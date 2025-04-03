@@ -43,9 +43,11 @@ public class MealDTO implements BaseDTO {
   public static class MealDTOBuilder {
 
     public MealDTO build() throws IllegalArgumentException {
-      boolean isLegal = Arrays.asList(MealDTO.MEAL_TIME).contains(mealTime);
-      if (!isLegal) {
-        throw new IllegalArgumentException("유효하지 않은 식사 시간: " + mealTime);
+      if(mealTime != null) {
+        boolean isLegal = Arrays.asList(MealDTO.MEAL_TIME).contains(mealTime);
+        if (!isLegal) {
+          throw new IllegalArgumentException("유효하지 않은 식사 시간: " + mealTime);
+        }
       }
       return new MealDTO(id, menu, date, mealTime);
     }

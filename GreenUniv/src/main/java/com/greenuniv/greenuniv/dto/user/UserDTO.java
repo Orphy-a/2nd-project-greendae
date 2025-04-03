@@ -74,15 +74,17 @@ public class UserDTO implements BaseDTO {
   public static class UserDTOBuilder {
 
     public UserDTO build() throws IllegalArgumentException {
-      boolean isGenderLegal = Arrays.asList(GENDERS).contains(gender);
-      boolean isRoleLegal = Arrays.asList(ROLES).contains(role);
+      if (gender != null || role != null) {
+        boolean isGenderLegal = Arrays.asList(GENDERS).contains(gender);
+        boolean isRoleLegal = Arrays.asList(ROLES).contains(role);
 
-      if (!isGenderLegal) {
-        String message = String.format("유효하지 않은 성별([%s]): %s", Arrays.toString(GENDERS), gender);
-        throw new IllegalArgumentException(message);
-      } else if (!isRoleLegal) {
-        String message = String.format("유효하지 않은 사용자 유형([%s]): %s", Arrays.toString(ROLES), role);
-        throw new IllegalArgumentException(message);
+        if (!isGenderLegal) {
+          String message = String.format("유효하지 않은 성별([%s]): %s", Arrays.toString(GENDERS), gender);
+          throw new IllegalArgumentException(message);
+        } else if (!isRoleLegal) {
+          String message = String.format("유효하지 않은 사용자 유형([%s]): %s", Arrays.toString(ROLES), role);
+          throw new IllegalArgumentException(message);
+        }
       }
       return new UserDTO(id, password, name, eng_Name, gender, nationality, socialNumber, email,
               contact, zip, address, address_detail, role, agreedTerms, registerDate, leaveDate);
