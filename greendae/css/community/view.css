@@ -59,19 +59,22 @@
   float: right;
 }
 
-#button-area .btn {
-  width: 70px;
+* .btn {
+  width: 60px;
   height: 35px;
   border: none;
   color: white;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 5px;
 }
 
-#button-area .publish-btn,
-#button-area .modify-btn {
+.publish-btn,
+.modify-btn {
   background-color: #3f97f6;
 }
 
-#button-area .delete-btn {
+.delete-btn {
   background-color: #942626;
 }
 
@@ -81,7 +84,41 @@
   padding: 10px;
 }
 
+.comment-author {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.comment-date {
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
+}
+
 #file-upload-area > input {
   display: block;
   margin-top: 10px;
+}
+
+#comment-area .comment-editor {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border: 1px solid #d8d8d8;
+  box-sizing: border-box;
+  outline: none;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#comment-area .comment-btn {
+  display: block;
+  float: right;
+  margin-left: 10px;
+}
+
+#editor-area .comment-view {
+  height: auto;
+  border: none;
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@Deprecated
 public class CommunityController {
 
   @GetMapping("/community/notice")

@@ -54,7 +54,7 @@ public class DefaultGenericService<T extends BaseDTO, K> implements GenericServi
 
   @Override
   public void updateColumn(String colName, String value, K id) {
-    mapper.updateColumn(colName, value, id);
+    mapper.updateByIdWhere(id, colName, value);
   }
 
   @Override

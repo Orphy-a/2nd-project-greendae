@@ -135,12 +135,51 @@
               <input type="file" />
             </div>
             <div id="button-area">
-              <button class="btn publish-btn">등록</button>
-              <button class="btn modify-btn">수정</button>
-              <button class="btn delete-btn">삭제</button>
+              <a class="btn publish-btn">등록</a>
+              <a class="btn modify-btn">수정</a>
+              <a class="btn delete-btn">삭제</a>
             </div>
           </form>
+          <table id="comment-area">
+            <tr class="comment-header" style="border-bottom: none">
+              <td>
+                <span class="comment-author">김철수</span>
+                <span class="comment-date">2024-01-29 10:51:23</span>
+              </td>
+            </tr>
+            <tr>
+              <td id="editor-area">
+                <textarea
+                  class="comment-editor"
+                  id=""
+                  placeholder="댓글 내용을 입력하세요."
+                ></textarea>
+                <a class="btn delete-btn comment-btn" href="/article/comment">
+                  삭제
+                </a>
+                <a class="btn publish-btn comment-btn" href="/article/comment">
+                  등록
+                </a>
+              </td>
+            </tr>
+            <tr class="comment-header" style="border-bottom: none">
+              <td>
+                <span class="comment-author">김철수</span>
+                <span class="comment-date">2024-01-29 10:51:23</span>
+              </td>
+            </tr>
+            <tr>
+              <td id="editor-area">
+                <textarea
+                  readonly
+                  class="comment-editor comment-view"
+                  placeholder="댓글 내용을 입력하세요."
+                ></textarea>
+              </td>
+            </tr>
+          </table>
         </section>
+        <section id="comment-area"></section>
       </main>
       <footer>
         <div class="footer_Top">
