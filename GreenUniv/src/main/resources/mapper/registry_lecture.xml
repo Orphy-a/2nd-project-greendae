@@ -85,4 +85,11 @@
     ON `prof`.user_id = `user`.id
     WHERE `reg_lec`.`id` = #{id};
   </select>
+
+
+  <insert id="insertRegistryLecture" parameterType="com.greenuniv.greenuniv.dto.registry.RegistryLectureDTO">
+    INSERT INTO registry_lecture (lecture_id, max_registered)
+    VALUES (#{lecture.id}, #{maxRegistered});
+  </insert>
+
 </mapper>

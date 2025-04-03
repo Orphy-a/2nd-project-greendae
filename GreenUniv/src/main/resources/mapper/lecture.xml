@@ -84,4 +84,11 @@
     ON `lec`.lecture_time_id = `lec_t`.id
     GROUP BY `lec`.id;
   </select>
+
+  <insert id="insertLecture" parameterType="com.greenuniv.greenuniv.dto.lecture.LectureDTO">
+    INSERT INTO lecture (lecture_info_id)
+    VALUES (#{lectureInfo.id});
+  </insert>
+
+
 </mapper>

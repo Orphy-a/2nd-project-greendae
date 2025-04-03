@@ -31,14 +31,9 @@
                         </td>
                         <td>개설학과</td>
                         <td>
-                          <select name="college">
-                            <th:block th:each="college : ${collegeDTOS}">
-                              <option th:value="${college.name}" th:text="${college.name}"></option>
-                            </th:block>
-                          </select>
                           <select name="department">
                             <th:block th:each="department : ${departmentDTOS}">
-                              <option th:value="${department.name}" th:text="${department.name}"></option>
+                              <option th:value="${department.id}" th:text="${department.name}"></option>
                             </th:block>
                           </select>
                         </td>
@@ -47,10 +42,14 @@
                         <td>개설학년</td>
                         <td>
                           <select name="level">
-                            <option value="">1학년</option>
-                            <option value="">2학년</option>
-                            <option value="">3학년</option>
-                            <option value="">4학년</option>
+                            <option value="1">1학년</option>
+                            <option value="2">2학년</option>
+                            <option value="3">3학년</option>
+                            <option value="4">4학년</option>
+                          </select>
+                          <select name="semester">
+                            <option value="1">1학기</option>
+                            <option value="2">4학기</option>
                           </select>
                         </td>
                         <td>학점</td>
@@ -65,7 +64,7 @@
                       <tr>
                         <td>이수구분</td>
                         <td>
-                          <select name="classification" id="classification">
+                          <select name="classification">
                             <option value="major">전공</option>
                             <option value="selective">교양선택</option>
                           </select>
@@ -74,7 +73,7 @@
                         <td>
                           <select name="professor">
                             <th:block th:each="professor : ${userDTOS}">
-                              <option th:value="${professor.name}" th:text="${professor.name}"></option>
+                              <option th:value="${professor.id}" th:text="${professor.name}"></option>
                             </th:block>
                           </select>
                         </td>
@@ -82,13 +81,13 @@
                       <tr>
                         <td>강의명</td>
                         <td colspan="3">
-                          <input type="text" placeholder="강의명 입력" value="name">
+                          <input type="text" placeholder="강의명 입력" name="name">
                         </td>
                       </tr>
                       <tr>
                         <td>강의 설명</td>
                         <td colspan="3">
-                          <input type="text" placeholder="강의 개요 및 목표, 학습 내용 등" value="description">
+                          <input type="text" placeholder="강의 개요 및 목표, 학습 내용 등" name="description">
                         </td>
                       </tr>
                     </table>
@@ -99,15 +98,15 @@
                     <tr>
                       <td>수업 기간</td>
                       <td colspan="3">
-                        <input type="date" value="start_date">
+                        <input type="date" name="start_date">
                         <span> ~ </span>
-                        <input type="date" value="end_date">
+                        <input type="date" name="end_date">
                       </td>
                     </tr>
                     <tr>
                       <td>수업 시간</td>
                       <td colspan="3">
-                        <select name="" id="start_at">
+                        <select name="start_at">
                           <option value="1">09:00:00</option>
                           <option value="2">10:00:00</option>
                           <option value="3">11:00:00</option>
@@ -119,7 +118,7 @@
                           <option value="9">17:00:00</option>
                         </select>
                         <span> ~ </span>
-                        <select name="" id="end_at">
+                        <select name="end_at">
                           <option value="1">10:00:00</option>
                           <option value="2">11:00:00</option>
                           <option value="3">12:00:00</option>
@@ -130,7 +129,7 @@
                           <option value="8">17:00:00</option>
                           <option value="9">18:00:00</option>
                         </select>
-                        <input type="checkbox" value="1" class="week">
+                        <input type="checkbox" value="1" class="week" name="">
                         <span>월</span>
                         <input type="checkbox" value="2" class="week">
                         <span>화</span>
@@ -145,23 +144,23 @@
                     <tr>
                       <td>평가방식</td>
                       <td colspan="3">
-                        <input type="text" placeholder="출석 10%, 과제 30%, 시험 60%" value="evaluation_methods">
+                        <input type="text" placeholder="출석 10%, 과제 30%, 시험 60%" name="evaluation_methods">
                       </td>
                     </tr>
                     <tr>
                       <td>교재</td>
                       <td colspan="3">
-                        <input type="text" placeholder="출판사-도서명-저자 입력" value="textbook">
+                        <input type="text" placeholder="출판사-도서명-저자 입력" name="textbook">
                       </td>
                     </tr>
                     <tr>
                       <td>강의실</td>
                       <td>
-                        <input type="text" placeholder="인문관 301호" value="classroom">
+                        <input type="text" placeholder="인문관 301호" name="classroom">
                       </td>
                       <td>최대 수강인원</td>
                       <td>
-                        <input type="text">
+                        <input type="text" name="max_registered">
                       </td>
                     </tr>
                   </table>
