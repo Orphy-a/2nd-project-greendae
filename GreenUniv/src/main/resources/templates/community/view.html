@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Document</title>
-  <link rel="stylesheet" th:href="@{/css/common/header.css}"/>
-  <link rel="stylesheet" th:href="@{/css/common/nav.css}"/>
-  <link rel="stylesheet" th:href="@{/css/common/side-menu.css}"/>
-  <link rel="stylesheet" th:href="@{/css/common/footer.css}"/>
-  <link rel="stylesheet" th:href="@{/css/community/view.css}"/>
+  <title th:text="${article.getTitle()}"></title>
+  <link rel="stylesheet" href="/css/common/header.css"/>
+  <link rel="stylesheet" href="/css/common/nav.css"/>
+  <link rel="stylesheet" href="/css/common/side-menu.css"/>
+  <link rel="stylesheet" href="/css/common/footer.css"/>
+  <link rel="stylesheet" href="/css/community/view.css"/>
 </head>
 <body>
 <div id="wrapper">
-  <th:block th:insert="/community/view.html"/>
+  <th:block th:include="/common/html/header.html"/>
   <main id="container">
     <aside id="side-menu">
       <div class="title-area">
@@ -26,37 +26,79 @@
       <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
     </aside>
     <section>
-      <form th:action="@{/article/publish}" method="get">
-        <table>
-          <tbody>
-          <tr>
-            <th>제목</th>
-            <td class="title">그린대학교 웹사이트 신규개설 안내</td>
-          </tr>
-          <tr>
-            <th>작성자</th>
-            <td class="author">김철수</td>
-            <th>작성일</th>
-            <td class="register-date">2025-01-01</td>
-          </tr>
-          </tbody>
-        </table>
-        <div id="content-area">
-          <textarea name="" id="content"></textarea>
-        </div>
-        <div id="file-upload-area">
-          <input type="file"/>
-          <input type="file"/>
-        </div>
-        <div id="button-area">
-          <button class="btn publish-btn">등록</button>
-          <button class="btn modify-btn">수정</button>
-          <button class="btn delete-btn">삭제</button>
-        </div>
-      </form>
+      <span class="category" th:text="${article.getCategory()}" style="display:none"></span>
+      <table>
+        <tbody>
+        <tr>
+          <th>
+            제목
+          </th>
+          <td>
+            <input th:readonly="${uri.contains('/view')}" class="title" type="text"
+                   th:value="${article.getTitle()}"/>
+          </td>
+          <th>조회수</th>
+          <td class="view">
+            [[${article.getView()}]]
+          </td>
+        </tr>
+        <tr>
+          <th>작성자</th>
+          <td class="author"
+              th:text="${article.getUser().getName()}">
+          </td>
+          <th>작성일</th>
+          <td class="register-date" th:text="${article.getRegisterDate()}"></td>
+        </tr>
+        </tbody>
+      </table>
+      <div id="content-area">
+        <textarea class="content"
+                  th:readonly="${currentUser == null || !currentUser.getUsername().equals(article.getUser().getId())}">[[${article.getContent()}]]</textarea>
+      </div>
+      <div id="button-area"
+           th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
+        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn modify-btn">수정</a>
+        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn delete-btn">삭제</a>
+      </div>
+      <table id="comment-area">
+        <tr class="comment" style="border-bottom: none">
+          <td th:if="${currentUser != null}">
+            <span class="comment-author">[[${currentUser.getUsername()}]]</span>
+          </td>
+        </tr>
+        <tr>
+          <td id="editor">
+                <textarea
+                    class="comment-editor"
+                    id=""
+                    placeholder="댓글 내용을 입력하세요."
+                ></textarea>
+            <a class="btn publish-btn comment-btn" href="/article/comment">
+              등록
+            </a>
+          </td>
+        </tr>
+        <tr class="comment" style="border-bottom: none" th:each="comment : ${comments}">
+          <td id="editor-area">
+            <span class="comment-author" th:text="${comment.getUser().getName()}"></span>
+            <span class="comment-date"
+                  th:text="${comment.getRegisterDate()}">2024-01-29 10:51:23</span>
+            <textarea
+                readonly
+                class="comment-editor comment-view"
+            >[[${comment.getContent()}]]</textarea>
+            <a class="btn delete-btn comment-btn" href="/article/comment" style="display: inline"
+               th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
+              삭제
+            </a>
+          </td>
+        </tr>
+      </table>
     </section>
   </main>
-  <th:block th:insert="/common/footer.html"/>
+  <th:block th:include="/common/html/footer.html"/>
 </div>
+<script src="/js/community/request.js"></script>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title th:text="${article.getTitle()}"></title>
+  <link rel="stylesheet" href="/css/common/header.css"/>
+  <link rel="stylesheet" href="/css/common/nav.css"/>
+  <link rel="stylesheet" href="/css/common/side-menu.css"/>
+  <link rel="stylesheet" href="/css/common/footer.css"/>
+  <link rel="stylesheet" href="/css/community/view.css"/>
+</head>
+<body>
+<div id="wrapper">
+  <th:block th:include="/common/html/header.html"/>
+  <main id="container">
+    <aside id="side-menu">
+      <div class="title-area">
+        <h1>커뮤니티</h1>
+      </div>
+      <a th:href="@{/article(category=notice)}" class="menu">공지사항</a>
+      <a th:href="@{/article(category=news)}" class="menu">뉴스 및 칼럼</a>
+      <a th:href="@{/article(category=employment)}" class="menu">취업정보</a>
+      <a th:href="@{/article(category=bulletin)}" class="menu">자유게시판</a>
+      <a th:href="@{/article/qna}" class="menu">질문과답변</a>
+      <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
+    </aside>
+    <section>
+      <table>
+        <tbody>
+        <tr>
+          <th>
+            제목
+          </th>
+          <td>
+            <input th:readonly="${uri.contains('/view')}" class="title" type="text"
+                   th:value="${article.getTitle()}"/>
+          </td>
+          <!--td class="title" th:text="${article.getTitle()}"></td-->
+        </tr>
+        <tr>
+          <th>작성자</th>
+          <td class="author"
+              th:text="${article.getUser().getName()}">
+          </td>
+          <th>작성일</th>
+          <td class="register-date" th:text="${article.getRegisterDate()}"></td>
+        </tr>
+        </tbody>
+      </table>
+      <div id="content-area">
+          <textarea name="" class="content" th:readonly="${uri.contains('/view')}"
+                    th:if="${uri.contains('/view')}">[[${article.getContent()}]]
+          </textarea>
+      </div>
+      <div id="file-upload-area" th:if="${uri.contains('/publish')}">
+        <input type="file"/>
+        <input type="file"/>
+      </div>
+      <div id="button-area">
+        <a th:href="@{/article/publish}" class="btn publish-btn"
+           th:if="${uri.contains('/publish')}">등록</a>
+        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn modify-btn"
+           th:if="${uri.contains('/view')}">수정</a>
+        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn delete-btn"
+           th:if="${uri.contains('/view')}">삭제</a>
+      </div>
+    </section>
+  </main>
+  <th:block th:include="/common/html/footer.html"/>
+</div>
+<script type="module" th:src="@{/js/url/URLEnum.js}"></script>
+<script src="/js/community/request.js"></script>
+<script type="module" th:src="@{/js/community/edit.js}"></script>
+</body>
+</html>
