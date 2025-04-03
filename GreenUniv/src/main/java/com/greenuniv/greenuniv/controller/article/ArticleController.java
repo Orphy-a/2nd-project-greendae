@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -75,12 +76,6 @@ public class ArticleController {
     return templatePath;
   }
 
-  @PostMapping("/publish")
-  public String publish(@RequestParam String category,
-      @RequestParam(required = false) String status) {
-    return "";
-  }
-
   /**
    * A URL mapping for viewing specific article
    *
@@ -88,7 +83,25 @@ public class ArticleController {
    * @return Path to template
    */
   @GetMapping("/view")
-  public String view(@RequestParam String id) {
+  public String view(@RequestParam String id, Model model) {
+
+    return "/community/view";
+  }
+
+  @PostMapping("/publish")
+  public String publish(@RequestParam String category,
+      @RequestParam(required = false) String status, @RequestBody String json) {
+    return "";
+  }
+
+  @PostMapping("/modify")
+  public String modify(@RequestParam String id, @RequestBody String json) {
+
+    return "";
+  }
+
+  @PostMapping("/delete")
+  public String delete(@RequestParam String id) {
     return "";
   }
 }
