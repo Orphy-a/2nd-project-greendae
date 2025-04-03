@@ -42,3 +42,10 @@
 .pagination > .next {
   margin-left: 15px;
 }
+
+.log_photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 50px;
+}

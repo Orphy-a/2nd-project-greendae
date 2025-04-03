@@ -16,10 +16,10 @@ function renderCalendar(year, month, schedules) {
 
 
     title.innerText = `${year}.${String(month).padStart(2, '0')}`;
-    calendarBody.innerHTML = ""; // 기존 내용 초기화
+    calendarBody.innerHTML = "";
 
-    const firstDay = new Date(year, month - 1, 1).getDay(); // 해당 월 1일의 요일
-    const lastDate = new Date(year, month, 0).getDate(); // 해당 월 마지막 날짜
+    const firstDay = new Date(year, month - 1, 1).getDay();
+    const lastDate = new Date(year, month, 0).getDate();
 
     let row = document.createElement("tr");
 
@@ -121,31 +121,31 @@ function saveSchedule() {
 
 function fillCalendar(year, month) {
     const calendarBody = document.getElementById("calendar-body");
-    calendarBody.innerHTML = ""; // 기존 내용 초기화
+    calendarBody.innerHTML = "";
 
-    const firstDay = new Date(year, month - 1, 1).getDay(); // 이번 달 1일의 요일
-    const lastDate = new Date(year, month, 0).getDate(); // 이번 달의 마지막 날짜
-    const prevLastDate = new Date(year, month - 1, 0).getDate(); // 이전 달의 마지막 날짜
+    const firstDay = new Date(year, month - 1, 1).getDay();
+    const lastDate = new Date(year, month, 0).getDate();
+    const prevLastDate = new Date(year, month - 1, 0).getDate();
 
     let date = 1;
     let nextMonthDate = 1;
 
-    for (let i = 0; i < 6; i++) { // 최대 6주
+    for (let i = 0; i < 6; i++) {
         let row = document.createElement("tr");
 
         for (let j = 0; j < 7; j++) {
             let cell = document.createElement("td");
 
             if (i === 0 && j < firstDay) {
-                // 🌟 이전 달의 날짜 추가 (빈칸 대신)
+
                 cell.textContent = prevLastDate - firstDay + j + 1;
                 cell.classList.add("prev-month");
             } else if (date > lastDate) {
-                // 🌟 다음 달의 날짜 추가 (빈칸 대신)
+
                 cell.textContent = nextMonthDate++;
                 cell.classList.add("next-month");
             } else {
-                // 📌 현재 달의 날짜 추가
+
                 cell.textContent = date;
                 cell.classList.add("current-month");
                 date++;
@@ -155,7 +155,7 @@ function fillCalendar(year, month) {
 
         calendarBody.appendChild(row);
 
-        if (date > lastDate) break; // 날짜를 다 채우면 종료
+        if (date > lastDate) break;
     }
 }
 
@@ -163,17 +163,17 @@ function fillCalendar(year, month) {
 document.addEventListener("DOMContentLoaded", function () {
     loadCalendar(currentYear, currentMonth);
 });
-// 🏷️ 현재 선택된 일정의 ID 저장용 변수
+
 let selectedScheduleId = null;
 
-// 📌 일정 수정 모달 열기
+
 function openModal(year, month, date, scheduleId = null, existingTitle = "") {
     document.getElementById("modal-date").value = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
-    document.getElementById("modal-title").value = existingTitle; // 기존 일정 제목 불러오기
-    selectedScheduleId = scheduleId; // 일정 ID 저장 (수정/삭제 시 사용)
+    document.getElementById("modal-title").value = existingTitle;
+    selectedScheduleId = scheduleId;
     document.getElementById("schedule-modal").style.display = "block";
 
-    // 수정 모드라면 "삭제" 버튼 활성화
+
     if (scheduleId) {
         document.getElementById("delete-button").style.display = "inline-block";
     } else {
@@ -181,7 +181,7 @@ function openModal(year, month, date, scheduleId = null, existingTitle = "") {
     }
 }
 
-// 📌 일정 추가 또는 수정 요청
+
 function saveSchedule() {
     const date = document.getElementById("modal-date").value;
     const title = document.getElementById("modal-title").value;
@@ -191,7 +191,7 @@ function saveSchedule() {
         return;
     }
 
-    let method = selectedScheduleId ? "PUT" : "POST"; // 수정이면 PUT, 새 일정이면 POST
+    let method = selectedScheduleId ? "PUT" : "POST";
     let url = selectedScheduleId ? `/api/schedules/update/${selectedScheduleId}` : "/api/schedules/add";
 
     fetch(url, {
@@ -208,23 +208,34 @@ function saveSchedule() {
         .catch(error => console.error("Error updating schedule:", error));
 }
 
-// 📌 일정 삭제 요청
+
 function deleteSchedule() {
-    if (!selectedScheduleId) return;
+    if (!selectedScheduleId) {
+        alert("삭제할 일정이 없습니다.");
+        return;
+    }
 
     if (!confirm("정말 삭제하시겠습니까?")) return;
 
     fetch(`/api/schedules/delete/${selectedScheduleId}`, { method: "DELETE" })
-        .then(response => response.json())
-        .then(() => {
-            alert("일정이 삭제되었습니다.");
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("삭제에 실패했습니다");
+            }
+            return response.text();
+        })
+        .then(message => {
+            alert(message || "일정이 삭제되었습니다.");
             closeModal();
             loadCalendar(new Date().getFullYear(), new Date().getMonth() + 1);
         })
-        .catch(error => console.error("Error deleting schedule:", error));
+        .catch(error => {
+            console.error("삭제 중 오류 발생:", error);
+            alert("삭제에 실패했습니다. 다시 시도해주세요.");
+        });
 }
 
-// 📌 달력 업데이트 (수정/삭제 반영)
+
 function renderCalendar(year, month, schedules) {
     const calendarBody = document.getElementById("calendar-body");
     const title = document.getElementById("calendar-title");
@@ -279,3 +290,10 @@ function renderCalendar(year, month, schedules) {
 document.addEventListener("DOMContentLoaded", function () {
     loadCalendar(new Date().getFullYear(), new Date().getMonth() + 1);
 });
+
+function openEditModal(date, id, title) {
+    document.getElementById("modal-date").value = date;
+    document.getElementById("modal-title").value = title;
+    document.getElementById("delete-button").style.display = "block";
+    document.getElementById("delete-button").setAttribute("data-id", id); // 삭제 버튼에 ID 저장
+}

@@ -36,29 +36,28 @@ public class ScheduleService {
     }
 
     public ScheduleDTO updateSchedule(ScheduleDTO scheduleDTO) {
-        // 📌 기존 일정 찾기
+
         ScheduleEntity existingSchedule = scheduleRepository.findById(scheduleDTO.getId())
                 .orElseThrow(() -> new IllegalArgumentException("일정을 찾을 수 없습니다: " + scheduleDTO.getId()));
 
-        // 📌 값 업데이트
+
         existingSchedule = ScheduleEntity.builder()
-                .id(existingSchedule.getId()) // 기존 ID 유지
+                .id(existingSchedule.getId())
                 .title(scheduleDTO.getTitle())
                 .date(scheduleDTO.getDate())
                 .build();
 
-        // 📌 저장 후 반환
+
         ScheduleEntity updatedSchedule = scheduleRepository.save(existingSchedule);
         return updatedSchedule.toDTO();
     }
 
-    public ScheduleDTO deleteSchedule(ScheduleDTO scheduleDTO) {
-        ScheduleEntity schedule = ScheduleEntity.builder()
-                .title(scheduleDTO.getTitle())
-                .date(scheduleDTO.getDate())
-                .build();
-        ScheduleEntity delete = scheduleRepository.save(schedule);
-        return delete.toDTO();
+    public void deleteSchedule(int id) {
+        if (scheduleRepository.existsById(id)) {
+            scheduleRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("해당 ID의 일정이 존재하지 않습니다: " + id);
+        }
     }
 
 }

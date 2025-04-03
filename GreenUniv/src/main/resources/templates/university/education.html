@@ -8,7 +8,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>공지사항</title>
+    <title>사범대학</title>
     <link rel="stylesheet" href="/css/common/header.css" />
     <link rel="stylesheet" href="/css/common/footer.css" />
     <link rel="stylesheet" href="/css/common/nav.css" />
@@ -37,11 +37,11 @@
           <div class="title-area">
             <h1>대학·대학원</h1>
           </div>
-          <a href="#" class="menu">공지사항</a>
-          <a href="#" class="menu">수시모집</a>
-          <a href="#" class="menu">정시모집</a>
-          <a href="#" class="menu">편입합</a>
-          <a href="#" class="menu">입학상담</a>
+          <a th:href="@{/university/humanities}" class="menu">인문사회대학</a>
+          <a th:href="@{/university/naturalScience}" class="menu">자연과학대학</a>
+          <a th:href="@{/university/engineering}" class="menu">공과대학</a>
+          <a th:href="@{/university/education}" class="menu">사범대학</a>
+          <a th:href="@{/university/graduate}" class="menu">대학원</a>
         </aside>
         <section>
           <div class="title-area">

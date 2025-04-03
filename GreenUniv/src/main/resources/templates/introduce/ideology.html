@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>공지사항</title>
+  <title>교육이념</title>
   <link rel="stylesheet" href="/css/common/header.css" />
   <link rel="stylesheet" href="/css/common/footer.css" />
   <link rel="stylesheet" href="/css/common/nav.css" />
@@ -33,55 +33,18 @@
       <div class="title-area">
         <h1>대학소개</h1>
       </div>
-      <a href="#" class="menu">총장인사말</a>
-      <a href="#" class="menu">교육이념</a>
-      <a href="#" class="menu">연혁</a>
-      <a href="#" class="menu">조직도</a>
-      <a href="#" class="menu">오시는길</a>
+      <a th:href="@{/introduce/greeting}" class="menu">총장인사말</a>
+      <a th:href="@{/introduce/ideology}" class="menu">교육이념</a>
+      <a th:href="@{/introduce/history}" class="menu">연혁</a>
+      <a th:href="@{/introduce/organization}" class="menu">조직도</a>
+      <a th:href="@{/introduce/map}" class="menu">오시는길</a>
     </aside>
     <section>
       <div class="title-area">
         <h1>교육이념</h1>
       </div>
       <div class="idea-list">
-        <ul>
-          <li>
-            <div class="idea-logo">
-              <img src="/images/idea_logo_1.png" alt="박애">
-            </div>
-            <div>
-              <h1>박애</h1>
-              <p>
-                사람은 누구나 고귀하고 평등합니다.<br>
-                어렵고 외로운 사람들에게 희망을 안겨주는 이웃사랑 실천
-              </p>
-            </div>
-          </li>
-          <li>
-            <div class="idea-logo">
-              <img src="/images/idea_logo_2.png" alt="봉사">
-            </div>
-            <div>
-              <h1>봉사</h1>
-              <p>
-                사랑과 나눔을 통해 고통받는 사람들을<br>
-                감싸안으며 사회적 약자를 돌봄
-              </p>
-            </div>
-          </li>
-          <li>
-            <div class="idea-logo">
-              <img src="/images/idea_logo_3.png" alt="애국">
-            </div>
-            <div>
-              <h1>애국</h1>
-              <p>
-                나라의 미래를 짊어질 인재를 양성하는데 헌신하며,<br>
-                기초과학연구와 문화진흥 사업을 통해 국가 발전에 앞장섬
-              </p>
-            </div>
-          </li>
-        </ul>
+        <img src="/images/edu_pho1.png" alt="박애">
       </div>
     </section>
   </main>
