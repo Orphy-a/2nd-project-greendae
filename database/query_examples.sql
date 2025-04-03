@@ -432,3 +432,6 @@ SELECT
 FROM `file`;
 
 SELECT * FROM `file` WHERE `file`.article_id = 1;
+
+-- article.view increment
+UPDATE `article` SET `view`= `view` + 1 WHERE `id` = 11;

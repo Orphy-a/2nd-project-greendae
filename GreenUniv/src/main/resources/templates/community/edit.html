@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title th:text="${article.getTitle()}"></title>
+  <title>수정 - [[${article.getTitle()}]]</title>
   <link rel="stylesheet" href="/css/common/header.css"/>
   <link rel="stylesheet" href="/css/common/nav.css"/>
   <link rel="stylesheet" href="/css/common/side-menu.css"/>
@@ -26,51 +26,58 @@
       <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
     </aside>
     <section>
-      <table>
-        <tbody>
-        <tr>
-          <th>
-            제목
-          </th>
-          <td>
-            <input th:readonly="${uri.contains('/view')}" class="title" type="text"
-                   th:value="${article.getTitle()}"/>
-          </td>
-          <!--td class="title" th:text="${article.getTitle()}"></td-->
-        </tr>
-        <tr>
-          <th>작성자</th>
-          <td class="author"
-              th:text="${article.getUser().getName()}">
-          </td>
-          <th>작성일</th>
-          <td class="register-date" th:text="${article.getRegisterDate()}"></td>
-        </tr>
-        </tbody>
-      </table>
-      <div id="content-area">
-          <textarea name="" class="content" th:readonly="${uri.contains('/view')}"
-                    th:if="${uri.contains('/view')}">[[${article.getContent()}]]
-          </textarea>
-      </div>
-      <div id="file-upload-area" th:if="${uri.contains('/publish')}">
-        <input type="file"/>
-        <input type="file"/>
-      </div>
-      <div id="button-area">
-        <a th:href="@{/article/publish}" class="btn publish-btn"
-           th:if="${uri.contains('/publish')}">등록</a>
-        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn modify-btn"
-           th:if="${uri.contains('/view')}">수정</a>
-        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn delete-btn"
-           th:if="${uri.contains('/view')}">삭제</a>
-      </div>
+      <span class="category" th:text="${article.getCategory()}" style="display:none"></span>
+      <form th:action="@{/article/modify(category=${article.getCategory()})}" method="post">
+        <table>
+          <tbody>
+          <tr>
+            <th>글번호</th>
+            <td>
+              <input name="id" class="fake-block" type="text" th:value="${article.getId()}"/>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              제목
+            </th>
+            <td>
+              <input name="title" class="title fake-block"
+                     type="text"
+                     th:value="${article.getTitle()}"/>
+            </td>
+            <td class="view">
+              <input style="display: none" name="view" readonly class="fake-block" type="text"
+                     th:value="${article.getView()}"/>
+            </td>
+          </tr>
+          <tr>
+            <th>작성자</th>
+            <td class="author">
+              <input name="author" readonly class="fake-block" type="text"
+                     th:value="${article.getUser().getName()}"/>
+            </td>
+            <th>작성일</th>
+            <td class="register-date">
+              <input name="registerDate" readonly class="fake-block" type="text"
+                     th:value="${article.getRegisterDate()}"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div id="content-area">
+        <textarea class="content" name="content"
+                  th:readonly="${currentUser == null || !currentUser.getUsername().equals(article.getUser().getId())}">[[${article.getContent()}]]</textarea>
+        </div>
+        <div id="button-area"
+             th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
+          <input type="submit" value="수정" class="btn modify-btn"/>
+          <a type="submit" th:href="@{/article/view(id=${article.getId()})}" th:text="취소"
+             class="btn delete-btn"></a>
+        </div>
+      </form>
     </section>
   </main>
   <th:block th:include="/common/html/footer.html"/>
 </div>
-<script type="module" th:src="@{/js/url/URLEnum.js}"></script>
-<script src="/js/community/request.js"></script>
-<script type="module" th:src="@{/js/community/edit.js}"></script>
 </body>
 </html>
