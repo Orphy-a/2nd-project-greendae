@@ -83,8 +83,9 @@ public class ArticleController {
    * @return Path to template
    */
   @GetMapping("/view")
-  public String view(@RequestParam String id) {
-    return "";
+  public String view(@RequestParam String id, Model model) {
+
+    return "/community/view";
   }
 
   @PostMapping("/publish")
