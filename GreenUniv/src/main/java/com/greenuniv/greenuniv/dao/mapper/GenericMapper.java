@@ -35,7 +35,13 @@ public interface GenericMapper<T extends BaseDTO, K> {
 
   void updateById(K id, T t);
 
-  void updateColumn(String colName, String value, K id);
+  void updateByIdWhere(K id, String colName, String value);
+
+  void updateByIdWhere(K id, String colName, int value);
+
+  void updateBy(String colName, String value);
+
+  void updateBy(String colName, int value);
 
   void deleteById(K id);
 
