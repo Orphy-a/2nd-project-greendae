@@ -2,6 +2,7 @@
     작성자: id3ntity99(이현민)
     설명 : 커뮤니티 > 질문과 답변 페이지
 -->
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
           &ensp;&ensp;
         </a>
         <a th:href="@{/article(category=notice)}">&ensp;&ensp;커뮤니티&ensp;&ensp;</a>
-        <a th:href="@{/qna}">&ensp;&ensp;질문과 답변</a>
+        <a th:href="@{/article(category=qna)}">&ensp;&ensp;질문과 답변</a>
       </div>
     </div>
   </nav>
@@ -40,7 +41,7 @@
       <a th:href="@{/article(category=news)}" class="menu">뉴스 및 칼럼</a>
       <a th:href="@{/article(category=employment)}" class="menu">취업정보</a>
       <a th:href="@{/article(category=bulletin)}" class="menu">자유게시판</a>
-      <a th:href="@{/article/qna}" class="menu">질문과답변</a>
+      <a th:href="@{/article(category=qna)}" class="menu">질문과답변</a>
       <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
     </aside>
     <section>
