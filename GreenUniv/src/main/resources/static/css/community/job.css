@@ -17,3 +17,17 @@
 #container table td:nth-child(3) {
   text-align: left;
 }
+
+.publish-btn {
+  float: right;
+  display: block;
+  width: 70px;
+  height: 35px;
+  border: none;
+  color: white;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 5px;
+  background-color: #3f97f6;
+  cursor: pointer;
+}

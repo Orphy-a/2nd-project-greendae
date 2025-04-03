@@ -29,7 +29,7 @@ public class UserDTO implements BaseDTO {
   private String id;
   private String password;
   private String name;
-  private String eng_Name;
+  private String engName;
   private String gender;
   private String nationality;
   private String socialNumber;
@@ -37,38 +37,38 @@ public class UserDTO implements BaseDTO {
   private String contact;
   private String zip;
   private String address;
-  private String address_detail;
+  private String addressDetail;
   private UserEntity.Role role;
   private boolean agreedTerms;
   @CreationTimestamp
   private LocalDateTime registerDate;
   private LocalDateTime leaveDate;
 
-    public UserDTO(String name) {
-      this.name = name;
-    }
+  public UserDTO(String name) {
+    this.name = name;
+  }
 
 
-    @Override
+  @Override
   public UserEntity toEntity() {
     return UserEntity.builder()
-            .id(id)
-            .password(password)
-            .name(name)
-            .eng_Name(eng_Name)
-            .gender(gender)
-            .nationality(nationality)
-            .socialNumber(socialNumber)
-            .email(email)
-            .contact(contact)
-            .zip(zip)
-            .address(address)
-            .address_detail(address_detail)
-            .role(role)
-            .agreedTerms(agreedTerms)
-            .registerDate(registerDate)
-            .leaveDate(leaveDate)
-            .build();
+        .id(id)
+        .password(password)
+        .name(name)
+        .eng_Name(engName)
+        .gender(gender)
+        .nationality(nationality)
+        .socialNumber(socialNumber)
+        .email(email)
+        .contact(contact)
+        .zip(zip)
+        .address(address)
+        .address_detail(addressDetail)
+        .role(role)
+        .agreedTerms(agreedTerms)
+        .registerDate(registerDate)
+        .leaveDate(leaveDate)
+        .build();
   }
 
   public static class UserDTOBuilder {
@@ -86,8 +86,8 @@ public class UserDTO implements BaseDTO {
           throw new IllegalArgumentException(message);
         }
       }
-      return new UserDTO(id, password, name, eng_Name, gender, nationality, socialNumber, email,
-              contact, zip, address, address_detail, role, agreedTerms, registerDate, leaveDate);
+      return new UserDTO(id, password, name, engName, gender, nationality, socialNumber, email,
+          contact, zip, address, addressDetail, role, agreedTerms, registerDate, leaveDate);
     }
   }
 }

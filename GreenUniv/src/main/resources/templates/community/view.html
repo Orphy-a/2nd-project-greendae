@@ -34,33 +34,49 @@
             제목
           </th>
           <td>
-            <input th:readonly="${uri.contains('/view')}" class="title" type="text"
+            <input name="title" class="title fake-block"
+                   type="text"
                    th:value="${article.getTitle()}"/>
           </td>
           <th>조회수</th>
           <td class="view">
-            [[${article.getView()}]]
+            <input name="view" readonly class="fake-block" type="text"
+                   th:value="${article.getView()}"/>
           </td>
         </tr>
         <tr>
           <th>작성자</th>
-          <td class="author"
-              th:text="${article.getUser().getName()}">
+          <td class="author">
+            <input name="user" readonly class="fake-block" type="text"
+                   th:value="${article.getUser().getName()}"/>
           </td>
           <th>작성일</th>
-          <td class="register-date" th:text="${article.getRegisterDate()}"></td>
+          <td class="register-date">
+            <input name="registerDate" readonly class="fake-block" type="text"
+                   th:value="${article.getRegisterDate()}"/>
+          </td>
         </tr>
         </tbody>
       </table>
       <div id="content-area">
-        <textarea class="content"
-                  th:readonly="${currentUser == null || !currentUser.getUsername().equals(article.getUser().getId())}">[[${article.getContent()}]]</textarea>
+        <textarea class="content" readonly>[[${article.getContent()}]]</textarea>
       </div>
       <div id="button-area"
            th:if="${currentUser != null && currentUser.getUsername().equals(article.getUser().getId())}">
-        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn modify-btn">수정</a>
-        <a th:href="@{/article/modify(id=${article.getId()})}" class="btn delete-btn">삭제</a>
+        <a th:text="수정" th:href="@{/article/modify(id=${article.getId()})}"
+           class="btn modify-btn"></a>
+        <a th:text="삭제"
+           th:href="@{/article/delete(category=${article.getCategory()},id=${article.getId()})}"
+           class="btn delete-btn"></a>
+        <a th:text="답변하기"
+           th:if="${#authorization.expression('hasAuthority(''ROLE_admin'')')}"
+           th:href="@{/article/publish(category='qna', type='answer', qid=${article.getId()})}"
+           class="btn modify-btn"
+        >
+        </a>
       </div>
+
+      <!--댓글 영역-->
       <table id="comment-area">
         <tr class="comment" style="border-bottom: none">
           <td th:if="${currentUser != null}">
@@ -70,8 +86,8 @@
         <tr>
           <td id="editor">
                 <textarea
+                    name="content"
                     class="comment-editor"
-                    id=""
                     placeholder="댓글 내용을 입력하세요."
                 ></textarea>
             <a class="btn publish-btn comment-btn" href="/article/comment">
@@ -99,6 +115,5 @@
   </main>
   <th:block th:include="/common/html/footer.html"/>
 </div>
-<script src="/js/community/request.js"></script>
 </body>
 </html>

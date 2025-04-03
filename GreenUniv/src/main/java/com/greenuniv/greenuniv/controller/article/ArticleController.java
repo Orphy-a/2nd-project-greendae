@@ -2,7 +2,9 @@ package com.greenuniv.greenuniv.controller.article;
 
 import com.greenuniv.greenuniv.dao.mapper.GenericMapper;
 import com.greenuniv.greenuniv.dto.article.ArticleDTO;
+import com.greenuniv.greenuniv.dto.article.QnaDTO;
 import com.greenuniv.greenuniv.dto.comment.CommentDTO;
+import com.greenuniv.greenuniv.dto.user.UserDTO;
 import com.greenuniv.greenuniv.internal.Pagination;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -14,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,32 +31,31 @@ public class ArticleController {
 
   private final GenericMapper<ArticleDTO, Integer> articleMapper;
   private final GenericMapper<CommentDTO, Integer> commentMapper;
+  private final GenericMapper<QnaDTO, Integer> qnaMapper;
+  private final GenericMapper<UserDTO, String> userMapper;
 
   private final Pagination pagination;
 
-  /**
-   * @param category
-   * @param page
-   * @param model
-   * @return
-   */
   @GetMapping("") // == /article
   public String list(@RequestParam String category,
       @RequestParam(required = false, defaultValue = "1") int page,
       Model model) {
     log.info("Incoming request for /article?{}&{} has been detected", category, page);
-    if (category.equals("qna")) {
-      return "redirect:/qna";
-    }
 
-    // 페이지 및 필요한 article 개수 계산
     pagination.setCurrentPage(page);
     if (page < 1) { // page query param 유효성 검증
       model.addAttribute("error", "Bad Request");
       return "/error/error";
     }
 
-    long articleCount = articleMapper.countBy("category", category);
+    // 페이지 및 필요한 article 개수 계산
+
+    long articleCount = 0;
+    if (category.equals(ArticleDTO.CATEGORY_QNA)) {
+      articleCount = qnaMapper.count();
+    } else {
+      articleCount = articleMapper.countBy("category", category);
+    }
 
     if (page > 1 && articleCount <= 10) { // page query param 유효성 검증
       model.addAttribute("error", "Bad Request. Insufficient items");
@@ -67,10 +67,15 @@ public class ArticleController {
     int limit = pagination.limit();
 
     // 계산된 필요한 개수의 article SELECT
-    List<ArticleDTO> articles = articleMapper.selectByLimit(offset, limit, "category", category);
+    if (category.equals(ArticleDTO.CATEGORY_QNA)) {
+      List<QnaDTO> qnaArticles = qnaMapper.selectByLimit(offset, limit, "category", category);
+      model.addAttribute("articles", qnaArticles);
+    } else {
+      List<ArticleDTO> articles = articleMapper.selectByLimit(offset, limit, "category", category);
+      model.addAttribute("articles", articles);
+    }
 
     model.addAttribute("category", category);
-    model.addAttribute("articles", articles);
     model.addAttribute("pagination", pagination);
 
     String templatePath = String.format("/community/%s", category);
@@ -116,23 +121,128 @@ public class ArticleController {
     return "/community/view";
   }
 
-  @PostMapping("/publish")
-  public String publish(@RequestParam String category,
-      @RequestParam(required = false) String status, @RequestBody String json) {
+  @GetMapping("/publish")
+  public String getPublishPage(@RequestParam String category,
+      @RequestParam(required = false) String type,
+      @RequestParam(required = false) String qid,
+      Model model) {
+    // 현재 접속한 사용자 객체 가져오기
+    Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    try {
+      if (obj instanceof UserDetails currentUser) {
+        UserDTO user = userMapper.selectById(currentUser.getUsername());
+        model.addAttribute("currentUser", user);
+        model.addAttribute("category", category);
+      }
+    } catch (NullPointerException e) {
+      model.addAttribute("error", e.getMessage());
+      return "/error/error";
+    }
 
+    if (category.equals(ArticleDTO.CATEGORY_QNA)) {
+      model.addAttribute("type", type);
+      model.addAttribute("qid", qid);
+    }
     return "/community/publish";
   }
 
-  @PostMapping("/modify")
-  public String modify(@RequestParam String id, @RequestBody String json) {
+  @PostMapping("/publish")
+  public String publish(
+      @RequestParam String category,
+      @RequestParam String title,
+      @RequestParam String content,
+      @RequestParam(required = false) String type,
+      @RequestParam(required = false) String qid
+  ) {
+    UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+        .getPrincipal();
+    String userId = details.getUsername();
 
+    UserDTO user = userMapper.selectById(userId);
+
+    ArticleDTO article = ArticleDTO.builder()
+        .user(user)
+        .title(title)
+        .category(category)
+        .content(content)
+        .build();
+
+    articleMapper.insert(article);
+
+    if (article.getCategory().equals("qna")) {
+      if (type.equals("question")) {
+        QnaDTO qna = QnaDTO.builder()
+            .question(article)
+            .build();
+        qnaMapper.insert(qna);
+      } else if (type.equals("answer")) {
+        ArticleDTO question = ArticleDTO.builder()
+            .id(Integer.parseInt(qid))
+            .build();
+
+        article.setStatus(ArticleDTO.STATUS_CLOSED);
+
+        QnaDTO qna = QnaDTO.builder()
+            .question(question)
+            .answer(article)
+            .build();
+        qnaMapper.updateById(article.getId(), qna);
+      }
+
+      if (article.getCategory().equals("column")) {
+        category = "news";
+      }
+
+    }
+
+    return "redirect:/article?category=" + category;
+  }
+
+  @GetMapping("/modify")
+  public String getModifyPage(@RequestParam int id, Model model) {
+    ArticleDTO article = articleMapper.selectById(id);
+    Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    try {
+      if (obj instanceof UserDetails currentUser) {
+        model.addAttribute("currentUser", currentUser);
+      }
+    } catch (NullPointerException e) {
+      model.addAttribute("error", e.getMessage());
+      return "/error/error";
+    }
+
+    model.addAttribute("article", article);
     return "/community/edit";
   }
 
-  @PostMapping("/delete")
+  @PostMapping("/modify")
+  public String modify(@RequestParam String id,
+      @RequestParam String category,
+      @RequestParam String title,
+      @RequestParam String view,
+      @RequestParam String author,
+      @RequestParam String content
+  ) {
+    int intId = Integer.parseInt(id);
+    int intView = Integer.parseInt(view);
+
+    UserDTO user = userMapper.selectBy("name", author);
+
+    ArticleDTO article = ArticleDTO.builder()
+        .id(intId)
+        .user(user)
+        .title(title)
+        .category(category)
+        .content(content)
+        .view(intView)
+        .build();
+    articleMapper.updateById(intId, article);
+    return "redirect:/article/view?id=" + id;
+  }
+
+  @GetMapping("/delete")
   public String delete(@RequestParam int id, @RequestParam String category) {
     articleMapper.deleteById(id);
-
     return "redirect:/article?category=" + category;
   }
 }

@@ -91,6 +91,10 @@
         </tr>
         </tbody>
       </table>
+      <div>
+        <a th:href="@{/article/publish(category=${category})}"
+           class="publish-btn">글쓰기</a>
+      </div>
       <th:block th:include="/common/html/pagination.html"/>
     </section>
   </main>

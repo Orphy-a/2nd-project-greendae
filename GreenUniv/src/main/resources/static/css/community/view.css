@@ -34,7 +34,7 @@
   font-size: 13px;
 }
 
-#container table tr input {
+#container .fake-block {
   border: none;
   text-align: left;
   font-size: 13px;
@@ -78,6 +78,7 @@
   text-align: center;
   line-height: 35px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .publish-btn,

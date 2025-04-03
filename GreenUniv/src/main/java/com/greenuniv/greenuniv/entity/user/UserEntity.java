@@ -2,8 +2,12 @@ package com.greenuniv.greenuniv.entity.user;
 
 import com.greenuniv.greenuniv.dto.user.UserDTO;
 import com.greenuniv.greenuniv.entity.BaseEntity;
-import jakarta.persistence.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import lombok.AllArgsConstructor;
@@ -69,7 +73,7 @@ public class UserEntity implements BaseEntity {
   private LocalDateTime leaveDate;
 
 
-  public enum Role{
+  public enum Role {
     student, professor, admin, general
   }
 
@@ -77,23 +81,23 @@ public class UserEntity implements BaseEntity {
   @Override
   public UserDTO toDTO() {
     return UserDTO.builder()
-            .id(id)
-            .password(password)
-            .name(name)
-            .eng_Name(eng_Name)
-            .gender(gender)
-            .nationality(nationality)
-            .socialNumber(socialNumber)
-            .email(email)
-            .contact(contact)
-            .zip(zip)
-            .address(address)
-            .address_detail(address_detail)
-            .role(role)
-            .agreedTerms(agreedTerms)
-            .registerDate(registerDate)
-            .leaveDate(leaveDate)
-            .build();
+        .id(id)
+        .password(password)
+        .name(name)
+        .engName(eng_Name)
+        .gender(gender)
+        .nationality(nationality)
+        .socialNumber(socialNumber)
+        .email(email)
+        .contact(contact)
+        .zip(zip)
+        .address(address)
+        .addressDetail(address_detail)
+        .role(role)
+        .agreedTerms(agreedTerms)
+        .registerDate(registerDate)
+        .leaveDate(leaveDate)
+        .build();
   }
 
   public static class UserEntityBuilder {
@@ -105,15 +109,15 @@ public class UserEntity implements BaseEntity {
 
       if (!isGenderLegal) {
         String message = String.format("유효하지 않은 성별([%s]): %s", Arrays.toString(UserDTO.GENDERS),
-                gender);
+            gender);
         throw new IllegalArgumentException(message);
       } else if (!isRoleLegal) {
         String message = String.format("유효하지 않은 사용자 유형([%s]): %s", Arrays.toString(UserDTO.ROLES),
-                role);
+            role);
         throw new IllegalArgumentException(message);
       }
       return new UserEntity(id, password, name, eng_Name, gender, nationality, socialNumber, email,
-              contact, zip, address, address_detail, role, agreedTerms, registerDate, leaveDate);
+          contact, zip, address, address_detail, role, agreedTerms, registerDate, leaveDate);
     }
 
   }

@@ -56,26 +56,28 @@ main {
   z-index: 1;
 }
 
-.main_background > div:nth-child(2){
+.main_background > div:nth-child(2) {
   width: 13px;
 }
 
-.arrow{
+.arrow {
   position: absolute;
   top: 50%;
   right: calc(50% - 600px);
   transform: translateY(-50%);
 
 }
-.arrow img{
+
+.arrow img {
   width: 13px;
 }
 
-.header_Bottom{
+.header_Bottom {
   position: relative;
   z-index: 10;
 }
-.submenu{
+
+.submenu {
   position: absolute;
   top: 100%;
   left: 0;
@@ -163,7 +165,7 @@ main {
   font-size: 16px;
 }
 
-main > div:nth-child(2){
+main > div:nth-child(2) {
   margin: 0 auto;
   margin-top: -100px;
   width: 1200px;
@@ -171,7 +173,7 @@ main > div:nth-child(2){
 
 }
 
-.main_article{
+.main_article {
   display: flex;
   margin: 0 auto;
   margin-top: -100px;
@@ -230,6 +232,7 @@ main > div:nth-child(2){
   margin-top: 30px;
 }
 
+/*
 .Academic_Information > div > div:nth-child(2) a {
   margin-top: 25px;
   display: block;
@@ -238,11 +241,35 @@ main > div:nth-child(2){
   line-height: 100%;
   font-weight: 350;
 }
+*/
 
+.article {
+  margin-top: 25px;
+  display: block;
+  color: #333333;
+  font-size: 18px;
+  line-height: 100%;
+  font-weight: 350;
+}
+
+.article a {
+  margin-top: 25px;
+  display: block;
+  color: #333333;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.article span {
+  font-size: 14px;
+}
+
+/*
 .Academic_Information > div > div:nth-child(2) a span {
   font-size: 14px;
 
 }
+ */
 
 
 .Academic_Announcement > div {

@@ -15,6 +15,11 @@
     <collection property="user" resultMap="com.greenuniv.greenuniv.dao.mapper.UserMapper.userMap"/>
   </resultMap>
 
+  <insert id="insert" parameterType="com.greenuniv.greenuniv.dto.article.ArticleDTO">
+    INSERT INTO `article` (`user_id`, `title`, `category`, `status`, `content`, register_date)
+    VALUES (#{user.id}, #{title}, #{category}, #{status}, #{content}, NOW());
+  </insert>
+
   <select id="selectAll" resultMap="articleMap">
     SELECT
     `artcl`.id AS `article_id`,
@@ -100,10 +105,10 @@
     JOIN `user`
     ON `user`.id = `artcl`.user_id
     WHERE `artcl`.${colName}=#{value}
-    <if test="colName.equalsIgnoreCase('category') and value.equalsIgnoreCase('news')">
+    <if test="colName == 'category' and value == 'news'">
       OR `artcl`.${colName}="column"
     </if>
-    <if test="colName.equalsIgnoreCase('category') and value.equalsIgnoreCase('column')">
+    <if test="colName == 'category' and value == 'column'">
       OR `artcl`.${colName}="news"
     </if>
     ORDER BY `artcl`.register_date DESC
@@ -120,10 +125,31 @@
     SELECT
     COUNT(`article`.id) AS `article_count_by`
     FROM `article`
-    WHERE `article`.${colName} = #{value};
+    WHERE `article`.${colName} = #{value}
+    <if test="colName == 'category' and value == 'news'">
+      OR `article`.${colName}="column";
+    </if>
+    <if test="colName == 'category' and value == 'column'">
+      OR `article`.${colName}="news";
+    </if>
   </select>
+
+  <update id="updateById" parameterType="com.greenuniv.greenuniv.dto.article.ArticleDTO">
+    UPDATE `article`
+    SET
+    `title`=#{t.title},
+    `category`=#{t.category},
+    `content`=#{t.content},
+    `view`=#{t.view},
+    `register_date`=NOW()
+    WHERE `id`=#{t.id};
+  </update>
 
   <update id="updateByIdWhere">
     UPDATE `article` SET ${colName}= #{value} WHERE `id` = #{id};
   </update>
+
+  <delete id="deleteById">
+    DELETE FROM `article` WHERE `id`=#{id};
+  </delete>
 </mapper>

@@ -56,20 +56,18 @@ public class ArticleDTO implements BaseDTO {
   public static class ArticleDTOBuilder {
 
     public ArticleDTO build() throws IllegalArgumentException {
-      if(category != null || status != null) {
+      if (category != null && status != null) {
         boolean isCategoryLegal = Arrays.asList(CATEGORIES).contains(category);
         boolean isStatusLegal = Arrays.asList(STATUS).contains(status);
 
         if (!isCategoryLegal) {
-          String message = String.format("유효하지 않은 카테고리([%s]): %s", Arrays.toString(CATEGORIES),
-                  category);
+          String message = String.format("유효하지 않은 카테고리([%s]): %s", Arrays.toString(CATEGORIES), category);
           throw new IllegalArgumentException(message);
         } else if (!isStatusLegal) {
           String message = String.format("유효하지 않은 게시물 상태([%s]): %s", Arrays.toString(STATUS), status);
           throw new IllegalArgumentException(message);
         }
       }
-
       return new ArticleDTO(id, user, title, category, status, content, view, registerDate);
     }
   }

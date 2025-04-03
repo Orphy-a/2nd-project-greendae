@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `green_univ`.`article` (
   `user_id` VARCHAR(20) NOT NULL,
   `title` VARCHAR(50) NOT NULL,
   `category` ENUM("notice", "news", "column", "employment", "bulletin", "qna", "gallery", "resources") NOT NULL,
-  `status` ENUM("open", "close") NULL,
+  `status` ENUM("open", "close") NULL DEFAULT 'open',
   `content` TEXT NOT NULL,
   `view` INT NOT NULL DEFAULT 0,
   `register_date` DATE NOT NULL,
