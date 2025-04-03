@@ -80,4 +80,10 @@ class ArticleServiceTest {
       assertEquals("qna", article.getCategory());
     });
   }
+
+  @Test
+  void test() {
+    ArticleDTO article = service.findById(7);
+    System.out.println(article);
+  }
 }
