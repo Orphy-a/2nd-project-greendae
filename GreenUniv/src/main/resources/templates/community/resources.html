@@ -36,12 +36,12 @@
       <div class="title-area">
         <h1>커뮤니티</h1>
       </div>
-      <a th:href="@{/community/notice}" class="menu">공지사항</a>
-      <a th:href="@{/community/news}" class="menu">뉴스 및 칼럼</a>
-      <a th:href="@{/community/employment}" class="menu">취업정보</a>
-      <a th:href="@{/community/bulletin}" class="menu">자유게시판</a>
+      <a th:href="@{/article(category=notice)}" class="menu">공지사항</a>
+      <a th:href="@{/article(category=news)}" class="menu">뉴스 및 칼럼</a>
+      <a th:href="@{/article(category=employment)}" class="menu">취업정보</a>
+      <a th:href="@{/article(category=bulletin)}" class="menu">자유게시판</a>
       <a th:href="@{/community/qna}" class="menu">질문과답변</a>
-      <a th:href="@{/community/resources}" class="menu">자료실</a>
+      <a th:href="@{/article(category=resources)}" class="menu">자료실</a>
     </aside>
     <section>
       <div class="title-area">
