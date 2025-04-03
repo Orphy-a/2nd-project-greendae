@@ -2,13 +2,15 @@ package com.greenuniv.greenuniv.controller.schedule;
 
 import com.greenuniv.greenuniv.dto.schedule.ScheduleDTO;
 import com.greenuniv.greenuniv.service.ScheduleService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/schedules")
-@CrossOrigin(origins = "*") // CORS 문제 해결
+@CrossOrigin(origins = "*")
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
@@ -26,21 +28,19 @@ public class ScheduleController {
     public ScheduleDTO addSchedule(@RequestBody ScheduleDTO scheduleDTO) {
         return scheduleService.addSchedule(scheduleDTO);
 
-        }
+    }
 
-    @GetMapping("/update")
+    @PutMapping("/update")
     public ScheduleDTO updateSchedule(@RequestBody ScheduleDTO scheduleDTO) {
         return scheduleService.updateSchedule(scheduleDTO);
     }
-    @PostMapping("/update")
-    public ScheduleDTO updateSchedule(){
-        return null;
-    }
 
-    @DeleteMapping("/delete")
-    public ScheduleDTO deleteSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        return scheduleService.deleteSchedule(scheduleDTO);
-    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteSchedule(@PathVariable int id) {
+
+            scheduleService.deleteSchedule(id);
+            return ResponseEntity.ok("일정을 삭제 했습니다");
 
     }
+}
 

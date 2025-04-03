@@ -33,11 +33,11 @@
           <div class="title-area">
             <h1>대학소개</h1>
           </div>
-          <a href="#" class="menu">총장인사말</a>
-          <a href="#" class="menu">교육이념</a>
-          <a href="#" class="menu">연혁</a>
-          <a href="#" class="menu">조직도</a>
-          <a href="#" class="menu">오시는길</a>
+          <a th:href="@{/introduce/greeting}" class="menu">총장인사말</a>
+          <a th:href="@{/introduce/ideology}" class="menu">교육이념</a>
+          <a th:href="@{/introduce/history}" class="menu">연혁</a>
+          <a th:href="@{/introduce/organization}" class="menu">조직도</a>
+          <a th:href="@{/introduce/map}" class="menu">오시는길</a>
         </aside>
         <section>
           <div class="title-area">
@@ -45,9 +45,27 @@
           </div>
           <div class="map">
             <div id="daumRoughmapContainer1740384680358"  class="root_daum_roughmap root_daum_roughmap_landing"></div>
-            
-                
-            </div>
+          </div>
+          <div class="map_service">
+            <h3>◾ 캠퍼스 주소</h3>
+            <p>•(12345)부산광역시 부산진구 중앙대로 688 한준빌딩 2층 051)912-1000 </p>
+            <br>
+            <h3>◾ 지하철 이용 노선안내</h3>
+            <p>•1호선 : 고속버스터미널에서 학교로 노포동 → 서면(환승) → 경성대,부경대역 3번 출구
+            1호선 : 부산역에서 학교로 부산역 → 서면(환승) → 경성대,부경대역 3번 출구
+            2호선 : 서부시외버스터미널에서 학교로 사상 → 서면역 3번 출구</p>
+            <br>
+            <h3>◾ 시내버스 노선안내</h3>
+            <p>•10, 20, 22, 24, 27, 39, 40, 41, 42, 51, 83, 83-1, 108-1, 131, 139, 155, 583, 1003</p>
+            <br>
+            <h3>◾ 승용차별 안내</h3>
+            <p>•김해공항 → 학교 : 낙동대교 → 동서고가도로 → 황령산터널 → 그린대
+            김해시 → 학교 : 초선대 → 구포대교 → 산업도로 → 학장동 → 동서고가도로 → 황령산터널 → 그린대
+            양산시 → 학교 : 도시고속도로 → 대연램프 → 그린대
+            양산 → 남양산 → 동서고가도로 → 황령산터널 → 그린대
+            교내 주차요금 안내(문의 : 주차관리실 051-123-1234)</p>
+
+          </div>
         </section>
       </main>
       <th:block th:include="/common/html/footer.html"/>
@@ -57,13 +75,13 @@
   </body>
   <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
   <script charset="UTF-8">
-	new daum.roughmap.Lander({
-		"timestamp" : "1740384680358",
-		"key" : "2n5rj",
-		"mapWidth" : "763",
-		"mapHeight" : "400"
-	}).render();
-</script>
+    new daum.roughmap.Lander({
+      "timestamp" : "1740384680358",
+      "key" : "2n5rj",
+      "mapWidth" : "763",
+      "mapHeight" : "400"
+    }).render();
+  </script>
 </html>
 
 

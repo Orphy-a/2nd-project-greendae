@@ -31,15 +31,18 @@
           <div class="title-area">
             <h1>대학소개</h1>
           </div>
-          <a href="#" class="menu">총장인사말</a>
-          <a href="#" class="menu">교육이념</a>
-          <a href="#" class="menu">연혁</a>
-          <a href="#" class="menu">조직도</a>
-          <a href="#" class="menu">오시는길</a>
+          <a th:href="@{/introduce/greeting}" class="menu">총장인사말</a>
+          <a th:href="@{/introduce/ideology}" class="menu">교육이념</a>
+          <a th:href="@{/introduce/history}" class="menu">연혁</a>
+          <a th:href="@{/introduce/organization}" class="menu">조직도</a>
+          <a th:href="@{/introduce/map}" class="menu">오시는길</a>
         </aside>
         <section>
           <div class="title-area">
             <h1>조직도</h1>
+          </div>
+          <div class="log_photo">
+            <img src="/images/logic_pho01.png" alt="박애">
           </div>
         </section>
       </main>
