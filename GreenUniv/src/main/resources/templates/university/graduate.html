@@ -4,107 +4,107 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>공지사항</title>
-    <link rel="stylesheet" href="/css/common/header.css" />
-    <link rel="stylesheet" href="/css/common/footer.css" />
-    <link rel="stylesheet" href="/css/common/nav.css" />
-    <link rel="stylesheet" href="/css/common/table.css" />
-    <link rel="stylesheet" href="/css/common/pagination.css" />
-    <link rel="stylesheet" href="/css/common/side-menu.css" />
-    <link rel="stylesheet" href="/css/univers/univers.css" />
-  </head>
-  <body>
-    <div id="wrapper">
-      <th:block th:include="/common/html/header.html"/>
-      <nav>
+    <link href="/css/common/header.css" rel="stylesheet"/>
+    <link href="/css/common/footer.css" rel="stylesheet"/>
+    <link href="/css/common/nav.css" rel="stylesheet"/>
+    <link href="/css/common/table.css" rel="stylesheet"/>
+    <link href="/css/common/pagination.css" rel="stylesheet"/>
+    <link href="/css/common/side-menu.css" rel="stylesheet"/>
+    <link href="/css/univers/univers.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="wrapper">
+    <th:block th:include="/common/html/header.html"/>
+    <nav>
         <div>
-          <div>
-            <a href="/">
-              <img src="/images/ico-home.png" alt="홈페이지" />
-              &ensp;&ensp;
-            </a>
-            <a href="">&ensp;&ensp;커뮤니티&ensp;&ensp;</a>
-            <a href="">&ensp;&ensp;공지사항</a>
-          </div>
+            <div>
+                <a href="/">
+                    <img alt="홈페이지" src="/images/ico-home.png"/>
+                    &ensp;&ensp;
+                </a>
+                <a href="">&ensp;&ensp;대학·대학원&ensp;&ensp;</a>
+                <a href="">&ensp;&ensp;대학원</a>
+            </div>
         </div>
-      </nav>
-      <main id="container">
+    </nav>
+    <main id="container">
         <aside id="side-menu">
-          <div class="title-area">
-            <h1>대학·대학원</h1>
-          </div>
-          <a th:href="@{/university/humanities}" class="menu">인문사회대학</a>
-          <a th:href="@{/university/naturalScience}" class="menu">자연과학대학</a>
-          <a th:href="@{/university/engineering}" class="menu">공과대학</a>
-          <a th:href="@{/university/education}" class="menu">사범대학</a>
-          <a th:href="@{/university/graduate}" class="menu">대학원</a>
+            <div class="title-area">
+                <h1>대학·대학원</h1>
+            </div>
+            <a class="menu" th:href="@{/university/humanities}">인문사회대학</a>
+            <a class="menu" th:href="@{/university/naturalScience}">자연과학대학</a>
+            <a class="menu" th:href="@{/university/engineering}">공과대학</a>
+            <a class="menu" th:href="@{/university/education}">사범대학</a>
+            <a class="menu" th:href="@{/university/graduate}">대학원</a>
         </aside>
         <section>
-          <div class="title-area">
-            <h1>대학원</h1>
-          </div>
-          <div class="section_main_1">
-            <div class="PHOTO"><img src="/images/college-introduce-5.jpg" alt="홈페이지" /></div>
-            <div class="story">GRADUATE SCHOOL<br>
-              <p>학문의 이론과 응용방법을 한층 더 심오하게 연구, 교<br>수 및 지도자적 인격을 도야하고 창의력을 함양</p>
-            대학원은 학문의 이론과 응용방법을 한층 더 심오하게 연구·교수한다 동시에 인격을 도야<br>
-            하고 독창력을 함양하여 문화발전에 기여하고 있으며, 21세기의 세계화, 국제, 개방화 시<br>
-            대를 맞이하여 공학, 인문사회, 자연과학, 예체능, 수산 및 해양과학에 관한 학문 전 분야의<br>
-            균형있는 발전을 꾀하고 있다. 아울러 첨단연구와 지도능력을 갖춘 인재양성을 위해 대학원<br>
-            교육의 획기적인 강화와 제도개선 그리고 연구기능의 활성화에 적극 힘쓰고 있으며, 우수학<br>
-            생을 유치하기 위하여 연구/수업조교장학제도를 실시하며 국제화의 일환으로 외국인학생<br>
-            을 유치하고 대학원 교육의 활성화에 적극 노력하고 있다.
+            <div class="title-area">
+                <h1>대학원</h1>
             </div>
-          </div>
-          <div class="section_main_2">
-            <p>학부 및 학과</p><br>
-            <table>
-              <tr>
-                <th>학과/전공</th>
-                <th>학과장</th>
-                <th>학과 사무실 번호</th>
-                <th>비고</th>
-              </tr>
-              <tr>
-                <th>경영대학원&ensp;<img src="/images/ico_link.png"></th>
-                <th>김경영</th>
-                <th>051-123-5001</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>경제대학원&ensp;<img src="/images/ico_link.png"></th>
-                <th>김경제</th>
-                <th>051-123-5002</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>행정대학원&ensp;<img src="/images/ico_link.png"></th>
-                <th>김행정</th>
-                <th>051-123-5003</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>교육대학원&ensp;<img src="/images/ico_link.png"></th>
-                <th>김교육</th>
-                <th>051-123-5004</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>산업대학원&ensp;<img src="/images/ico_link.png"></th>
-                <th>김산업</th>
-                <th>051-123-5005</th>
-                <th></th>
-              </tr>
-            </table>
-          </div>
+            <div class="section_main_1">
+                <div class="PHOTO"><img alt="홈페이지" src="/images/college-introduce-5.jpg"/></div>
+                <div class="story">GRADUATE SCHOOL<br>
+                    <p>학문의 이론과 응용방법을 한층 더 심오하게 연구, 교<br>수 및 지도자적 인격을 도야하고 창의력을 함양</p>
+                    대학원은 학문의 이론과 응용방법을 한층 더 심오하게 연구·교수한다 동시에 인격을 도야<br>
+                    하고 독창력을 함양하여 문화발전에 기여하고 있으며, 21세기의 세계화, 국제, 개방화 시<br>
+                    대를 맞이하여 공학, 인문사회, 자연과학, 예체능, 수산 및 해양과학에 관한 학문 전 분야의<br>
+                    균형있는 발전을 꾀하고 있다. 아울러 첨단연구와 지도능력을 갖춘 인재양성을 위해 대학원<br>
+                    교육의 획기적인 강화와 제도개선 그리고 연구기능의 활성화에 적극 힘쓰고 있으며, 우수학<br>
+                    생을 유치하기 위하여 연구/수업조교장학제도를 실시하며 국제화의 일환으로 외국인학생<br>
+                    을 유치하고 대학원 교육의 활성화에 적극 노력하고 있다.
+                </div>
+            </div>
+            <div class="section_main_2">
+                <p>학부 및 학과</p><br>
+                <table>
+                    <tr>
+                        <th>학과/전공</th>
+                        <th>학과장</th>
+                        <th>학과 사무실 번호</th>
+                        <th>비고</th>
+                    </tr>
+                    <tr>
+                        <th>경영대학원&ensp;<img src="/images/ico_link.png"></th>
+                        <th>김경영</th>
+                        <th>051-123-5001</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>경제대학원&ensp;<img src="/images/ico_link.png"></th>
+                        <th>김경제</th>
+                        <th>051-123-5002</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>행정대학원&ensp;<img src="/images/ico_link.png"></th>
+                        <th>김행정</th>
+                        <th>051-123-5003</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>교육대학원&ensp;<img src="/images/ico_link.png"></th>
+                        <th>김교육</th>
+                        <th>051-123-5004</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>산업대학원&ensp;<img src="/images/ico_link.png"></th>
+                        <th>김산업</th>
+                        <th>051-123-5005</th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
         </section>
-      </main>
-      <th:block th:include="/common/html/footer.html"/>
-    </div>
-    <script src="/js/community/request.js"></script>
-    <script src="/js/community/animation.js"></script>
-  </body>
+    </main>
+    <th:block th:include="/common/html/footer.html"/>
+</div>
+<script src="/js/community/request.js"></script>
+<script src="/js/community/animation.js"></script>
+</body>
 </html>

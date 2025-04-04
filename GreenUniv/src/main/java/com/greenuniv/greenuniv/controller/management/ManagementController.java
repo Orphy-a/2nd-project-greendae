@@ -48,77 +48,77 @@ public class ManagementController {
     public String lectureList() {return "/management/lectureList";}
 
 
-//    @GetMapping("/management/lectureRegister")
-//    public String lectureRegister(Model model) {
-//
-//        // 학과
-//        List<DepartmentDTO> departmentDTOS = managementService.departmentFindAll();
-//        model.addAttribute("departmentDTOS", departmentDTOS);
-//
-//        // 교수
-//        List<UserDTO> userDTOS = managementService.professorFindAll();
-//        model.addAttribute("userDTOS", userDTOS);
-//
-//
-//        return "/management/lectureRegister";
-//    }
-//
-//
-//    @PostMapping("/management/lectureRegister")
-//    public String lectureRegister(@RequestParam String id,
-//                                  @RequestParam int department,
-//                                  @RequestParam String professor,
-//                                  @RequestParam String name,
-//                                  @RequestParam int credit,
-//                                  @RequestParam int semester,
-//                                  @RequestParam String description,
-//                                  @RequestParam String classification,
-//                                  @RequestParam String textbook,
-//                                  @RequestParam String classroom,
-//                                  @RequestParam String evaluation_methods,
-//                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start_date,
-//                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end_date,
-//                                  @RequestParam int max_registered){
-//
-//
-//
-//        // 학과 및 교수 정보 설정
-//        DepartmentDTO departmentDTO = managementService.FindByDepartment(department);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//        // LectureInfo DTO 생성
-//        LectureInfoDTO lectureInfo = LectureInfoDTO.builder()
-//                .id(id)
-//                .department(departmentDTO)
-//                .professor(professorDTO)
-//                .name(name)
-//                .credit(credit)
-//                .semester(semester)
-//                .description(description)
-//                .textbook(textbook)
-//                .classification(classification)
-//                .classroom(classroom)
-//                .startDate(start_date)
-//                .endDate(end_date)
-//                .evaluationMethods(evaluation_methods)
-//                .build();
-//
-//        log.info(lectureInfo.toString());
-//
-//        // service 호출
-//        lectureRegisterService.registerLecture(lectureInfo, max_registered);
-//
-//
-//
-//        return "redirect:/management/lectureList";
-//    }
+    @GetMapping("/management/lectureRegister")
+    public String lectureRegister(Model model) {
+        /*
+        // 학과
+        List<DepartmentDTO> departmentDTOS = managementService.departmentFindAll();
+        model.addAttribute("departmentDTOS", departmentDTOS);
+
+        // 교수
+        List<UserDTO> userDTOS = managementService.professorFindAll();
+        model.addAttribute("userDTOS", userDTOS);
+
+        */
+        return "/management/lectureRegister";
+    }
+
+
+    @PostMapping("/management/lectureRegister")
+    public String lectureRegister(/*@RequestParam String id,
+                                  @RequestParam int department,
+                                  @RequestParam String professor,
+                                  @RequestParam String name,
+                                  @RequestParam int credit,
+                                  @RequestParam int semester,
+                                  @RequestParam String description,
+                                  @RequestParam String classification,
+                                  @RequestParam String textbook,
+                                  @RequestParam String classroom,
+                                  @RequestParam String evaluation_methods,
+                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start_date,
+                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end_date,
+                                  @RequestParam int max_registered*/){
+
+
+        /*
+        // 학과 및 교수 정보 설정
+        DepartmentDTO departmentDTO = managementService.FindByDepartment(department);
+
+
+
+
+
+
+
+
+
+        // LectureInfo DTO 생성
+        LectureInfoDTO lectureInfo = LectureInfoDTO.builder()
+                .id(id)
+                .department(departmentDTO)
+                .professor(professorDTO)
+                .name(name)
+                .credit(credit)
+                .semester(semester)
+                .description(description)
+                .textbook(textbook)
+                .classification(classification)
+                .classroom(classroom)
+                .startDate(start_date)
+                .endDate(end_date)
+                .evaluationMethods(evaluation_methods)
+                .build();
+
+        log.info(lectureInfo.toString());
+
+        // service 호출
+        lectureRegisterService.registerLecture(lectureInfo, max_registered);
+
+        */
+
+        return "/management/lectureList";
+    }
 
 
     @GetMapping("/management/lectureStatus")
