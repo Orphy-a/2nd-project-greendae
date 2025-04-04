@@ -23,13 +23,13 @@ spring:
     hikari:
       connection-timeout: 10000
       maximum-pool-size: 20
-    url: jdbc:mysql://greenuniv-db:3306/green_univ
-    username: ec2-user
-    password: p33wsu47r5b0
+    #url: jdbc:mysql://greenuniv-db:3306/green_univ
+    #username: ec2-user
+    #password: p33wsu47r5b0
     # 로컬에서 개발할 때 사용하는 데이터베이스 URL 및 username, password
-    #url: jdbc:mysql://localhost:3306/green_univ
-    #username: root
-    #password: 1234
+    url: jdbc:mysql://localhost:3306/green_univ
+    username: root
+    password: 1234
   devtools:
     livereload:
       enabled: true

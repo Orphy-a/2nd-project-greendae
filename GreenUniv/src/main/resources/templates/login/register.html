@@ -6,16 +6,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>공지사항</title>
-    <link rel="stylesheet" href="/css/common/header.css" />
-    <link rel="stylesheet" href="/css/common/footer.css" />
-    <link rel="stylesheet" href="/css/common/nav.css" />
-    <link rel="stylesheet" href="/css/common/table.css" />
-    <link rel="stylesheet" href="/css/common/pagination.css" />
-    <link rel="stylesheet" href="/css/common/side-menu.css" />
-    <link rel="stylesheet" href="/css/login/registration.css" />
+    <link href="/css/common/header.css" rel="stylesheet"/>
+    <link href="/css/common/footer.css" rel="stylesheet"/>
+    <link href="/css/common/nav.css" rel="stylesheet"/>
+    <link href="/css/common/table.css" rel="stylesheet"/>
+    <link href="/css/common/pagination.css" rel="stylesheet"/>
+    <link href="/css/common/side-menu.css" rel="stylesheet"/>
+    <link href="/css/login/registration.css" rel="stylesheet"/>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script th:src="@{/js/login/postcode.js}"></script>
     <script th:src="@{/js/login/validation.js}"></script>
@@ -27,7 +27,7 @@
         <div>
             <div>
                 <a href="/">
-                    <img src="/images/ico-home.png" alt="홈페이지" />
+                    <img alt="홈페이지" src="/images/ico-home.png"/>
                     &ensp;&ensp;
                 </a>
                 <a href="">&ensp;&ensp;커뮤니티&ensp;&ensp;</a>
@@ -36,7 +36,7 @@
         </div>
     </nav>
     <main id="container">
-        <form id="formRegister" class="log" th:action="@{/login/register}" method="post">
+        <form class="log" id="formRegister" method="post" th:action="@{/login/register}">
             <div class="log_head">
                 <p>회원가입<br></p>
                 <p>반갑습니다 그린대학교 입니다. 회원가입 후 더 많은 정보를 이용하세요.<br>
@@ -44,12 +44,13 @@
             </div>
             <div class="log_main">
                 <table class="box">
-                    <input type="hidden" name="agreed_terms" value="1">
-                    <input type="hidden" name="role" value="general">
+                    <input name="agreed_terms" type="hidden" value="1">
+                    <input name="role" type="hidden" value="general">
                     <tr>
                         <td class="title">아이디<span class="star">★</span></td>
                         <td class="text_type">
-                            <input type="text" id="id" name="id" placeholder="아이디 입력" size="25;" style="width: 45%; height: 27px;">&ensp;영문 숫자 조합 4-10자 이내
+                            <input id="id" name="id" placeholder="아이디 입력" size="25;" style="width: 45%; height: 27px;"
+                                   type="text">&ensp;영문 숫자 조합 4-10자 이내
                             <button id="btnCheckId" type="button">중복확인</button>
                             <span class="idResult"></span>
                         </td>
@@ -57,44 +58,56 @@
                     <tr>
                         <td class="title">비밀번호<span class="star">★</span></td>
                         <td class="text_type">
-                            <input type="password" name="password" placeholder="비밀번호 입력" size="25;" style="width: 45%; height: 27px;">&ensp;비밀번호는 8-16자리 이내, 영문숫자 특수문자 조합
+                            <input name="password" placeholder="비밀번호 입력" size="25;" style="width: 45%; height: 27px;"
+                                   type="password">&ensp;비밀번호는 8-16자리 이내, 영문숫자 특수문자 조합
                         </td>
                     </tr>
                     <tr>
                         <td class="title">비밀번호 확인<span class="star">★</span></td>
                         <td class="text_type">
-                            <input type="password" name="password2" placeholder="비밀번호 입력 확인" size="25;" style="width: 45%; height: 27px;">
+                            <input name="password2" placeholder="비밀번호 입력 확인" size="25;"
+                                   style="width: 45%; height: 27px;"
+                                   type="password">
                             <span class="passResult"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="title">이름<span class="star">★</span></td>
                         <td class="text_type">
-                            <input type="text" name="name" placeholder="이름 입력" size="25;" style="width: 45%; height: 27px;">
+                            <input name="name" placeholder="이름 입력" size="25;" style="width: 45%; height: 27px;"
+                                   type="text">
                             <span class="nameResult"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="title">휴대폰<span class="star">★</span></td>
                         <td class="text_type">
-                            <input type="text" name="contact" placeholder="휴대폰 입력" size="25;" style="width: 45%; height: 27px;">
+                            <input name="contact" placeholder="휴대폰 입력" size="25;" style="width: 45%; height: 27px;"
+                                   type="text">
                             <span class="contactResult"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="title">이메일<span class="star">★</span></td>
                         <td class="text_type">
-                            <input type="text" id="email" name="email" placeholder="이메일 입력" size="25;" style="width: 45%; height: 27px;">
+                            <input id="email" name="email" placeholder="이메일 입력" size="25;"
+                                   style="width: 45%; height: 27px;"
+                                   type="text">
                             <span class="emailResult"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="title">주소</td>
                         <td class="text_type">
-                            <input type="text" id="zip" name="zip" placeholder="우편번호"  size="25;" style="width: 28%; height: 25px;">
-                            <button type="button" onclick="postcode()">우편번호찾기</button>
-                            <input type="text" id="address" name="address" placeholder="주소 검색" size="25;" style="width: 400px; height: 25px;"><br>
-                            <input type="text" id="address_detail" name="address_detail" placeholder="상세주소 입력" size="25;" style="width: 400px; height: 25px;">
+                            <input id="zip" name="zip" placeholder="우편번호" size="25;" style="width: 28%; height: 25px;"
+                                   type="text">
+                            <button onclick="postcode()" type="button">우편번호찾기</button>
+                            <input id="address" name="address" placeholder="주소 검색" size="25;"
+                                   style="width: 400px; height: 25px;"
+                                   type="text"><br>
+                            <input id="address_detail" name="address_detail" placeholder="상세주소 입력" size="25;"
+                                   style="width: 400px; height: 25px;"
+                                   type="text">
                         </td>
                     </tr>
                 </table>
@@ -105,11 +118,13 @@
                 </div>
                 <div class="click">
                     <a>
-                        <input type="button" class="search-btn search-input" value="취소"
+                        <input class="search-btn search-input" style="width: 50px; background-color: gray;"
                                th:onclick="|window.location.href='@{/login/login}'|"
-                               style="width: 50px; background-color: gray;" />
-                        <input type="submit" class="search-btn search-input register-btn" value="회원가입"
-                               style="background-color: #3f97f6;"/>
+                               type="button"
+                               value="취소"/>
+                        <input class="search-btn search-input register-btn" style="background-color: #3f97f6;"
+                               type="submit"
+                               value="회원가입"/>
                     </a>
                 </div>
             </div>
