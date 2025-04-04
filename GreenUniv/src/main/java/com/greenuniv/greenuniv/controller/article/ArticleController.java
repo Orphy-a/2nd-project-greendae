@@ -91,7 +91,8 @@ public class ArticleController {
    * @return Path to template
    */
   @GetMapping("/view")
-  public String view(@RequestParam int id, Model model, HttpServletRequest request) {
+  public String view(@RequestParam int id, @RequestParam(required = false) String type, Model model,
+      HttpServletRequest request) {
 
     String uri = request.getRequestURI();
 
@@ -115,6 +116,7 @@ public class ArticleController {
       return "/error/error";
     }
 
+    model.addAttribute("type", type);
     model.addAttribute("article", article);
     model.addAttribute("comments", comments);
     model.addAttribute("uri", uri);
@@ -167,26 +169,26 @@ public class ArticleController {
         .content(content)
         .build();
 
-    articleMapper.insert(article);
-
     if (article.getCategory().equals("qna")) {
       if (type.equals("question")) {
         QnaDTO qna = QnaDTO.builder()
             .question(article)
             .build();
+        articleMapper.insert(article);
         qnaMapper.insert(qna);
       } else if (type.equals("answer")) {
         ArticleDTO question = ArticleDTO.builder()
             .id(Integer.parseInt(qid))
             .build();
 
-        article.setStatus(ArticleDTO.STATUS_CLOSED);
+        articleMapper.insertAndGet(article);
+        articleMapper.updateByIdWhere(Integer.parseInt(qid), "status", "close");
 
         QnaDTO qna = QnaDTO.builder()
             .question(question)
             .answer(article)
             .build();
-        qnaMapper.updateById(article.getId(), qna);
+        qnaMapper.updateById(Integer.parseInt(qid), qna);
       }
 
       if (article.getCategory().equals("column")) {

@@ -16,6 +16,8 @@ public interface GenericMapper<T extends BaseDTO, K> {
 
   void insert(T t);
 
+  void insertAndGet(T t);
+
   T selectById(K id);
 
   T selectBy(String colName, String value);

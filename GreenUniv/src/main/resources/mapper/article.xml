@@ -20,6 +20,14 @@
     VALUES (#{user.id}, #{title}, #{category}, #{status}, #{content}, NOW());
   </insert>
 
+  <insert id="insertAndGet" parameterType="com.greenuniv.greenuniv.dto.article.ArticleDTO">
+    INSERT INTO `article` (`user_id`, `title`, `category`, `status`, `content`, `register_date`)
+    VALUES (#{user.id}, #{title}, #{category}, #{status}, #{content}, NOW());
+    <selectKey keyProperty="id" resultType="Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+
   <select id="selectAll" resultMap="articleMap">
     SELECT
     `artcl`.id AS `article_id`,

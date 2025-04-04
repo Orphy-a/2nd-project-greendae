@@ -83,7 +83,7 @@
           <td>[[${article.getQuestion().getId()}]]</td>
           <td>
             <img th:src="@{/images/ico-lock.png}" th:if="${article.isPrivate()}" alt=""/>
-            <a th:href="@{/article/view(id=${article.getQuestion().getId()})}">
+            <a th:href="@{/article/view(id=${article.getQuestion().getId()}, type='question')}">
               [[${article.getQuestion().getTitle()}]]
             </a>
           </td>
